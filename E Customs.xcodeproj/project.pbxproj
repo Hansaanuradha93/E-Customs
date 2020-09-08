@@ -13,6 +13,8 @@
 		477D22B62507D068009C572B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 477D22B42507D068009C572B /* LaunchScreen.storyboard */; };
 		477D22C32507D46D009C572B /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22C22507D46D009C572B /* UIView+Ext.swift */; };
 		477D22C52507D49E009C572B /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22C42507D49E009C572B /* UIColor+Ext.swift */; };
+		477D22C82507D508009C572B /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22C72507D508009C572B /* SignupVC.swift */; };
+		477D22CA2507D51E009C572B /* SignupVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22C92507D51E009C572B /* SignupVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		477D22B72507D068009C572B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		477D22C22507D46D009C572B /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		477D22C42507D49E009C572B /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		477D22C72507D508009C572B /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		477D22C92507D51E009C572B /* SignupVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,7 @@
 		477D22BF2507D318009C572B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				477D22C62507D4E8009C572B /* Signup */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -105,6 +110,15 @@
 				477D22C42507D49E009C572B /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		477D22C62507D4E8009C572B /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				477D22C72507D508009C572B /* SignupVC.swift */,
+				477D22C92507D51E009C572B /* SignupVM.swift */,
+			);
+			path = Signup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,7 +191,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				477D22CA2507D51E009C572B /* SignupVM.swift in Sources */,
 				477D22AA2507D067009C572B /* AppDelegate.swift in Sources */,
+				477D22C82507D508009C572B /* SignupVC.swift in Sources */,
 				477D22C52507D49E009C572B /* UIColor+Ext.swift in Sources */,
 				477D22AC2507D067009C572B /* SceneDelegate.swift in Sources */,
 				477D22C32507D46D009C572B /* UIView+Ext.swift in Sources */,
