@@ -52,13 +52,53 @@
 		477D22A82507D067009C572B /* E Customs */ = {
 			isa = PBXGroup;
 			children = (
+				477D22BD2507D301009C572B /* Model */,
+				477D22BE2507D30A009C572B /* Custom Views */,
+				477D22BF2507D318009C572B /* Scenes */,
+				477D22C12507D34B009C572B /* Extensions */,
+				477D22C02507D328009C572B /* Support Files */,
+			);
+			path = "E Customs";
+			sourceTree = "<group>";
+		};
+		477D22BD2507D301009C572B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		477D22BE2507D30A009C572B /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		477D22BF2507D318009C572B /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		477D22C02507D328009C572B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
 				477D22A92507D067009C572B /* AppDelegate.swift */,
 				477D22AB2507D067009C572B /* SceneDelegate.swift */,
 				477D22B22507D068009C572B /* Assets.xcassets */,
 				477D22B42507D068009C572B /* LaunchScreen.storyboard */,
 				477D22B72507D068009C572B /* Info.plist */,
 			);
-			path = "E Customs";
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		477D22C12507D34B009C572B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
