@@ -11,6 +11,8 @@
 		477D22AC2507D067009C572B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22AB2507D067009C572B /* SceneDelegate.swift */; };
 		477D22B32507D068009C572B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 477D22B22507D068009C572B /* Assets.xcassets */; };
 		477D22B62507D068009C572B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 477D22B42507D068009C572B /* LaunchScreen.storyboard */; };
+		477D22C32507D46D009C572B /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22C22507D46D009C572B /* UIView+Ext.swift */; };
+		477D22C52507D49E009C572B /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22C42507D49E009C572B /* UIColor+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		477D22B22507D068009C572B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		477D22B52507D068009C572B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		477D22B72507D068009C572B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		477D22C22507D46D009C572B /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		477D22C42507D49E009C572B /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 		477D22C12507D34B009C572B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				477D22C22507D46D009C572B /* UIView+Ext.swift */,
+				477D22C42507D49E009C572B /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -172,7 +178,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				477D22AA2507D067009C572B /* AppDelegate.swift in Sources */,
+				477D22C52507D49E009C572B /* UIColor+Ext.swift in Sources */,
 				477D22AC2507D067009C572B /* SceneDelegate.swift in Sources */,
+				477D22C32507D46D009C572B /* UIView+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
