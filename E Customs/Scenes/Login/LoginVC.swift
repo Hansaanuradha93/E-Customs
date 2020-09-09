@@ -22,6 +22,7 @@ class LoginVC: UIViewController {
         setupUI()
         addTargets()
         setupNotifications()
+        setupViewModelObserver()
     }
     
     
@@ -68,6 +69,30 @@ class LoginVC: UIViewController {
     fileprivate func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    
+    fileprivate func setupViewModelObserver() {
+        viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
+            guard let self = self, let isFormValid = isFormValid else { return }
+            if isFormValid {
+                self.loginButton.backgroundColor = .white
+                self.loginButton.setTitleColor(.black, for: .normal)
+            } else {
+                self.loginButton.backgroundColor = UIColor.appColor(.lightGray)
+                self.loginButton.setTitleColor(.gray, for: .disabled)
+            }
+            self.loginButton.isEnabled = isFormValid
+        }
+        
+        viewModel.bindableIsLogin.bind { [weak self] isLogin in
+            guard let self = self, let isLogin = isLogin else { return }
+            if isLogin {
+                self.showPreloader()
+            } else {
+                self.hidePreloader()
+            }
+        }
     }
     
     
