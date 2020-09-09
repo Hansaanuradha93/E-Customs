@@ -1,7 +1,7 @@
 import UIKit
 
 enum AssetsColor: String {
-    case White
+    case lightGray = "light_gray"
 }
 
 

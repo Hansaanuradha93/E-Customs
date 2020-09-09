@@ -7,7 +7,7 @@ class SignupVC: UIViewController {
     fileprivate let fullNameTextField = ECTextField(padding: 16, placeholderText: "Enter full name")
     fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: "Enter email")
     fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: "Enter password")
-    fileprivate let signupButton = ECButton(backgroundColor: .lightGray, title: "Sign Up", titleColor: .gray, fontSize: 21)
+    fileprivate let signupButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: "Sign Up", titleColor: .gray, fontSize: 21)
     
     
     fileprivate lazy var verticalStackView: UIStackView = {
@@ -77,7 +77,7 @@ class SignupVC: UIViewController {
                 self.signupButton.backgroundColor = .white
                 self.signupButton.setTitleColor(.black, for: .normal)
             } else {
-                self.signupButton.backgroundColor = .lightGray
+                self.signupButton.backgroundColor = UIColor.appColor(.lightGray)
                 self.signupButton.setTitleColor(.gray, for: .disabled)
             }
             self.signupButton.isEnabled = isFormValid
