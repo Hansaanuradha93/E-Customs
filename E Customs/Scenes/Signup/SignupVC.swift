@@ -36,7 +36,14 @@ class SignupVC: UIViewController {
     
     @objc fileprivate func handleSignUp() {
         handleTapDismiss()
-        print("Sign Up")
+        viewModel.performSignUp { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                self.presentAlert(title: "Signup Failed!", message: error.localizedDescription, buttonTitle: "OK")
+                return
+            }
+            self.navigateToHome()
+        }
     }
     
     
@@ -61,6 +68,11 @@ class SignupVC: UIViewController {
     
     @objc fileprivate func handleKeyboardShow(notification: Notification) {
         self.verticalStackView.transform = CGAffineTransform(translationX: 0, y: -10)
+    }
+    
+    
+    fileprivate func navigateToHome() {
+        print("navigate to Home")
     }
     
     
