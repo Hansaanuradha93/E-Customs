@@ -1,6 +1,8 @@
 import UIKit
 
 class SignupVC: UIViewController {
+    
+    let viewModel = SignupVM()
 
     fileprivate let fullNameTextField = ECTextField(padding: 16, placeholderText: "Enter full name")
     fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: "Enter email")
@@ -31,10 +33,9 @@ class SignupVC: UIViewController {
     
     
     @objc fileprivate func handleTextChange(textField: UITextField) {
-        print("Text changed")
-//        signupViewModel.fullName = fullNameTextField.text
-//        signupViewModel.email = emailTextField.text
-//        signupViewModel.password = passwordTextField.text
+        viewModel.fullName = fullNameTextField.text
+        viewModel.email = emailTextField.text
+        viewModel.password = passwordTextField.text
     }
     
     
