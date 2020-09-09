@@ -15,6 +15,8 @@
 		477D22C52507D49E009C572B /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22C42507D49E009C572B /* UIColor+Ext.swift */; };
 		477D22C82507D508009C572B /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22C72507D508009C572B /* SignupVC.swift */; };
 		477D22CA2507D51E009C572B /* SignupVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22C92507D51E009C572B /* SignupVM.swift */; };
+		477F40AA25087C060053A149 /* ECTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F40A925087C060053A149 /* ECTextField.swift */; };
+		477F40AD25087EDB0053A149 /* ECButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F40AC25087EDB0053A149 /* ECButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		477D22C42507D49E009C572B /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		477D22C72507D508009C572B /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		477D22C92507D51E009C572B /* SignupVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVM.swift; sourceTree = "<group>"; };
+		477F40A925087C060053A149 /* ECTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECTextField.swift; sourceTree = "<group>"; };
+		477F40AC25087EDB0053A149 /* ECButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 		477D22BE2507D30A009C572B /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				477F40AB25087EC50053A149 /* Buttons */,
+				477F40A825087BE00053A149 /* Text Fields */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -119,6 +125,22 @@
 				477D22C92507D51E009C572B /* SignupVM.swift */,
 			);
 			path = Signup;
+			sourceTree = "<group>";
+		};
+		477F40A825087BE00053A149 /* Text Fields */ = {
+			isa = PBXGroup;
+			children = (
+				477F40A925087C060053A149 /* ECTextField.swift */,
+			);
+			path = "Text Fields";
+			sourceTree = "<group>";
+		};
+		477F40AB25087EC50053A149 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				477F40AC25087EDB0053A149 /* ECButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,7 +216,9 @@
 				477D22CA2507D51E009C572B /* SignupVM.swift in Sources */,
 				477D22AA2507D067009C572B /* AppDelegate.swift in Sources */,
 				477D22C82507D508009C572B /* SignupVC.swift in Sources */,
+				477F40AA25087C060053A149 /* ECTextField.swift in Sources */,
 				477D22C52507D49E009C572B /* UIColor+Ext.swift in Sources */,
+				477F40AD25087EDB0053A149 /* ECButton.swift in Sources */,
 				477D22AC2507D067009C572B /* SceneDelegate.swift in Sources */,
 				477D22C32507D46D009C572B /* UIView+Ext.swift in Sources */,
 			);
