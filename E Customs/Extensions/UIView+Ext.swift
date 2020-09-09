@@ -12,6 +12,14 @@ extension UIView {
     }
     
     
+    func setRoundedBorder(borderColor: UIColor, borderWidth: CGFloat, radius: CGFloat) {
+        self.layer.borderColor = borderColor.cgColor
+        self.layer.borderWidth = borderWidth
+        self.layer.cornerRadius = radius
+        self.clipsToBounds = true
+    }
+    
+    
     @discardableResult
     func anchor(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero) -> AnchoredConstraints {
         
