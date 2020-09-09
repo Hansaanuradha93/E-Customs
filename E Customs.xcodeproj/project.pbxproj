@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,8 @@
 		477F40B0250887BC0053A149 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F40AF250887BC0053A149 /* Bindable.swift */; };
 		477F40B22508898D0053A149 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F40B12508898D0053A149 /* UIViewController+Ext.swift */; };
 		477F40B4250899510053A149 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 477F40B3250899510053A149 /* GoogleService-Info.plist */; };
+		47C83ED72508A865003A26D4 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C83ED62508A865003A26D4 /* LoginVC.swift */; };
+		47C83ED92508A883003A26D4 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C83ED82508A883003A26D4 /* LoginVM.swift */; };
 		E01CFCC893CC263354165544 /* Pods_E_Customs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEAEFCB5BBB7A8C08E2826C /* Pods_E_Customs.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +42,8 @@
 		477F40AF250887BC0053A149 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		477F40B12508898D0053A149 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		477F40B3250899510053A149 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		47C83ED62508A865003A26D4 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		47C83ED82508A883003A26D4 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		9DEAEFCB5BBB7A8C08E2826C /* Pods_E_Customs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_E_Customs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB304BB033D27356CA1DBEA8 /* Pods-E Customs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E Customs.debug.xcconfig"; path = "Target Support Files/Pods-E Customs/Pods-E Customs.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +110,7 @@
 		477D22BF2507D318009C572B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				47C83ED52508A849003A26D4 /* Login */,
 				477D22C62507D4E8009C572B /* Signup */,
 			);
 			path = Scenes;
@@ -167,13 +172,21 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		47C83ED52508A849003A26D4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				47C83ED62508A865003A26D4 /* LoginVC.swift */,
+				47C83ED82508A883003A26D4 /* LoginVM.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		8D362AE811294FBA7B919D83 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				FB304BB033D27356CA1DBEA8 /* Pods-E Customs.debug.xcconfig */,
 				33E5A76D829FEBFBFEA71488 /* Pods-E Customs.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -300,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47C83ED72508A865003A26D4 /* LoginVC.swift in Sources */,
 				477D22CA2507D51E009C572B /* SignupVM.swift in Sources */,
 				477D22AA2507D067009C572B /* AppDelegate.swift in Sources */,
 				477F40B22508898D0053A149 /* UIViewController+Ext.swift in Sources */,
@@ -307,6 +321,7 @@
 				477F40AA25087C060053A149 /* ECTextField.swift in Sources */,
 				477D22C52507D49E009C572B /* UIColor+Ext.swift in Sources */,
 				477F40AD25087EDB0053A149 /* ECButton.swift in Sources */,
+				47C83ED92508A883003A26D4 /* LoginVM.swift in Sources */,
 				477D22AC2507D067009C572B /* SceneDelegate.swift in Sources */,
 				477D22C32507D46D009C572B /* UIView+Ext.swift in Sources */,
 				477F40B0250887BC0053A149 /* Bindable.swift in Sources */,
