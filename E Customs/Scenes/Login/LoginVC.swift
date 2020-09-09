@@ -18,6 +18,40 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        addTargets()
+    }
+    
+    
+    @objc fileprivate func handleLogin() {
+        handleTapDismiss()
+        print("login")
+    }
+    
+    
+    @objc fileprivate func handleTextChange(textField: UITextField) {
+        print("text changed")
+//        viewModel.fullName = fullNameTextField.text
+//        viewModel.email = emailTextField.text
+//        viewModel.password = passwordTextField.text
+    }
+    
+    
+    @objc fileprivate func handleTapDismiss() {
+        view.endEditing(true)
+    }
+    
+    
+    @objc fileprivate func handleGoToLogin() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    fileprivate func addTargets() {
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
+        emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        gotoSignupButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
     }
     
     
