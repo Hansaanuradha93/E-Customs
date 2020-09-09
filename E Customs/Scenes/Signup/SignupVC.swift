@@ -20,6 +20,35 @@ class SignupVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        addTargets()
+    }
+    
+    
+    @objc fileprivate func handleSignUp() {
+        handleTapDismiss()
+        print("Sign Up")
+    }
+    
+    
+    @objc fileprivate func handleTextChange(textField: UITextField) {
+        print("Text changed")
+//        signupViewModel.fullName = fullNameTextField.text
+//        signupViewModel.email = emailTextField.text
+//        signupViewModel.password = passwordTextField.text
+    }
+    
+    
+    @objc fileprivate func handleTapDismiss() {
+        view.endEditing(true)
+    }
+    
+    
+    fileprivate func addTargets() {
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
+        fullNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
     }
     
     
@@ -38,7 +67,6 @@ class SignupVC: UIViewController {
         emailTextField.setRoundedBorder(borderColor: .black, borderWidth: 1, radius: 2)
         passwordTextField.setRoundedBorder(borderColor: .black, borderWidth: 1, radius: 2)
         signupButton.setRoundedBorder(borderColor: .black, borderWidth: 1, radius: 2)
-        
         
         view.addSubview(verticalStackView)
         signupButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
