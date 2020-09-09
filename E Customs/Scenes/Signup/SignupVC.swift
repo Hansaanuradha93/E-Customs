@@ -23,7 +23,14 @@ class SignupVC: UIViewController {
         super.viewDidLoad()
         setupUI()
         addTargets()
+        setupNotifications()
         setupViewModelObserver()
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -42,6 +49,24 @@ class SignupVC: UIViewController {
     
     @objc fileprivate func handleTapDismiss() {
         view.endEditing(true)
+    }
+    
+    
+    @objc fileprivate func handleKeyboardHide() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.verticalStackView.transform = .identity
+        })
+    }
+    
+    
+    @objc fileprivate func handleKeyboardShow(notification: Notification) {
+        self.verticalStackView.transform = CGAffineTransform(translationX: 0, y: -10)
+    }
+    
+    
+    fileprivate func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     
