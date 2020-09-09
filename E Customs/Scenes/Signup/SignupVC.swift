@@ -2,7 +2,8 @@ import UIKit
 
 class SignupVC: UIViewController {
     
-    let viewModel = SignupVM()
+    // MARK: Properties
+    fileprivate let viewModel = SignupVM()
 
     fileprivate let fullNameTextField = ECTextField(padding: 16, placeholderText: "Enter full name")
     fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: "Enter email")
@@ -19,6 +20,7 @@ class SignupVC: UIViewController {
     }()
 
     
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -32,7 +34,11 @@ class SignupVC: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
     }
-    
+}
+
+
+// MARK: - Objc Methods
+extension SignupVC {
     
     @objc fileprivate func handleSignUp() {
         handleTapDismiss()
@@ -69,7 +75,11 @@ class SignupVC: UIViewController {
     @objc fileprivate func handleKeyboardShow(notification: Notification) {
         self.verticalStackView.transform = CGAffineTransform(translationX: 0, y: -10)
     }
-    
+}
+
+
+// MARK: - Methods
+extension SignupVC {
     
     fileprivate func navigateToHome() {
         print("navigate to Home")
