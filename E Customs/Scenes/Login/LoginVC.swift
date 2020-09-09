@@ -34,7 +34,14 @@ class LoginVC: UIViewController {
     
     @objc fileprivate func handleLogin() {
         handleTapDismiss()
-        print("login")
+        viewModel.performLogin { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                self.presentAlert(title: "Login Failed!", message: error.localizedDescription, buttonTitle: "OK")
+                return
+            }
+            self.navigateToHome()
+        }
     }
     
     
@@ -63,6 +70,11 @@ class LoginVC: UIViewController {
     
     @objc fileprivate func handleGoToLogin() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    fileprivate func navigateToHome() {
+        print("navigate to Home")
     }
     
     
