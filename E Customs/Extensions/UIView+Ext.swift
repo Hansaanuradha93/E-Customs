@@ -12,7 +12,7 @@ extension UIView {
     }
     
     
-    func setRoundedBorder(borderColor: UIColor, borderWidth: CGFloat, radius: CGFloat) {
+    func setRoundedBorder(borderColor: UIColor, borderWidth: CGFloat, radius: CGFloat = 2) {
         self.layer.borderColor = borderColor.cgColor
         self.layer.borderWidth = borderWidth
         self.layer.cornerRadius = radius
