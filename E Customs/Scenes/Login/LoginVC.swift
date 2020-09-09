@@ -2,6 +2,8 @@ import UIKit
 
 class LoginVC: UIViewController {
     
+    fileprivate let viewModel = LoginVM()
+    
     fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: "Enter email")
     fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: "Enter password")
     fileprivate let loginButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: "Log In", titleColor: .gray, fontSize: 21)
@@ -29,10 +31,8 @@ class LoginVC: UIViewController {
     
     
     @objc fileprivate func handleTextChange(textField: UITextField) {
-        print("text changed")
-//        viewModel.fullName = fullNameTextField.text
-//        viewModel.email = emailTextField.text
-//        viewModel.password = passwordTextField.text
+        viewModel.email = emailTextField.text
+        viewModel.password = passwordTextField.text
     }
     
     
