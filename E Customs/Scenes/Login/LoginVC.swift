@@ -2,6 +2,7 @@ import UIKit
 
 class LoginVC: UIViewController {
     
+    // MARK: Properties
     fileprivate let viewModel = LoginVM()
     
     fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: "Enter email")
@@ -17,6 +18,8 @@ class LoginVC: UIViewController {
         return stackView
     }()
 
+    
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -30,7 +33,11 @@ class LoginVC: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
     }
-    
+}
+
+
+// MARK: - Objc Methods
+extension LoginVC {
     
     @objc fileprivate func handleLogin() {
         handleTapDismiss()
@@ -71,7 +78,11 @@ class LoginVC: UIViewController {
     @objc fileprivate func handleGoToLogin() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+}
+
+
+// MARK: - Methods
+extension LoginVC {
     
     fileprivate func navigateToHome() {
         print("navigate to Home")
