@@ -7,7 +7,7 @@ class SignupVC: UIViewController {
     fileprivate let fullNameTextField = ECTextField(padding: 16, placeholderText: "Enter full name")
     fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: "Enter email")
     fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: "Enter password")
-    fileprivate let signupButton = ECButton(backgroundColor: .white, title: "Sign Up", titleColor: .black, fontSize: 21)
+    fileprivate let signupButton = ECButton(backgroundColor: .lightGray, title: "Sign Up", titleColor: .gray, fontSize: 21)
     
     
     fileprivate lazy var verticalStackView: UIStackView = {
@@ -23,6 +23,7 @@ class SignupVC: UIViewController {
         super.viewDidLoad()
         setupUI()
         addTargets()
+        setupViewModelObserver()
     }
     
     
@@ -41,6 +42,30 @@ class SignupVC: UIViewController {
     
     @objc fileprivate func handleTapDismiss() {
         view.endEditing(true)
+    }
+    
+    
+    fileprivate func setupViewModelObserver() {
+        viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
+            guard let self = self, let isFormValid = isFormValid else { return }
+            if isFormValid {
+                self.signupButton.backgroundColor = .white
+                self.signupButton.setTitleColor(.black, for: .normal)
+            } else {
+                self.signupButton.backgroundColor = .lightGray
+                self.signupButton.setTitleColor(.gray, for: .disabled)
+            }
+            self.signupButton.isEnabled = isFormValid
+        }
+        
+        viewModel.bindableIsRegistering.bind { [weak self] isRegistering in
+            guard let self = self, let isRegistering = isRegistering else { return }
+            if isRegistering {
+                self.showPreloader()
+            } else {
+                self.hidePreloader()
+            }
+        }
     }
     
     
@@ -63,6 +88,7 @@ class SignupVC: UIViewController {
         emailTextField.autocorrectionType = .no
         passwordTextField.isSecureTextEntry = true
         passwordTextField.autocorrectionType = .no
+        signupButton.isEnabled = false
         
         fullNameTextField.setRoundedBorder(borderColor: .black, borderWidth: 1, radius: 2)
         emailTextField.setRoundedBorder(borderColor: .black, borderWidth: 1, radius: 2)
