@@ -9,7 +9,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = UINavigationController(rootViewController: SignupVC())
+//        let controller = UINavigationController(rootViewController: SignupVC())
+        let controller = UINavigationController(rootViewController: AddProductsVC())
+        window?.rootViewController = controller
         window?.makeKeyAndVisible()
     }
 }
