@@ -102,8 +102,8 @@ extension SignupVC {
         viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
-                self.signupButton.backgroundColor = .white
-                self.signupButton.setTitleColor(.black, for: .normal)
+                self.signupButton.backgroundColor = .black
+                self.signupButton.setTitleColor(.white, for: .normal)
             } else {
                 self.signupButton.backgroundColor = UIColor.appColor(.lightGray)
                 self.signupButton.setTitleColor(.gray, for: .disabled)
@@ -144,10 +144,10 @@ extension SignupVC {
         passwordTextField.autocorrectionType = .no
         signupButton.isEnabled = false
         
-        fullNameTextField.setRoundedBorder(borderColor: .black, borderWidth: 1, radius: 2)
-        emailTextField.setRoundedBorder(borderColor: .black, borderWidth: 1, radius: 2)
-        passwordTextField.setRoundedBorder(borderColor: .black, borderWidth: 1, radius: 2)
-        signupButton.setRoundedBorder(borderColor: .black, borderWidth: 1, radius: 2)
+        fullNameTextField.setRoundedBorder(borderColor: .black, borderWidth: 0.5, radius: 2)
+        emailTextField.setRoundedBorder(borderColor: .black, borderWidth: 0.5, radius: 2)
+        passwordTextField.setRoundedBorder(borderColor: .black, borderWidth: 0.5, radius: 2)
+        signupButton.setRoundedBorder(borderColor: .black, borderWidth: 0, radius: 2)
         
         view.addSubview(verticalStackView)
         signupButton.heightAnchor.constraint(equalToConstant: 50).isActive = true

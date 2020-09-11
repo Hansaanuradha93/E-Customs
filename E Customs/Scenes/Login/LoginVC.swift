@@ -99,8 +99,8 @@ extension LoginVC {
         viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
-                self.loginButton.backgroundColor = .white
-                self.loginButton.setTitleColor(.black, for: .normal)
+                self.loginButton.backgroundColor = .black
+                self.loginButton.setTitleColor(.white, for: .normal)
             } else {
                 self.loginButton.backgroundColor = UIColor.appColor(.lightGray)
                 self.loginButton.setTitleColor(.gray, for: .disabled)
@@ -139,9 +139,9 @@ extension LoginVC {
         passwordTextField.autocorrectionType = .no
         loginButton.isEnabled = false
         
-        emailTextField.setRoundedBorder(borderColor: .black, borderWidth: 1, radius: 2)
-        passwordTextField.setRoundedBorder(borderColor: .black, borderWidth: 1, radius: 2)
-        loginButton.setRoundedBorder(borderColor: .black, borderWidth: 1, radius: 2)
+        emailTextField.setRoundedBorder(borderColor: .black, borderWidth: 0.5, radius: 2)
+        passwordTextField.setRoundedBorder(borderColor: .black, borderWidth: 0.5, radius: 2)
+        loginButton.setRoundedBorder(borderColor: .black, borderWidth: 0, radius: 2)
         
         view.addSubview(verticalStackView)
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
