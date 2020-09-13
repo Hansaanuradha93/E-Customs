@@ -26,7 +26,7 @@
 		479C4D0B250E7EE100A7E399 /* OrderListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479C4D0A250E7EE100A7E399 /* OrderListVM.swift */; };
 		479C4D0D250E7EFF00A7E399 /* RequestBoxVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479C4D0C250E7EFF00A7E399 /* RequestBoxVC.swift */; };
 		479C4D0F250E7F1700A7E399 /* RequestBoxVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479C4D0E250E7F1700A7E399 /* RequestBoxVM.swift */; };
-		479C4D12250E7FA500A7E399 /* EXTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479C4D11250E7FA500A7E399 /* EXTabBar.swift */; };
+		479C4D12250E7FA500A7E399 /* ECTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479C4D11250E7FA500A7E399 /* ECTabBar.swift */; };
 		47C83ED72508A865003A26D4 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C83ED62508A865003A26D4 /* LoginVC.swift */; };
 		47C83ED92508A883003A26D4 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C83ED82508A883003A26D4 /* LoginVM.swift */; };
 		E01CFCC893CC263354165544 /* Pods_E_Customs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEAEFCB5BBB7A8C08E2826C /* Pods_E_Customs.framework */; };
@@ -55,7 +55,7 @@
 		479C4D0A250E7EE100A7E399 /* OrderListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListVM.swift; sourceTree = "<group>"; };
 		479C4D0C250E7EFF00A7E399 /* RequestBoxVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBoxVC.swift; sourceTree = "<group>"; };
 		479C4D0E250E7F1700A7E399 /* RequestBoxVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBoxVM.swift; sourceTree = "<group>"; };
-		479C4D11250E7FA500A7E399 /* EXTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXTabBar.swift; sourceTree = "<group>"; };
+		479C4D11250E7FA500A7E399 /* ECTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECTabBar.swift; sourceTree = "<group>"; };
 		47C83ED62508A865003A26D4 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		47C83ED82508A883003A26D4 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		9DEAEFCB5BBB7A8C08E2826C /* Pods_E_Customs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_E_Customs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,7 +115,7 @@
 		477D22BE2507D30A009C572B /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				479C4D10250E7F7700A7E399 /* TabBar */,
+				479C4D10250E7F7700A7E399 /* Tab Bar */,
 				477F40AB25087EC50053A149 /* Buttons */,
 				477F40A825087BE00053A149 /* Text Fields */,
 			);
@@ -208,12 +208,12 @@
 			path = "Request Box";
 			sourceTree = "<group>";
 		};
-		479C4D10250E7F7700A7E399 /* TabBar */ = {
+		479C4D10250E7F7700A7E399 /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
-				479C4D11250E7FA500A7E399 /* EXTabBar.swift */,
+				479C4D11250E7FA500A7E399 /* ECTabBar.swift */,
 			);
-			path = TabBar;
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
 		47C83ED52508A849003A26D4 /* Login */ = {
@@ -381,7 +381,7 @@
 				47C83ED92508A883003A26D4 /* LoginVM.swift in Sources */,
 				479C4D09250E7EC600A7E399 /* OrderListVC.swift in Sources */,
 				477D22AC2507D067009C572B /* SceneDelegate.swift in Sources */,
-				479C4D12250E7FA500A7E399 /* EXTabBar.swift in Sources */,
+				479C4D12250E7FA500A7E399 /* ECTabBar.swift in Sources */,
 				477D22C32507D46D009C572B /* UIView+Ext.swift in Sources */,
 				477F40B0250887BC0053A149 /* Bindable.swift in Sources */,
 				479C4D0D250E7EFF00A7E399 /* RequestBoxVC.swift in Sources */,
