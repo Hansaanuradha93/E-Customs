@@ -1,9 +1,9 @@
 import UIKit
 
-class AddProductsVC: UIViewController {
+class RequestBoxVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .white
     }
 }
