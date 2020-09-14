@@ -225,6 +225,13 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
+		47C83EDA2508F1DD003A26D4 /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Tab Bar";
+=======
 		47D61DD625091F4300AB7C11 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +239,7 @@
 				479C4D06250E7E8A00A7E399 /* HomeVM.swift */,
 			);
 			path = Home;
+>>>>>>> add_products
 			sourceTree = "<group>";
 		};
 		8D362AE811294FBA7B919D83 /* Pods */ = {
