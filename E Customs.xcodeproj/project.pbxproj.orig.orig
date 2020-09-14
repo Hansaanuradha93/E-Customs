@@ -115,7 +115,20 @@
 		477D22BE2507D30A009C572B /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				479C4D10250E7F7700A7E399 /* Tab Bar */,
+=======
+<<<<<<< HEAD
+				47C83EDA2508F1DD003A26D4 /* Tab Bar */,
+>>>>>>> Add Procuts scene added
+=======
+<<<<<<< HEAD
+				47C83EDA2508F1DD003A26D4 /* Tab Bar */,
+=======
+				479C4D10250E7F7700A7E399 /* TabBar */,
+>>>>>>> add_products
+>>>>>>> 8a1c742e1927445a98fd907f7470e74249b65f73
+>>>>>>> 0b9c1a6e2831b3ed7cd66fffe1be5a2a070662b6
 				477F40AB25087EC50053A149 /* Buttons */,
 				477F40A825087BE00053A149 /* Text Fields */,
 			);
@@ -226,6 +239,22 @@
 			sourceTree = "<group>";
 		};
 <<<<<<< HEAD
+<<<<<<< HEAD
+		47D61DD625091F4300AB7C11 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				479C4D04250E7E6800A7E399 /* HomeVC.swift */,
+				479C4D06250E7E8A00A7E399 /* HomeVM.swift */,
+			);
+			path = Home;
+=======
+		47C83EDA2508F1DD003A26D4 /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Tab Bar";
+>>>>>>> Add Procuts scene added
+=======
 		47C83EDA2508F1DD003A26D4 /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +269,7 @@
 			);
 			path = Home;
 >>>>>>> add_products
+>>>>>>> 0b9c1a6e2831b3ed7cd66fffe1be5a2a070662b6
 			sourceTree = "<group>";
 		};
 		8D362AE811294FBA7B919D83 /* Pods */ = {
