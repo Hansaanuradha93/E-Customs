@@ -184,7 +184,6 @@
 			);
 			path = Login;
 			sourceTree = "<group>";
-		};
 		47C83EDA2508F1DD003A26D4 /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
