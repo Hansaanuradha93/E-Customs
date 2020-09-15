@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4734F836251122B000192BCB /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734F835251122B000192BCB /* Product.swift */; };
 		477D22AA2507D067009C572B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22A92507D067009C572B /* AppDelegate.swift */; };
 		477D22AC2507D067009C572B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22AB2507D067009C572B /* SceneDelegate.swift */; };
 		477D22B32507D068009C572B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 477D22B22507D068009C572B /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		33E5A76D829FEBFBFEA71488 /* Pods-E Customs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E Customs.release.xcconfig"; path = "Target Support Files/Pods-E Customs/Pods-E Customs.release.xcconfig"; sourceTree = "<group>"; };
+		4734F835251122B000192BCB /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		477D22A62507D067009C572B /* E Customs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "E Customs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		477D22A92507D067009C572B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		477D22AB2507D067009C572B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		477D22BD2507D301009C572B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4734F835251122B000192BCB /* Product.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				477D22AC2507D067009C572B /* SceneDelegate.swift in Sources */,
 				479C4D12250E7FA500A7E399 /* ECTabBar.swift in Sources */,
 				477D22C32507D46D009C572B /* UIView+Ext.swift in Sources */,
+				4734F836251122B000192BCB /* Product.swift in Sources */,
 				477F40B0250887BC0053A149 /* Bindable.swift in Sources */,
 				479C4D0D250E7EFF00A7E399 /* RequestBoxVC.swift in Sources */,
 			);
