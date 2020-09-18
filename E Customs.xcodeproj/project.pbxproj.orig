@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4734F836251122B000192BCB /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734F835251122B000192BCB /* Product.swift */; };
+		4767D29325151A4A004C23CB /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767D29225151A4A004C23CB /* ProductCell.swift */; };
+		4767D29725151AA8004C23CB /* ECImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767D29625151AA8004C23CB /* ECImageView.swift */; };
+		4767D29925151AC6004C23CB /* ECLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767D29825151AC6004C23CB /* ECLabel.swift */; };
+		4767D29C25151B49004C23CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767D29B25151B49004C23CB /* Constants.swift */; };
 		477D22AA2507D067009C572B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22A92507D067009C572B /* AppDelegate.swift */; };
 		477D22AC2507D067009C572B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477D22AB2507D067009C572B /* SceneDelegate.swift */; };
 		477D22B32507D068009C572B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 477D22B22507D068009C572B /* Assets.xcassets */; };
@@ -29,6 +33,10 @@
 /* Begin PBXFileReference section */
 		33E5A76D829FEBFBFEA71488 /* Pods-E Customs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E Customs.release.xcconfig"; path = "Target Support Files/Pods-E Customs/Pods-E Customs.release.xcconfig"; sourceTree = "<group>"; };
 		4734F835251122B000192BCB /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		4767D29225151A4A004C23CB /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		4767D29625151AA8004C23CB /* ECImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECImageView.swift; sourceTree = "<group>"; };
+		4767D29825151AC6004C23CB /* ECLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECLabel.swift; sourceTree = "<group>"; };
+		4767D29B25151B49004C23CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		477D22A62507D067009C572B /* E Customs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "E Customs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		477D22A92507D067009C572B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		477D22AB2507D067009C572B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +70,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4767D29125151A2B004C23CB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4767D29225151A4A004C23CB /* ProductCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4767D29425151A63004C23CB /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				4767D29825151AC6004C23CB /* ECLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		4767D29525151A7E004C23CB /* Image Views */ = {
+			isa = PBXGroup;
+			children = (
+				4767D29625151AA8004C23CB /* ECImageView.swift */,
+			);
+			path = "Image Views";
+			sourceTree = "<group>";
+		};
+		4767D29A25151B38004C23CB /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				4767D29B25151B49004C23CB /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		477D229D2507D067009C572B = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +128,7 @@
 				477D22BF2507D318009C572B /* Scenes */,
 				477D22C12507D34B009C572B /* Extensions */,
 				477F40AE250887A80053A149 /* Helper */,
+				4767D29A25151B38004C23CB /* Constants */,
 				477D22C02507D328009C572B /* Support Files */,
 			);
 			path = "E Customs";
@@ -104,7 +145,13 @@
 		477D22BE2507D30A009C572B /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				47C83EDA2508F1DD003A26D4 /* Tab Bar */,
+=======
+				479C4D10250E7F7700A7E399 /* Tab Bar */,
+				4767D29525151A7E004C23CB /* Image Views */,
+				4767D29425151A63004C23CB /* Labels */,
+>>>>>>> add_products
 				477F40AB25087EC50053A149 /* Buttons */,
 				477F40A825087BE00053A149 /* Text Fields */,
 			);
@@ -184,28 +231,17 @@
 			);
 			path = Login;
 			sourceTree = "<group>";
-		};
-<<<<<<< HEAD
-		47C83EDA2508F1DD003A26D4 /* Tab Bar */ = {
-=======
-<<<<<<< HEAD
 		47C83EDA2508F1DD003A26D4 /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = "Tab Bar";
-=======
-		47D61DD625091F4300AB7C11 /* Home */ = {
->>>>>>> 66f10537a3dd8f4a632787b542865b2d2df592d2
-			isa = PBXGroup;
-			children = (
-			);
 <<<<<<< HEAD
-			path = "Tab Bar";
 =======
-			path = Home;
+				4767D29125151A2B004C23CB /* Cells */,
+				479C4D04250E7E6800A7E399 /* HomeVC.swift */,
+				479C4D06250E7E8A00A7E399 /* HomeVM.swift */,
 >>>>>>> add_products
->>>>>>> 66f10537a3dd8f4a632787b542865b2d2df592d2
+			);
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
 		8D362AE811294FBA7B919D83 /* Pods */ = {
@@ -342,17 +378,29 @@
 			files = (
 				47C83ED72508A865003A26D4 /* LoginVC.swift in Sources */,
 				477D22CA2507D51E009C572B /* SignupVM.swift in Sources */,
+				4767D29725151AA8004C23CB /* ECImageView.swift in Sources */,
 				477D22AA2507D067009C572B /* AppDelegate.swift in Sources */,
+				4767D29925151AC6004C23CB /* ECLabel.swift in Sources */,
 				477F40B22508898D0053A149 /* UIViewController+Ext.swift in Sources */,
 				477D22C82507D508009C572B /* SignupVC.swift in Sources */,
 				477F40AA25087C060053A149 /* ECTextField.swift in Sources */,
 				477D22C52507D49E009C572B /* UIColor+Ext.swift in Sources */,
 				477F40AD25087EDB0053A149 /* ECButton.swift in Sources */,
+<<<<<<< HEAD
+=======
+				479C4D07250E7E8A00A7E399 /* HomeVM.swift in Sources */,
+				4767D29325151A4A004C23CB /* ProductCell.swift in Sources */,
+>>>>>>> add_products
 				47C83ED92508A883003A26D4 /* LoginVM.swift in Sources */,
 				477D22AC2507D067009C572B /* SceneDelegate.swift in Sources */,
 				477D22C32507D46D009C572B /* UIView+Ext.swift in Sources */,
 				4734F836251122B000192BCB /* Product.swift in Sources */,
 				477F40B0250887BC0053A149 /* Bindable.swift in Sources */,
+<<<<<<< HEAD
+=======
+				479C4D0D250E7EFF00A7E399 /* RequestBoxVC.swift in Sources */,
+				4767D29C25151B49004C23CB /* Constants.swift in Sources */,
+>>>>>>> add_products
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
