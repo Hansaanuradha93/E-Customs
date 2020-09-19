@@ -27,6 +27,7 @@ extension ProductCell {
     func set(product: Product) {
         titleLabel.text = product.name ?? ""
         priceLabel.text = "$\(product.price ?? "")"
+        thumbnailImageView.downloadImage(from: product.thumbnailUrl ?? "")
     }
     
     
