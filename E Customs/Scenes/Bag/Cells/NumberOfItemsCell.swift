@@ -4,7 +4,7 @@ class NumberOfItemsCell: UITableViewCell {
     
     // MARK: Properties
     static let reuseID = "NumberOfItemsCell"
-    fileprivate let itemsCountLabel = ECSemiBoldLabel(textAlignment: .left, fontSize: 19)
+    fileprivate let itemsCountLabel = ECSemiBoldLabel(textAlignment: .left, fontSize: 15)
     
     
     // MARK: Initializers
@@ -24,8 +24,10 @@ extension NumberOfItemsCell {
     func set(count: Int) {
         if count > 1 {
             itemsCountLabel.text = "\(count) ITEMS"
-        } else if count == 0 {
+        } else if count == 1 {
             itemsCountLabel.text = "\(count) ITEM"
+        } else {
+            itemsCountLabel.text = "NO ITEMS YET"
         }
     }
     
