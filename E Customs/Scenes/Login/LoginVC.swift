@@ -14,7 +14,7 @@ class LoginVC: UIViewController {
         let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.spacing = 18
+        stackView.spacing = 24
         return stackView
     }()
 
