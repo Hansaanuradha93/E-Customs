@@ -5,6 +5,8 @@ class BagVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        title = "BAG"
+        tabBarItem.title = ""
         
         tableView.separatorStyle = .none
         tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
