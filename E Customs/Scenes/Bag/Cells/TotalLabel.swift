@@ -42,6 +42,7 @@ extension TotalLabel {
     
     
     fileprivate func setupUI() {
+        selectionStyle = .none
         let paddingTop: CGFloat = 24
         
         subTotalLabel.text = "subtotal".uppercased()

@@ -10,21 +10,20 @@ class BagVC: UITableViewController {
         tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
         tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
         tableView.register(TotalLabel.self, forCellReuseIdentifier: TotalLabel.reuseID)
+        tableView.register(CheckoutButtonCell.self, forCellReuseIdentifier: CheckoutButtonCell.reuseID)
     }
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        if section == 0 || section == 2 || section == 3 {
             return 1
         } else if section == 1 {
             return 3
-        } else if section == 2 {
-            return 1
         }
         return 0
     }
@@ -43,9 +42,11 @@ class BagVC: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: TotalLabel.reuseID, for: indexPath) as! TotalLabel
             cell.set()
             return cell
-        } else {
-            return UITableViewCell()
+        } else if indexPath.section == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CheckoutButtonCell.reuseID, for: indexPath) as! CheckoutButtonCell
+            return cell
         }
+        return UITableViewCell()
     }
     
     
@@ -56,6 +57,8 @@ class BagVC: UITableViewController {
             return 145
         } else if indexPath.section == 2 {
             return 160
+        } else if indexPath.section == 3 {
+            return 75
         }
         return 0
     }
