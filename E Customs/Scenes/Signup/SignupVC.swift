@@ -5,11 +5,11 @@ class SignupVC: UIViewController {
     // MARK: Properties
     fileprivate let viewModel = SignupVM()
 
-    fileprivate let fullNameTextField = ECTextField(padding: 16, placeholderText: "Enter full name")
-    fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: "Enter email")
-    fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: "Enter password")
-    fileprivate let signupButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: "Sign Up", titleColor: .gray, fontSize: 21)
-    fileprivate let goToLoginButton = ECButton(backgroundColor: .white, title: "Go to login", titleColor: .black, fontSize: 18)
+    fileprivate let fullNameTextField = ECTextField(padding: 16, placeholderText: Strings.enterFullName)
+    fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: Strings.enterEmail)
+    fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: Strings.enterPassword)
+    fileprivate let signupButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.signup, titleColor: .gray, fontSize: 18)
+    fileprivate let goToLoginButton = ECButton(backgroundColor: .white, title: Strings.gotoLogin, titleColor: .black, fontSize: 15)
     
     fileprivate lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, signupButton])
@@ -45,7 +45,7 @@ extension SignupVC {
         viewModel.performSignUp { [weak self] error in
             guard let self = self else { return }
             if let error = error {
-                self.presentAlert(title: "Signup Failed!", message: error.localizedDescription, buttonTitle: "OK")
+                self.presentAlert(title: Strings.signupFailed, message: error.localizedDescription, buttonTitle: Strings.ok)
                 return
             }
             self.navigateToHome()
@@ -88,7 +88,7 @@ extension SignupVC {
 extension SignupVC {
     
     fileprivate func navigateToHome() {
-        print("navigate to Home")
+        UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = ECTabBar()
     }
     
     
@@ -135,7 +135,7 @@ extension SignupVC {
     fileprivate func setupUI() {
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Sign Up"
+        navigationItem.title = Strings.signup
         
         fullNameTextField.autocorrectionType = .no
         emailTextField.keyboardType = .emailAddress

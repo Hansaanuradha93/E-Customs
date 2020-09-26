@@ -11,7 +11,7 @@ class ECImageView: UIImageView {
     required init?(coder: NSCoder) { fatalError() }
 
     
-    convenience init(image: UIImage, borderWidth: CGFloat = 0, borderColor: UIColor = .clear, contentMode: ContentMode = .scaleAspectFill) {
+    convenience init(image: UIImage = Asserts.placeHolder, borderWidth: CGFloat = 0, borderColor: UIColor = .clear, contentMode: ContentMode = .scaleAspectFill) {
         self.init(frame: .zero)
         self.image = image
         self.layer.borderWidth = borderWidth

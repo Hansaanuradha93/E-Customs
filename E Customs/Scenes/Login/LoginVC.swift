@@ -5,10 +5,10 @@ class LoginVC: UIViewController {
     // MARK: Properties
     fileprivate let viewModel = LoginVM()
     
-    fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: "Enter email")
-    fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: "Enter password")
-    fileprivate let loginButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: "Log In", titleColor: .gray, fontSize: 21)
-    fileprivate let gotoSignupButton = ECButton(backgroundColor: .white, title: "Go to sign up", titleColor: .black, fontSize: 18)
+    fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: Strings.enterEmail)
+    fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: Strings.enterPassword)
+    fileprivate let loginButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.login, titleColor: .gray, fontSize: 18)
+    fileprivate let gotoSignupButton = ECButton(backgroundColor: .white, title: Strings.gotoSignup, titleColor: .black, fontSize: 15)
     
     fileprivate lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
@@ -44,7 +44,7 @@ extension LoginVC {
         viewModel.performLogin { [weak self] error in
             guard let self = self else { return }
             if let error = error {
-                self.presentAlert(title: "Login Failed!", message: error.localizedDescription, buttonTitle: "OK")
+                self.presentAlert(title: Strings.loginFailed, message: error.localizedDescription, buttonTitle: Strings.ok)
                 return
             }
             self.navigateToHome()
@@ -85,7 +85,7 @@ extension LoginVC {
 extension LoginVC {
     
     fileprivate func navigateToHome() {
-        print("navigate to Home")
+        UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = ECTabBar()
     }
     
     
@@ -131,7 +131,7 @@ extension LoginVC {
     fileprivate func setupUI() {
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Log In"
+        navigationItem.title = Strings.login
         
         emailTextField.keyboardType = .emailAddress
         emailTextField.autocorrectionType = .no

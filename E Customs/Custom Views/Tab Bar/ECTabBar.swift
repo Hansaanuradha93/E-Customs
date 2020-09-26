@@ -5,8 +5,7 @@ class ECTabBar: UITabBarController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        UITabBar.appearance().tintColor = .black
-        viewControllers = [createHomeNC(), createOrderListNC(), createRequestBoxNC()]
+        setupUI()
     }
 }
 
@@ -32,5 +31,17 @@ extension ECTabBar {
         let requestBoxVC = RequestBoxVC()
         requestBoxVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "envelope"), selectedImage: UIImage(systemName: "envelope.fill"))
         return UINavigationController(rootViewController: requestBoxVC)
+    }
+    
+    
+    fileprivate func setupUI() {
+        UITabBar.appearance().tintColor = .black
+        viewControllers = [createHomeNC(), createOrderListNC(), createRequestBoxNC()]
+        
+        let traits = [UIFontDescriptor.TraitKey.weight: UIFont.Weight.medium]
+        var descriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: "Avenir Next"])
+        descriptor = descriptor.addingAttributes([UIFontDescriptor.AttributeName.traits: traits])
+        let attributes = [NSAttributedString.Key.font: UIFont(descriptor: descriptor, size: 18)]
+        UINavigationBar.appearance().titleTextAttributes = attributes
     }
 }

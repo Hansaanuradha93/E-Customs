@@ -12,7 +12,7 @@ class ECButton: UIButton {
 
     
     convenience init(backgroundColor: UIColor = .white, title: String = "", titleColor: UIColor = .black, radius: CGFloat = 0, fontSize: CGFloat = 32) {
-        self.init(frame: .zero)
+        self.init(type: .system)
         self.setup(backgroundColor: backgroundColor, title: title, titleColor: titleColor, radius: radius, fontSize: fontSize)
     }
 }
@@ -33,7 +33,11 @@ extension ECButton {
         self.setTitleColor(titleColor, for: .normal)
         self.backgroundColor = backgroundColor
         self.layer.cornerRadius = radius
-        self.titleLabel?.font = UIFont.systemFont(ofSize: fontSize, weight: .heavy)
+        let traits = [UIFontDescriptor.TraitKey.weight: UIFont.Weight.medium]
+        var descriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: "Avenir Next"])
+        descriptor = descriptor.addingAttributes([UIFontDescriptor.AttributeName.traits: traits])
+        
+        self.titleLabel?.font = UIFont(descriptor: descriptor, size: fontSize)
         self.layer.masksToBounds = false
         self.clipsToBounds = true
         self.imageView?.contentMode = .scaleAspectFill
