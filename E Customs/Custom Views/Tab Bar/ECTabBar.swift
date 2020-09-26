@@ -34,9 +34,16 @@ extension ECTabBar {
     }
     
     
+    fileprivate func createBagNC() -> UINavigationController {
+        let bagVC = BagVC()
+        bagVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "bag"), selectedImage: UIImage(systemName: "bag.fill"))
+        return UINavigationController(rootViewController: bagVC)
+    }
+    
+    
     fileprivate func setupUI() {
         UITabBar.appearance().tintColor = .black
-        viewControllers = [createHomeNC(), createOrderListNC(), createRequestBoxNC()]
+        viewControllers = [createHomeNC(), createOrderListNC(), createRequestBoxNC(), createBagNC()]
         
         let traits = [UIFontDescriptor.TraitKey.weight: UIFont.Weight.medium]
         var descriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: "Avenir Next"])
