@@ -41,6 +41,7 @@
 		47B1061F251F7B100009D04C /* ProductDetialsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B1061E251F7B100009D04C /* ProductDetialsVM.swift */; };
 		47B10624251F82DB0009D04C /* BagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B10623251F82DB0009D04C /* BagVC.swift */; };
 		47B10628251F82E70009D04C /* BagVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B10627251F82E70009D04C /* BagVM.swift */; };
+		47B1062C251F85460009D04C /* NumberOfItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B1062B251F85460009D04C /* NumberOfItemsCell.swift */; };
 		47C83ED72508A865003A26D4 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C83ED62508A865003A26D4 /* LoginVC.swift */; };
 		47C83ED92508A883003A26D4 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C83ED82508A883003A26D4 /* LoginVM.swift */; };
 		E01CFCC893CC263354165544 /* Pods_E_Customs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEAEFCB5BBB7A8C08E2826C /* Pods_E_Customs.framework */; };
@@ -84,6 +85,7 @@
 		47B1061E251F7B100009D04C /* ProductDetialsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetialsVM.swift; sourceTree = "<group>"; };
 		47B10623251F82DB0009D04C /* BagVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagVC.swift; sourceTree = "<group>"; };
 		47B10627251F82E70009D04C /* BagVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagVM.swift; sourceTree = "<group>"; };
+		47B1062B251F85460009D04C /* NumberOfItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfItemsCell.swift; sourceTree = "<group>"; };
 		47C83ED62508A865003A26D4 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		47C83ED82508A883003A26D4 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		9DEAEFCB5BBB7A8C08E2826C /* Pods_E_Customs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_E_Customs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,10 +317,19 @@
 		47B10622251F82BB0009D04C /* Bag */ = {
 			isa = PBXGroup;
 			children = (
+				47B1062A251F85280009D04C /* Cells */,
 				47B10623251F82DB0009D04C /* BagVC.swift */,
 				47B10627251F82E70009D04C /* BagVM.swift */,
 			);
 			path = Bag;
+			sourceTree = "<group>";
+		};
+		47B1062A251F85280009D04C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				47B1062B251F85460009D04C /* NumberOfItemsCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		47C83ED52508A849003A26D4 /* Login */ = {
@@ -484,6 +495,7 @@
 				47B10624251F82DB0009D04C /* BagVC.swift in Sources */,
 				479C4D0B250E7EE100A7E399 /* OrderListVM.swift in Sources */,
 				479C4D0F250E7F1700A7E399 /* RequestBoxVM.swift in Sources */,
+				47B1062C251F85460009D04C /* NumberOfItemsCell.swift in Sources */,
 				477D22C52507D49E009C572B /* UIColor+Ext.swift in Sources */,
 				47B1061F251F7B100009D04C /* ProductDetialsVM.swift in Sources */,
 				477F40AD25087EDB0053A149 /* ECButton.swift in Sources */,
