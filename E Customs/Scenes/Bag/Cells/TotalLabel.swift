@@ -33,11 +33,11 @@ class TotalLabel: UITableViewCell {
 // MARK: - Methods
 extension TotalLabel {
     
-    func set() {
-        subTotalValueLabel.text = "$0.00"
+    func set(subtotal: Double, tax: Double, total: Double) {
+        subTotalValueLabel.text = "$\(subtotal)"
         shippingMethodValueLabel.text = "free".uppercased()
-        taxValueLabel.text = "$0.00"
-        totalValueLabel.text = "$0.00"
+        taxValueLabel.text = "$\(tax)"
+        totalValueLabel.text = "$\(total)"
     }
     
     
