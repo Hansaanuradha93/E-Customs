@@ -1,18 +1,48 @@
 import UIKit
+import Firebase
 
 class BagVC: UITableViewController {
+    
+    let viewModel = BagVM()
+    
+    fileprivate var listener: ListenerRegistration?
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        title = "BAG"
-        tabBarItem.title = ""
-        
+        setupUI()
+        setupTableView()
+        fetchItems()
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isMovingFromParent { listener?.remove() }
+    }
+    
+    
+    fileprivate func fetchItems() {
+        listener = viewModel.fetchItems { (status) in
+            if status {
+                DispatchQueue.main.async { self.tableView.reloadData() }
+            }
+        }
+    }
+    
+    
+    fileprivate func setupTableView() {
         tableView.separatorStyle = .none
         tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
         tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
         tableView.register(TotalLabel.self, forCellReuseIdentifier: TotalLabel.reuseID)
         tableView.register(CheckoutButtonCell.self, forCellReuseIdentifier: CheckoutButtonCell.reuseID)
+    }
+    
+    fileprivate func setupUI() {
+        view.backgroundColor = .white
+        title = "BAG"
+        tabBarItem.title = ""
     }
     
     
@@ -25,7 +55,7 @@ class BagVC: UITableViewController {
         if section == 0 || section == 2 || section == 3 {
             return 1
         } else if section == 1 {
-            return 3
+            return viewModel.items.count
         }
         return 0
     }
@@ -34,11 +64,11 @@ class BagVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: NumberOfItemsCell.reuseID, for: indexPath) as! NumberOfItemsCell
-            cell.set(count: 5)
+            cell.set(count: viewModel.items.count)
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseID, for: indexPath) as! ItemCell
-            cell.set()
+            cell.set(item: viewModel.items[indexPath.row])
             return cell
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: TotalLabel.reuseID, for: indexPath) as! TotalLabel

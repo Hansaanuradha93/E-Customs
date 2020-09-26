@@ -25,9 +25,10 @@ class ItemCell: UITableViewCell {
 // MARK: - Methods
 extension ItemCell {
     
-    func set() {
-        nameLabel.text = "NIKE FREE RN FLYNKIT 2017 MEN'S RUNNING SHOE"
-        priceLabel.text = "$120"
+    func set(item: Item) {
+        thumbnailImageView.downloadImage(from: item.thumbnailUrl ?? "")
+        nameLabel.text = item.name ?? ""
+        priceLabel.text = "$" + "\(item.price ?? "0.00")"
     }
     
     
