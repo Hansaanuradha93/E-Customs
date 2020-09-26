@@ -44,6 +44,7 @@
 		47B1062C251F85460009D04C /* NumberOfItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B1062B251F85460009D04C /* NumberOfItemsCell.swift */; };
 		47B10630251F86B50009D04C /* ECSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B1062F251F86B50009D04C /* ECSemiBoldLabel.swift */; };
 		47B10634251F88E40009D04C /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B10633251F88E40009D04C /* ItemCell.swift */; };
+		47B10637251F8F7C0009D04C /* TotalLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B10636251F8F7C0009D04C /* TotalLabel.swift */; };
 		47C83ED72508A865003A26D4 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C83ED62508A865003A26D4 /* LoginVC.swift */; };
 		47C83ED92508A883003A26D4 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C83ED82508A883003A26D4 /* LoginVM.swift */; };
 		E01CFCC893CC263354165544 /* Pods_E_Customs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEAEFCB5BBB7A8C08E2826C /* Pods_E_Customs.framework */; };
@@ -90,6 +91,7 @@
 		47B1062B251F85460009D04C /* NumberOfItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfItemsCell.swift; sourceTree = "<group>"; };
 		47B1062F251F86B50009D04C /* ECSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECSemiBoldLabel.swift; sourceTree = "<group>"; };
 		47B10633251F88E40009D04C /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		47B10636251F8F7C0009D04C /* TotalLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalLabel.swift; sourceTree = "<group>"; };
 		47C83ED62508A865003A26D4 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		47C83ED82508A883003A26D4 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		9DEAEFCB5BBB7A8C08E2826C /* Pods_E_Customs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_E_Customs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,6 +336,7 @@
 			children = (
 				47B1062B251F85460009D04C /* NumberOfItemsCell.swift */,
 				47B10633251F88E40009D04C /* ItemCell.swift */,
+				47B10636251F8F7C0009D04C /* TotalLabel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				479C4D12250E7FA500A7E399 /* ECTabBar.swift in Sources */,
 				47B10628251F82E70009D04C /* BagVM.swift in Sources */,
 				47B1060C251F797F0009D04C /* ECMediumLabel.swift in Sources */,
+				47B10637251F8F7C0009D04C /* TotalLabel.swift in Sources */,
 				47B10609251F795E0009D04C /* ECBoldLabel.swift in Sources */,
 				477D22C32507D46D009C572B /* UIView+Ext.swift in Sources */,
 				4734F836251122B000192BCB /* Product.swift in Sources */,

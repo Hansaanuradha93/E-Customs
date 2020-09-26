@@ -9,11 +9,12 @@ class BagVC: UITableViewController {
         tableView.separatorStyle = .none
         tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
         tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
+        tableView.register(TotalLabel.self, forCellReuseIdentifier: TotalLabel.reuseID)
     }
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     
@@ -22,6 +23,8 @@ class BagVC: UITableViewController {
             return 1
         } else if section == 1 {
             return 3
+        } else if section == 2 {
+            return 1
         }
         return 0
     }
@@ -36,6 +39,10 @@ class BagVC: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseID, for: indexPath) as! ItemCell
             cell.set()
             return cell
+        } else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: TotalLabel.reuseID, for: indexPath) as! TotalLabel
+            cell.set()
+            return cell
         } else {
             return UITableViewCell()
         }
@@ -47,6 +54,8 @@ class BagVC: UITableViewController {
             return 70
         } else if indexPath.section == 1 {
             return 145
+        } else if indexPath.section == 2 {
+            return 160
         }
         return 0
     }
