@@ -86,7 +86,7 @@ class BagVC: UITableViewController {
         if indexPath.section == 0 {
             return 70
         } else if indexPath.section == 1 {
-            return 145
+            return 160
         } else if indexPath.section == 2 {
             return 160
         } else if indexPath.section == 3 {

@@ -7,8 +7,10 @@ class ItemCell: UITableViewCell {
     
     fileprivate let thumbnailImageView = ECImageView(contentMode: .scaleAspectFill)
     fileprivate let nameLabel = ECSemiBoldLabel(textAlignment: .left, fontSize: 15, numberOfLines: 2)
-    fileprivate let priceLabel = ECRegularLabel(textAlignment: .left, fontSize: 12)
-    fileprivate let removeButton = ECButton(title: "Remove", titleColor: .darkGray, fontSize: 12)
+    fileprivate let descriptionLabel = ECRegularLabel(textAlignment: .left, textColor: .darkGray, fontSize: 15)
+    fileprivate let sizeLabel = ECRegularLabel(textAlignment: .left, textColor: .darkGray, fontSize: 15)
+    fileprivate let priceLabel = ECMediumLabel(textAlignment: .left, fontSize: 15)
+    fileprivate let quantityLabel = ECMediumLabel(textAlignment: .left, fontSize: 15)
     
     
     // MARK: Initializers
@@ -28,7 +30,20 @@ extension ItemCell {
     func set(item: Item) {
         thumbnailImageView.downloadImage(from: item.thumbnailUrl ?? "")
         nameLabel.text = item.name ?? ""
-        priceLabel.text = "$" + "\(item.price ?? "0.00")"
+        descriptionLabel.text = item.description ?? ""
+        sizeLabel.text = "Size \(item.selectedSize ?? "Not availabel")"
+        
+        let quantity = item.quantity ?? 1
+        let quantityString = "Qty \(quantity) ↓"
+        let arrowString = "↓"
+
+        let range = (quantityString as NSString).range(of: arrowString)
+        let attributedString = NSMutableAttributedString(string:quantityString)
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.darkGray, range: range)
+        quantityLabel.attributedText = attributedString
+        
+        let price = (Double(item.price ?? "0") ?? 0) * Double(quantity)
+        priceLabel.text = "$" + "\(price)"
     }
     
     
@@ -36,11 +51,11 @@ extension ItemCell {
         selectionStyle = .none
         
         let paddingTop: CGFloat = 24
-        let dimensions: CGFloat = 96
+        let dimensions: CGFloat = 102
         
-        let stackView = UIStackView(arrangedSubviews: [nameLabel, priceLabel, removeButton])
+        let stackView = UIStackView(arrangedSubviews: [nameLabel, descriptionLabel, sizeLabel, priceLabel, quantityLabel])
         stackView.axis = .vertical
-        stackView.spacing = 0
+        stackView.spacing = 8
         stackView.alignment = .leading
     
         addSubview(thumbnailImageView)
@@ -48,6 +63,6 @@ extension ItemCell {
         
         thumbnailImageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: paddingTop, left: paddingTop, bottom: 0, right: 0), size: .init(width: dimensions, height: dimensions))
         
-        stackView.anchor(top: topAnchor, leading: thumbnailImageView.trailingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: paddingTop, left: paddingTop / 2, bottom: paddingTop, right: paddingTop))
+        stackView.anchor(top: thumbnailImageView.topAnchor, leading: thumbnailImageView.trailingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: paddingTop / 2, bottom: paddingTop, right: paddingTop))
     }
 }

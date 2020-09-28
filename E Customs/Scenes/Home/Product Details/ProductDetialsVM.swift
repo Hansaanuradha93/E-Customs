@@ -68,9 +68,11 @@ extension ProductDetialsVM {
                 let documentData : [String : Any] = [
                     "id" : productID,
                     "name" : self.product.name ?? "",
+                    "description": self.product.description ?? "",
                     "price" : self.product.price ?? "",
                     "thumbnail" : self.product.thumbnailUrl ?? "",
-                    "selectedSize": self.selectedSize ?? "0"
+                    "selectedSize": self.selectedSize ?? "0",
+                    "quantity": 1
                 ]
 
                 itemReference.setData(documentData) { [weak self] error in

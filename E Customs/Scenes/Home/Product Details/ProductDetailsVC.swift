@@ -14,9 +14,6 @@ class ProductDetailsVC: UIViewController {
     fileprivate let sizeLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
     fileprivate let addToBagButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: "Add to Bag", titleColor: .gray, radius: 2, fontSize: 16)
     
-    var selectedItem = -1
-
-    
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -25,6 +22,7 @@ class ProductDetailsVC: UIViewController {
         return cv
     }()
 
+    var selectedItem = -1
 
     
     // MARK: Initializers
