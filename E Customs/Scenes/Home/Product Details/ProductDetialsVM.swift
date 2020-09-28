@@ -40,33 +40,52 @@ extension ProductDetialsVM {
 // MARK: - Firebase Methods
 extension ProductDetialsVM {
     
-    func addToBag(completion: @escaping (Error?) -> ()) {
+    func addToBag(completion: @escaping (Bool, String) -> ()) {
         let currentUserId = Auth.auth().currentUser?.uid ?? ""
         let reference = Firestore.firestore().collection("bag").document(currentUserId).collection("items")
-        let key = reference.document().documentID
-    
-        let documentData : [String : Any] = [
-            "id" : product.id ?? "",
-            "key": key,
-            "name" : product.name ?? "",
-            "price" : product.price ?? "",
-            "thumbnail" : product.thumbnailUrl ?? "",
-            "selectedSize": selectedSize ?? "0"
-        ]
+        guard let productID = product.id else {
+            completion(false, "Something wend wrong!")
+            return
+        }
+        
+        let itemReference = reference.document(productID)
         
         self.bindableIsSaving.value = true
-        
-        reference.document(key).setData(documentData) { [weak self] error in
+
+        itemReference.getDocument { [weak self] snapshot, error in
             guard let self = self else { return }
-            self.bindableIsSaving.value = false
-            
             if let error = error {
-                completion(error)
+                print(error)
+                self.bindableIsSaving.value = false
+                completion(false, error.localizedDescription)
                 return
             }
-        
-            print("Product added to cart")
-            completion(nil)
+            
+            if snapshot?.exists ?? false {
+                self.bindableIsSaving.value = false
+                completion(true, "Product is already in the Bag")
+            } else {                
+                let documentData : [String : Any] = [
+                    "id" : productID,
+                    "name" : self.product.name ?? "",
+                    "price" : self.product.price ?? "",
+                    "thumbnail" : self.product.thumbnailUrl ?? "",
+                    "selectedSize": self.selectedSize ?? "0"
+                ]
+
+                itemReference.setData(documentData) { [weak self] error in
+                    guard let self = self else { return }
+                    self.bindableIsSaving.value = false
+
+                    if let error = error {
+                        print(error)
+                        completion(false, error.localizedDescription)
+                        return
+                    }
+
+                    completion(true, "Poduct added to Bag successfully!")
+                }
+            }
         }
     }
 }

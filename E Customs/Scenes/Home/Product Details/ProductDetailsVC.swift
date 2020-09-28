@@ -106,13 +106,13 @@ extension ProductDetailsVC {
 extension ProductDetailsVC {
     
     fileprivate func addToBag() {
-        viewModel.addToBag { [weak self] error in
+        viewModel.addToBag { [weak self] status, message in
             guard let self = self else { return }
-            if let error = error {
-                self.presentAlert(title: "Product Adding to Bag Failed", message: error.localizedDescription, buttonTitle: Strings.ok)
-                return
+            if status {
+                self.presentAlert(title: "Successful!", message: message, buttonTitle: Strings.ok)
+            } else {
+                self.presentAlert(title: "Failed!", message: message, buttonTitle: Strings.ok)
             }
-            self.presentAlert(title: "Successful!", message: "Poduct added to Bag successfully!", buttonTitle: Strings.ok)
         }
     }
     
