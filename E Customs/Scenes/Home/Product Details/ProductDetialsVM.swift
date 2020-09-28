@@ -31,7 +31,7 @@ extension ProductDetialsVM {
     
     
     func checkIsReadyToAddToBag() {
-        let isReady = selectedSize?.isEmpty == false
+        let isReady = selectedSize?.isEmpty == false && selectedSize != "0"
         bindalbeIsProductIsReady.value = isReady
     }
 }

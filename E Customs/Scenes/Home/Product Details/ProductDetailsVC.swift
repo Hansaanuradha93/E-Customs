@@ -78,6 +78,7 @@ extension ProductDetailsVC: UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if selectedItem == indexPath.item {
             selectedItem = -1
+            viewModel.selectedSize = "0"
         } else {
             selectedItem = indexPath.item
             viewModel.selectedSize = viewModel.sizes[selectedItem]

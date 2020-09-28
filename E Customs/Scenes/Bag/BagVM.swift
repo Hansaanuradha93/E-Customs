@@ -42,7 +42,6 @@ class BagVM {
             }
             for change in documentChanges {
                 if change.type == .added {
-                    print(change.document.data())
                     let item = Item(dictionary: change.document.data())
                     self.items.append(item)
                 }
