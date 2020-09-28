@@ -57,12 +57,10 @@ extension ItemCell {
         stackView.axis = .vertical
         stackView.spacing = 8
         stackView.alignment = .leading
-    
-        addSubview(thumbnailImageView)
-        addSubview(stackView)
+        
+        addSubviews(thumbnailImageView, stackView)
         
         thumbnailImageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: paddingTop, left: paddingTop, bottom: 0, right: 0), size: .init(width: dimensions, height: dimensions))
-        
         stackView.anchor(top: thumbnailImageView.topAnchor, leading: thumbnailImageView.trailingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: paddingTop / 2, bottom: paddingTop, right: paddingTop))
     }
 }
