@@ -41,6 +41,7 @@ extension SignupVM {
             "email": email ?? "",
             "isAdminUser": false
             ] as [String : Any]
+        
         Firestore.firestore().collection("users").document(uid).setData(userInfo) { [weak self] error in
             guard let self = self else { return }
             self.bindableIsRegistering.value = false

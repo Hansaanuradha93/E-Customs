@@ -6,8 +6,8 @@ class ProductCell: UITableViewCell {
     static let reuseID = "ProductCell"
     
     fileprivate let thumbnailImageView = ECImageView(image: Asserts.placeHolder)
-    fileprivate let titleLabel = ECLabel(textAlignment: .left, font: UIFont.systemFont(ofSize: 20, weight: .bold))
-    fileprivate let priceLabel = ECLabel(textAlignment: .left, font: UIFont.systemFont(ofSize: 16, weight: .medium))
+    fileprivate let titleLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
+    fileprivate let priceLabel = ECRegularLabel(textAlignment: .left, fontSize: 13)
 
     
     // MARK: Initilizers
@@ -35,8 +35,8 @@ extension ProductCell {
         selectionStyle = .none
         addSubviews(thumbnailImageView, titleLabel, priceLabel)
         
-        thumbnailImageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, size: .init(width: 0, height: 330))
+        thumbnailImageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, size: .init(width: 0, height: 375))
         titleLabel.anchor(top: thumbnailImageView.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8))
-        priceLabel.anchor(top: titleLabel.bottomAnchor, leading: titleLabel.leadingAnchor, bottom: nil, trailing: titleLabel.trailingAnchor, padding: .init(top: 4, left: 0, bottom: 0, right: 0))
+        priceLabel.anchor(top: titleLabel.bottomAnchor, leading: titleLabel.leadingAnchor, bottom: nil, trailing: titleLabel.trailingAnchor, padding: .init(top: 2, left: 0, bottom: 0, right: 0))
     }
 }

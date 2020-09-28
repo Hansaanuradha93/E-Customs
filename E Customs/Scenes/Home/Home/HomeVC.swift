@@ -39,7 +39,13 @@ extension HomeVC {
     
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
+        return 445
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = ProductDetailsVC(viewModel: ProductDetialsVM(product: viewModel.products[indexPath.row]))
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
 
@@ -58,7 +64,8 @@ extension HomeVC {
     
     fileprivate func setupUI() {
         view.backgroundColor = .white
-        navigationController?.navigationBar.isHidden = true
+        title = "HOME"
+        tabBarItem.title = ""
         
         tableView.separatorStyle = .none
         tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.reuseID)
