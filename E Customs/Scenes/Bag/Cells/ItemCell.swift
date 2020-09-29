@@ -6,11 +6,12 @@ class ItemCell: UITableViewCell {
     static let reuseID = "ItemCell"
     
     fileprivate let thumbnailImageView = ECImageView(contentMode: .scaleAspectFill)
-    fileprivate let nameLabel = ECSemiBoldLabel(textAlignment: .left, fontSize: 15, numberOfLines: 2)
-    fileprivate let descriptionLabel = ECRegularLabel(textAlignment: .left, textColor: .darkGray, fontSize: 15)
-    fileprivate let sizeLabel = ECRegularLabel(textAlignment: .left, textColor: .darkGray, fontSize: 15)
+    fileprivate let nameLabel = ECRegularLabel(textAlignment: .left, fontSize: 15, numberOfLines: 2)
+    fileprivate let descriptionLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
+    fileprivate let sizeLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
     fileprivate let priceLabel = ECMediumLabel(textAlignment: .left, fontSize: 15)
     fileprivate let quantityLabel = ECMediumLabel(textAlignment: .left, fontSize: 15)
+    fileprivate let closeButton = ECButton(backgroundColor: .white)
     
     
     // MARK: Initializers
@@ -52,15 +53,21 @@ extension ItemCell {
         
         let paddingTop: CGFloat = 24
         let dimensions: CGFloat = 102
+        let closeButtonDimensions: CGFloat = 12
         
         let stackView = UIStackView(arrangedSubviews: [nameLabel, descriptionLabel, sizeLabel, priceLabel, quantityLabel])
         stackView.axis = .vertical
         stackView.spacing = 8
         stackView.alignment = .leading
         
-        addSubviews(thumbnailImageView, stackView)
+        closeButton.imageView?.contentMode = .scaleAspectFit
+        closeButton.set(image: Asserts.close, withTint: .gray)
+        
+        addSubviews(thumbnailImageView, closeButton,stackView)
         
         thumbnailImageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: paddingTop, left: paddingTop, bottom: 0, right: 0), size: .init(width: dimensions, height: dimensions))
-        stackView.anchor(top: thumbnailImageView.topAnchor, leading: thumbnailImageView.trailingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: paddingTop / 2, bottom: paddingTop, right: paddingTop))
+        
+        closeButton.anchor(top: thumbnailImageView.topAnchor, leading: nil, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: paddingTop / 2, bottom: 0, right: paddingTop), size: .init(width: closeButtonDimensions, height: closeButtonDimensions))
+        stackView.anchor(top: thumbnailImageView.topAnchor, leading: thumbnailImageView.trailingAnchor, bottom: nil, trailing: closeButton.leadingAnchor, padding: .init(top: 0, left: paddingTop / 2, bottom: paddingTop, right: paddingTop / 2))
     }
 }

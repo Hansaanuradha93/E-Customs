@@ -21,7 +21,7 @@ class ECButton: UIButton {
 // MARK: - Methods
 extension ECButton {
     
-    func set(image: UIImage,withTint color: UIColor) {
+    func set(image: UIImage, withTint color: UIColor) {
         self.setImage(image, for: .normal)
         self.imageView?.image = self.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
         self.tintColor = color
