@@ -70,8 +70,7 @@ extension TotalLabel {
         overrallStackView.spacing = 2
         overrallStackView.distribution = .fillEqually
         
-        addSubview(overrallStackView)
-        addSubview(totalStackView)
+        contentView.addSubviews(overrallStackView, totalStackView)
         
         overrallStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: paddingTop, left: paddingTop, bottom: 0, right: paddingTop))
         totalStackView.anchor(top: overrallStackView.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: paddingTop, left: paddingTop, bottom: 0, right: paddingTop))

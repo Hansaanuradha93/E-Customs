@@ -35,7 +35,7 @@ extension NumberOfItemsCell {
     fileprivate func setupUI() {
         let padding: CGFloat = 24
         selectionStyle = .none
-        addSubview(itemsCountLabel)
+        contentView.addSubview(itemsCountLabel)
         itemsCountLabel.fillSuperview(padding: .init(top: padding, left: padding, bottom: padding, right: padding))
     }
 }

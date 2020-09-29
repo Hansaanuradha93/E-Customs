@@ -69,6 +69,9 @@ class BagVC: UITableViewController {
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseID, for: indexPath) as! ItemCell
             cell.set(item: viewModel.items[indexPath.row])
+            cell.removeAction =  {
+                print(124)
+            }
             return cell
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: TotalLabel.reuseID, for: indexPath) as! TotalLabel

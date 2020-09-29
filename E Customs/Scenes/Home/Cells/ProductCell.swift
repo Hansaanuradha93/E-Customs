@@ -33,7 +33,7 @@ extension ProductCell {
     
     func setupUI() {
         selectionStyle = .none
-        addSubviews(thumbnailImageView, titleLabel, priceLabel)
+        contentView.addSubviews(thumbnailImageView, titleLabel, priceLabel)
         
         thumbnailImageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, size: .init(width: 0, height: 375))
         titleLabel.anchor(top: thumbnailImageView.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8))

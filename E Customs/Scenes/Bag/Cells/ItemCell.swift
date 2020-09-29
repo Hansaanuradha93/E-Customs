@@ -13,6 +13,8 @@ class ItemCell: UITableViewCell {
     fileprivate let quantityLabel = ECMediumLabel(textAlignment: .left, fontSize: 15)
     fileprivate let closeButton = ECButton(backgroundColor: .white)
     
+    var removeAction: (() -> Void)? = nil
+    
     
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -27,6 +29,11 @@ class ItemCell: UITableViewCell {
 
 // MARK: - Methods
 extension ItemCell {
+    
+    @objc fileprivate func handleClose() {
+        removeAction?()
+    }
+    
     
     func set(item: Item) {
         thumbnailImageView.downloadImage(from: item.thumbnailUrl ?? "")
@@ -53,7 +60,7 @@ extension ItemCell {
         
         let paddingTop: CGFloat = 24
         let dimensions: CGFloat = 102
-        let closeButtonDimensions: CGFloat = 12
+        let closeButtonDimensions: CGFloat = 14
         
         let stackView = UIStackView(arrangedSubviews: [nameLabel, descriptionLabel, sizeLabel, priceLabel, quantityLabel])
         stackView.axis = .vertical
@@ -62,8 +69,9 @@ extension ItemCell {
         
         closeButton.imageView?.contentMode = .scaleAspectFit
         closeButton.set(image: Asserts.close, withTint: .gray)
+        closeButton.addTarget(self, action: #selector(handleClose), for: .touchUpInside)
         
-        addSubviews(thumbnailImageView, closeButton,stackView)
+        contentView.addSubviews(thumbnailImageView, closeButton, stackView)
         
         thumbnailImageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: paddingTop, left: paddingTop, bottom: 0, right: 0), size: .init(width: dimensions, height: dimensions))
         
