@@ -70,7 +70,7 @@ class BagVC: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseID, for: indexPath) as! ItemCell
             cell.set(item: viewModel.items[indexPath.row])
             cell.removeAction =  {
-                print(124)
+                print(123)
             }
             return cell
         } else if indexPath.section == 2 {
