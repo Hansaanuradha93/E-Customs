@@ -5,19 +5,18 @@ class TotalLabel: UITableViewCell {
     // MARK: Properties
     static let reuseID = "TotalLabel"
     
-    fileprivate let subTotalLabel = ECSemiBoldLabel(textAlignment: .left, fontSize: 15)
-    fileprivate let subTotalValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
+    fileprivate let subTotalLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
+    fileprivate let subTotalValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
     
-    fileprivate let shippingMethodLabel = ECSemiBoldLabel(textAlignment: .left, fontSize: 15)
-    fileprivate let shippingMethodValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
+    fileprivate let shippingMethodLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
+    fileprivate let shippingMethodValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
     
-    fileprivate let taxLabel = ECSemiBoldLabel(textAlignment: .left, fontSize: 15)
-    fileprivate let taxValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
+    fileprivate let taxLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
+    fileprivate let taxValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
     
-    fileprivate let totalLabel = ECSemiBoldLabel(textAlignment: .left, fontSize: 15)
+    fileprivate let totalLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
     fileprivate let totalValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
 
-    
     
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -35,7 +34,7 @@ extension TotalLabel {
     
     func set(subtotal: Double, tax: Double, total: Double) {
         subTotalValueLabel.text = "$\(subtotal)"
-        shippingMethodValueLabel.text = "free".uppercased()
+        shippingMethodValueLabel.text = "Free"
         taxValueLabel.text = "$\(tax)"
         totalValueLabel.text = "$\(total)"
     }
@@ -45,10 +44,10 @@ extension TotalLabel {
         selectionStyle = .none
         let paddingTop: CGFloat = 24
         
-        subTotalLabel.text = "subtotal".uppercased()
-        shippingMethodLabel.text = "Estimated shipping & handling".uppercased()
-        taxLabel.text = "tax".uppercased()
-        totalLabel.text = "total".uppercased()
+        subTotalLabel.text = "Subtotal"
+        shippingMethodLabel.text = "Shipping"
+        taxLabel.text = "Taz"
+        totalLabel.text = "Total"
         
         let subTotalStackView = UIStackView(arrangedSubviews: [subTotalLabel, subTotalValueLabel])
         subTotalStackView.alignment = .center

@@ -40,11 +40,11 @@ extension ItemCell {
 
         let range = (quantityString as NSString).range(of: arrowString)
         let attributedString = NSMutableAttributedString(string:quantityString)
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.darkGray, range: range)
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.gray, range: range)
         quantityLabel.attributedText = attributedString
         
         let price = (Double(item.price ?? "0") ?? 0) * Double(quantity)
-        priceLabel.text = "$" + "\(price)"
+        priceLabel.text = "$\(price)"
     }
     
     
