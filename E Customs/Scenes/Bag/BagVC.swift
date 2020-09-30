@@ -85,11 +85,18 @@ extension BagVC {
 extension BagVC {
     
     fileprivate func deleteItem(at indexPath: IndexPath) {
-        let itemToDelete = viewModel.items[indexPath.row]
-        print("Deleted item: \(itemToDelete)")
-        viewModel.items.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .fade)
-        tableView.reloadData()
+        let item = viewModel.items[indexPath.row]
+        
+        viewModel.delete(item) { [weak self] status, message in
+            guard let self = self else { return }
+            if status {
+                self.viewModel.items.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+                self.tableView.reloadData()
+            } else {
+                self.presentAlert(title: "Failed!", message: message, buttonTitle: Strings.ok)
+            }
+        }
     }
     
     
@@ -109,6 +116,7 @@ extension BagVC {
         tableView.register(TotalLabel.self, forCellReuseIdentifier: TotalLabel.reuseID)
         tableView.register(CheckoutButtonCell.self, forCellReuseIdentifier: CheckoutButtonCell.reuseID)
     }
+    
     
     fileprivate func setupUI() {
         view.backgroundColor = .white

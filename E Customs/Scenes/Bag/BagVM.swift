@@ -26,13 +26,29 @@ class BagVM {
     }
     
     
+    func delete(_ item: Item, completion: @escaping (Bool, String) -> ()) {
+        guard let itemId = item.id, let currentUserId = Auth.auth().currentUser?.uid else { return  }
+        let reference = Firestore.firestore().collection("bag").document(currentUserId).collection("items").document(itemId)
+        
+        reference.delete { error in
+            if let error = error {
+                print(error)
+                completion(false, error.localizedDescription)
+                return
+            }
+            print("Document deleted successfully")
+            completion(true, "")
+        }
+    }
+    
+    
     func fetchItems(completion: @escaping (Bool) -> ()) -> ListenerRegistration? {
-        let currentUserId = Auth.auth().currentUser?.uid ?? ""
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return nil }
         let reference = Firestore.firestore().collection("bag").document(currentUserId).collection("items")
         
         let listener = reference.addSnapshotListener { querySnapshot, error in
             if let error = error {
-                print(error.localizedDescription)
+                print(error)
                 completion(false)
                 return
             }
