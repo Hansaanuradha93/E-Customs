@@ -3,11 +3,12 @@ import Firebase
 
 class BagVC: UITableViewController {
     
+    // MARK: Properties
     let viewModel = BagVM()
-    
     fileprivate var listener: ListenerRegistration?
 
     
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -20,31 +21,11 @@ class BagVC: UITableViewController {
         super.viewWillDisappear(animated)
         if isMovingFromParent { listener?.remove() }
     }
-    
-    
-    fileprivate func fetchItems() {
-        listener = viewModel.fetchItems { (status) in
-            if status {
-                DispatchQueue.main.async { self.tableView.reloadData() }
-            }
-        }
-    }
-    
-    
-    fileprivate func setupTableView() {
-        tableView.separatorStyle = .none
-        tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
-        tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
-        tableView.register(TotalLabel.self, forCellReuseIdentifier: TotalLabel.reuseID)
-        tableView.register(CheckoutButtonCell.self, forCellReuseIdentifier: CheckoutButtonCell.reuseID)
-    }
-    
-    fileprivate func setupUI() {
-        view.backgroundColor = .white
-        title = "BAG"
-        tabBarItem.title = ""
-    }
-    
+}
+
+
+// MARK: - TableView
+extension BagVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
@@ -70,7 +51,7 @@ class BagVC: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseID, for: indexPath) as! ItemCell
             cell.set(item: viewModel.items[indexPath.row])
             cell.removeAction =  {
-                print(123)
+                self.deleteItem(at: indexPath)
             }
             return cell
         } else if indexPath.section == 2 {
@@ -96,5 +77,42 @@ class BagVC: UITableViewController {
             return 75
         }
         return 0
+    }
+}
+
+
+// MARK: - Methods
+extension BagVC {
+    
+    fileprivate func deleteItem(at indexPath: IndexPath) {
+        let itemToDelete = viewModel.items[indexPath.row]
+        print("Deleted item: \(itemToDelete)")
+        viewModel.items.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+        tableView.reloadData()
+    }
+    
+    
+    fileprivate func fetchItems() {
+        listener = viewModel.fetchItems { (status) in
+            if status {
+                DispatchQueue.main.async { self.tableView.reloadData() }
+            }
+        }
+    }
+    
+    
+    fileprivate func setupTableView() {
+        tableView.separatorStyle = .none
+        tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
+        tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
+        tableView.register(TotalLabel.self, forCellReuseIdentifier: TotalLabel.reuseID)
+        tableView.register(CheckoutButtonCell.self, forCellReuseIdentifier: CheckoutButtonCell.reuseID)
+    }
+    
+    fileprivate func setupUI() {
+        view.backgroundColor = .white
+        title = "BAG"
+        tabBarItem.title = ""
     }
 }
