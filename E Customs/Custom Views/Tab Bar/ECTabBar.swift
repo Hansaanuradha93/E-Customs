@@ -43,6 +43,7 @@ extension ECTabBar {
     
     fileprivate func setupUI() {
         UITabBar.appearance().tintColor = .black
+        tabBar.barTintColor = .white
         viewControllers = [createHomeNC(), createOrderListNC(), createRequestBoxNC(), createBagNC()]
         
         let traits = [UIFontDescriptor.TraitKey.weight: UIFont.Weight.medium]

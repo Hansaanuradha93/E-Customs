@@ -63,6 +63,7 @@ extension HomeVC {
     
     
     fileprivate func setupUI() {
+        navigationController?.navigationBar.barTintColor = UIColor.white
         view.backgroundColor = .white
         title = "HOME"
         tabBarItem.title = ""

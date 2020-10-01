@@ -165,6 +165,7 @@ extension ProductDetailsVC {
     
     
     fileprivate func setupScrollView() {
+        navigationController?.navigationBar.barTintColor = UIColor.white
         view.backgroundColor = .white
         title = "DETAIL"
         tabBarItem.title = ""

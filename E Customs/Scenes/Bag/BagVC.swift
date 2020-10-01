@@ -83,7 +83,7 @@ extension BagVC {
         if indexPath.section == 0 {
             return 70
         } else if indexPath.section == 1 {
-            return 160
+            return 170
         } else if indexPath.section == 2 {
             return 160
         } else if indexPath.section == 3 {
@@ -187,6 +187,7 @@ extension BagVC {
     
     
     fileprivate func setupUI() {
+        navigationController?.navigationBar.barTintColor = UIColor.white
         view.backgroundColor = .white
         title = "BAG"
         tabBarItem.title = ""

@@ -133,6 +133,7 @@ extension SignupVC {
     
     
     fileprivate func setupUI() {
+        navigationController?.navigationBar.barTintColor = UIColor.white
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = Strings.signup
