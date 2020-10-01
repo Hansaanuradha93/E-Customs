@@ -13,11 +13,24 @@ class BagVM {
 // MARK: - Methods
 extension BagVM {
     
-    func calculateSubtotal() -> Double {
-        var subtotal = 0.0
+    func getNumberOfItems() -> Int {
+        var count = 0
         
         for item in items {
-            subtotal += Double(item.price ?? "0") ?? 0
+            count += item.quantity ?? 0
+        }
+        return count
+    }
+    
+    func calculateSubtotal() -> Double {
+        var subtotal = 0.0
+        var price = 0.0
+        var quantity = 0.0
+        
+        for item in items {
+            price = Double(item.price ?? "0") ?? 0
+            quantity = Double(item.quantity ?? 0)
+            subtotal += price * quantity
         }
         return subtotal
     }
