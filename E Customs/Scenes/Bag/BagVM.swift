@@ -3,8 +3,15 @@ import Firebase
 
 class BagVM {
     
+    // MARK: Properties
     var items = [Item]()
-    
+    var selectedQuantity: Int = 0
+    var selectedItem: Item?
+}
+
+
+// MARK: - Methods
+extension BagVM {
     
     func calculateSubtotal() -> Double {
         var subtotal = 0.0
@@ -26,6 +33,23 @@ class BagVM {
     }
     
     
+    func updateQuanitity(completion: @escaping (Bool, String) -> ()) {
+        guard let itemId = selectedItem?.id, let currentUserId = Auth.auth().currentUser?.uid else { return }
+        let reference = Firestore.firestore().collection("bag").document(currentUserId).collection("items").document(itemId)
+
+        let quntity = ["quantity": selectedQuantity]
+        reference.updateData(quntity) { error in
+            if let error = error {
+                print(error)
+                completion(false, error.localizedDescription)
+                return
+            }
+            print("Quantity updated successfully")
+            completion(true, "")
+        }
+    }
+    
+    
     func delete(_ item: Item, completion: @escaping (Bool, String) -> ()) {
         guard let itemId = item.id, let currentUserId = Auth.auth().currentUser?.uid else { return  }
         let reference = Firestore.firestore().collection("bag").document(currentUserId).collection("items").document(itemId)
@@ -36,7 +60,7 @@ class BagVM {
                 completion(false, error.localizedDescription)
                 return
             }
-            print("Document deleted successfully")
+            print("Item deleted successfully")
             completion(true, "")
         }
     }
@@ -45,6 +69,8 @@ class BagVM {
     func fetchItems(completion: @escaping (Bool) -> ()) -> ListenerRegistration? {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return nil }
         let reference = Firestore.firestore().collection("bag").document(currentUserId).collection("items")
+        
+        items.removeAll()
         
         let listener = reference.addSnapshotListener { querySnapshot, error in
             if let error = error {
