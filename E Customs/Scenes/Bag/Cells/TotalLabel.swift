@@ -67,7 +67,7 @@ extension TotalLabel {
         
         let overrallStackView = UIStackView(arrangedSubviews: [subTotalStackView, shippingMethodStackView, taxStackView])
         overrallStackView.axis = .vertical
-        overrallStackView.spacing = 2
+        overrallStackView.spacing = 4
         overrallStackView.distribution = .fillEqually
         
         contentView.addSubviews(overrallStackView, totalStackView)

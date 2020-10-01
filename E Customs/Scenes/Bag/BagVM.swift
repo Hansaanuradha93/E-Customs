@@ -34,7 +34,7 @@ extension BagVM {
     
     
     func updateQuanitity(completion: @escaping (Bool, String) -> ()) {
-        guard let itemId = selectedItem?.id, let currentUserId = Auth.auth().currentUser?.uid else { return }
+        guard let itemId = selectedItem?.id, let currentUserId = Auth.auth().currentUser?.uid, selectedQuantity != 0 else { return }
         let reference = Firestore.firestore().collection("bag").document(currentUserId).collection("items").document(itemId)
 
         let quntity = ["quantity": selectedQuantity]
