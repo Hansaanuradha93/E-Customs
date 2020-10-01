@@ -14,6 +14,7 @@ class ItemCell: UITableViewCell {
     fileprivate let closeButton = ECButton(backgroundColor: .white)
     
     var removeAction: (() -> Void)? = nil
+    var selectQuntity: (() -> Void)? = nil
     
     
     // MARK: Initializers
@@ -29,6 +30,11 @@ class ItemCell: UITableViewCell {
 
 // MARK: - Methods
 extension ItemCell {
+    
+    @objc fileprivate func handleQuntity() {
+        selectQuntity?()
+    }
+    
     
     @objc fileprivate func handleClose() {
         removeAction?()
@@ -57,6 +63,8 @@ extension ItemCell {
     
     fileprivate func setupUI() {
         selectionStyle = .none
+        quantityLabel.isUserInteractionEnabled = true
+        quantityLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleQuntity)))
         
         let paddingTop: CGFloat = 24
         let dimensions: CGFloat = 102
