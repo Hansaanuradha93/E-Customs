@@ -45,7 +45,7 @@ extension ItemCell {
         thumbnailImageView.downloadImage(from: item.thumbnailUrl ?? "")
         nameLabel.text = item.name ?? ""
         descriptionLabel.text = item.description ?? ""
-        sizeLabel.text = "Size \(item.selectedSize ?? "Not availabel")"
+        sizeLabel.text = "Size \(item.selectedSize ?? "Not available")"
         
         let quantity = item.quantity ?? 1
         let quantityString = "Qty \(quantity) ↓"
