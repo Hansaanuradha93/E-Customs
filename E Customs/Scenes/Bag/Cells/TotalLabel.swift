@@ -46,7 +46,7 @@ extension TotalLabel {
         
         subTotalLabel.text = "Subtotal"
         shippingMethodLabel.text = "Shipping"
-        taxLabel.text = "Taz"
+        taxLabel.text = "Tax"
         totalLabel.text = "Total"
         
         let subTotalStackView = UIStackView(arrangedSubviews: [subTotalLabel, subTotalValueLabel])
