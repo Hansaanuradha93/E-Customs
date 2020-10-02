@@ -190,13 +190,13 @@ extension SignupVC {
         passwordTextField.autocorrectionType = .no
         signupButton.isEnabled = false
         
-        firstNameTextField.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
-        lastNameTextField.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
-        emailTextField.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
-        passwordTextField.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
-        signupButton.setRoundedBorder(borderColor: .gray, borderWidth: 0, radius: GlobalDimensions.cornerRadius)
-        maleButton.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
-        femaleButton.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        firstNameTextField.setRoundedBorder(borderColor: GlobalDimensions.borderColor, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        lastNameTextField.setRoundedBorder(borderColor: GlobalDimensions.borderColor, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        emailTextField.setRoundedBorder(borderColor: GlobalDimensions.borderColor, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        passwordTextField.setRoundedBorder(borderColor: GlobalDimensions.borderColor, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        signupButton.setRoundedBorder(borderColor: GlobalDimensions.borderColor, borderWidth: 0, radius: GlobalDimensions.cornerRadius)
+        maleButton.setRoundedBorder(borderColor: GlobalDimensions.borderColor, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        femaleButton.setRoundedBorder(borderColor: GlobalDimensions.borderColor, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
 
         view.addSubview(verticalStackView)
         signupButton.heightAnchor.constraint(equalToConstant: GlobalDimensions.height).isActive = true

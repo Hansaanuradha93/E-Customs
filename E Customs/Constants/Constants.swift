@@ -36,9 +36,9 @@ struct Strings {
     
     // Buttons
     static let ok = "OK"
-    static let login = "Log In"
+    static let login = "LOG IN"
     static let gotoSignup = "Go to sign up"
-    static let signup = "Sign Up"
+    static let signup = "SIGN UP"
     static let gotoLogin = "Go to login"
     static let male = "Male"
     static let female = "Female"
@@ -46,8 +46,8 @@ struct Strings {
 
 
 struct GlobalDimensions {
-    
     static let height: CGFloat = 44
     static let cornerRadius: CGFloat = 3
     static let borderWidth: CGFloat = 0.5
+    static let borderColor: UIColor = .gray
 }

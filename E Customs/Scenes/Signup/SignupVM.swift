@@ -43,8 +43,10 @@ extension SignupVM {
         let uid = Auth.auth().currentUser?.uid ?? ""
         let userInfo = [
             "uid": uid,
-            "fullname": firstName ?? "",
             "email": email ?? "",
+            "firstname": firstName ?? "",
+            "lastname": lastName ?? "",
+            "isMale": isMale ?? false,
             "isAdminUser": false
             ] as [String : Any]
         
