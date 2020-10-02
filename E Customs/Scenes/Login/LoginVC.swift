@@ -41,13 +41,13 @@ extension LoginVC {
     
     @objc fileprivate func handleLogin() {
         handleTapDismiss()
-        viewModel.performLogin { [weak self] error in
+        viewModel.performLogin { [weak self] status, message in
             guard let self = self else { return }
-            if let error = error {
-                self.presentAlert(title: Strings.loginFailed, message: error.localizedDescription, buttonTitle: Strings.ok)
-                return
+            if status {
+                self.navigateToHome()
+            } else {
+                self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
             }
-            self.navigateToHome()
         }
     }
     
