@@ -5,7 +5,7 @@ class CheckoutButtonCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "CheckoutButtonCell"
     
-    fileprivate let checkoutButton = ECButton(backgroundColor: .black, title: "CHECKOUT", titleColor: .white, radius: 2, fontSize: 16)
+    fileprivate let checkoutButton = ECButton(backgroundColor: .black, title: Strings.checkout, titleColor: .white, radius: 2, fontSize: 16)
 
     
     // MARK: Initializers

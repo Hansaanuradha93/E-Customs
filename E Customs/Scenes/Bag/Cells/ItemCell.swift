@@ -45,10 +45,10 @@ extension ItemCell {
         thumbnailImageView.downloadImage(from: item.thumbnailUrl ?? "")
         nameLabel.text = item.name ?? ""
         descriptionLabel.text = item.description ?? ""
-        sizeLabel.text = "Size \(item.selectedSize ?? "Not available")"
+        sizeLabel.text = "\(Strings.size) \(item.selectedSize ?? Strings.notAvailable)"
         
         let quantity = item.quantity ?? 1
-        let quantityString = "Qty \(quantity) ↓"
+        let quantityString = "\(Strings.qty) \(quantity) ↓"
         let arrowString = "↓"
 
         let range = (quantityString as NSString).range(of: arrowString)

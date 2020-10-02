@@ -34,7 +34,7 @@ extension TotalLabel {
     
     func set(subtotal: Double, tax: Double, total: Double) {
         subTotalValueLabel.text = "$\(subtotal)"
-        shippingMethodValueLabel.text = "Free"
+        shippingMethodValueLabel.text = Strings.free
         taxValueLabel.text = "$\(tax)"
         totalValueLabel.text = "$\(total)"
     }
@@ -44,10 +44,10 @@ extension TotalLabel {
         selectionStyle = .none
         let paddingTop: CGFloat = 24
         
-        subTotalLabel.text = "Subtotal"
-        shippingMethodLabel.text = "Shipping"
-        taxLabel.text = "Tax"
-        totalLabel.text = "Total"
+        subTotalLabel.text = Strings.subtotal
+        shippingMethodLabel.text = Strings.shipping
+        taxLabel.text = Strings.tax
+        totalLabel.text = Strings.total
         
         let subTotalStackView = UIStackView(arrangedSubviews: [subTotalLabel, subTotalValueLabel])
         subTotalStackView.alignment = .center

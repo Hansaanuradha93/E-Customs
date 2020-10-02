@@ -12,7 +12,7 @@ class ProductDetailsVC: UIViewController {
     fileprivate let titleLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
     fileprivate let descriptionLabel = ECRegularLabel(textAlignment: .left, fontSize: 12, numberOfLines: 3)
     fileprivate let sizeLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
-    fileprivate let addToBagButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: "Add to Bag", titleColor: .gray, radius: 2, fontSize: 16)
+    fileprivate let addToBagButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.addToBag, titleColor: .gray, radius: 2, fontSize: 16)
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -107,9 +107,9 @@ extension ProductDetailsVC {
         viewModel.addToBag { [weak self] status, message in
             guard let self = self else { return }
             if status {
-                self.presentAlert(title: "Successful!", message: message, buttonTitle: Strings.ok)
+                self.presentAlert(title: Strings.successfull, message: message, buttonTitle: Strings.ok)
             } else {
-                self.presentAlert(title: "Failed!", message: message, buttonTitle: Strings.ok)
+                self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
             }
         }
     }
@@ -167,8 +167,8 @@ extension ProductDetailsVC {
     fileprivate func setupScrollView() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         view.backgroundColor = .white
-        title = "DETAIL"
-        tabBarItem.title = ""
+        title = Strings.detail
+        tabBarItem.title = Strings.empty
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -184,7 +184,7 @@ extension ProductDetailsVC {
     
     
     fileprivate func layoutUI() {
-        sizeLabel.text = "Size".uppercased()
+        sizeLabel.text = Strings.size.uppercased()
         addToBagButton.isEnabled = false
         addToBagButton.addTarget(self, action: #selector(handleAddToBag), for: .touchUpInside)
         

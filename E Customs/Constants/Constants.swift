@@ -23,6 +23,11 @@ struct Asserts {
 
 struct Strings {
     
+    // Titles
+    static let home = "HOME"
+    static let detail = "DETAIL"
+    static let bag = "BAG"
+    
     // Placeholders
     static let empty = ""
     static let email = "Email"
@@ -31,17 +36,31 @@ struct Strings {
     static let lastName = "Last Name"
     
     // Alerts
-    static let loginFailed = "Login Failed!"
-    static let signupFailed = "Signup Failed!"
+    static let failed = "Failed"
+    static let successfull = "Successful"
+    
+    // Labels
+    static let size = "Size"
+    static let noItemsYet = "NO ITEMS YET"
+    static let notAvailable = "Not available"
+    static let qty = "Qty"
+    static let free = "Free"
+    static let subtotal = "Subtotal"
+    static let shipping = "Shipping"
+    static let tax = "Tax"
+    static let total = "Total"
     
     // Buttons
     static let ok = "OK"
+    static let done = "DONE"
     static let login = "LOG IN"
     static let gotoSignup = "Go to sign up"
     static let signup = "SIGN UP"
     static let gotoLogin = "Go to login"
     static let male = "Male"
     static let female = "Female"
+    static let addToBag = "ADD TO BAG"
+    static let checkout = "CHECKOUT"
 }
 
 

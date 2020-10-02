@@ -23,11 +23,11 @@ extension NumberOfItemsCell {
     
     func set(count: Int) {
         if count > 1 {
-            itemsCountLabel.text = "\(count) Items"
+            itemsCountLabel.text = "\(count) ITEMS"
         } else if count == 1 {
-            itemsCountLabel.text = "\(count) Item"
+            itemsCountLabel.text = "\(count) ITEM"
         } else {
-            itemsCountLabel.text = "No items yet"
+            itemsCountLabel.text = Strings.noItemsYet
         }
     }
     

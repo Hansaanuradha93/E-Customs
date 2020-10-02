@@ -4,7 +4,6 @@ class SizeCell: UICollectionViewCell {
     
     // MARK: Properties
     static let reuseID = "SizeCell"
-    
     fileprivate let sizeLabel = ECRegularLabel(fontSize: 12)
     
     

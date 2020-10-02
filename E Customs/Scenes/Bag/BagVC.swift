@@ -111,7 +111,7 @@ extension BagVC {
     fileprivate func createToolBar() {
         toolBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(handleDone))
+        let doneButton = UIBarButtonItem(title: Strings.done, style: .plain, target: self, action: #selector(handleDone))
         
         toolBar.setItems([doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
@@ -146,7 +146,7 @@ extension BagVC {
             if status {
                 self.fetchItems()
             } else {
-                self.presentAlert(title: "Failed!", message: message, buttonTitle: Strings.ok)
+                self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
             }
         }
     }
@@ -162,7 +162,7 @@ extension BagVC {
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 self.tableView.reloadData()
             } else {
-                self.presentAlert(title: "Failed!", message: message, buttonTitle: Strings.ok)
+                self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
             }
         }
     }
@@ -189,8 +189,8 @@ extension BagVC {
     fileprivate func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         view.backgroundColor = .white
-        title = "BAG"
-        tabBarItem.title = ""
+        title = Strings.bag
+        tabBarItem.title = Strings.empty
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         

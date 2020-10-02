@@ -22,6 +22,7 @@ extension BagVM {
         return count
     }
     
+    
     func calculateSubtotal() -> Double {
         var subtotal = 0.0
         var price = 0.0
@@ -57,8 +58,7 @@ extension BagVM {
                 completion(false, error.localizedDescription)
                 return
             }
-            print("Quantity updated successfully")
-            completion(true, "")
+            completion(true, "Quantity updated successfully")
         }
     }
     
@@ -73,8 +73,7 @@ extension BagVM {
                 completion(false, error.localizedDescription)
                 return
             }
-            print("Item deleted successfully")
-            completion(true, "")
+            completion(true, "Item deleted successfully")
         }
     }
     
