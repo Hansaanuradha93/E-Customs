@@ -4,13 +4,19 @@ import Firebase
 class SignupVM {
     
     // MARK: Properties
-    var fullName: String? { didSet { checkFormValidity() } }
+    var firstName: String? { didSet { checkFormValidity() } }
+    var lastName: String? { didSet { checkFormValidity() } }
     var email: String? { didSet { checkFormValidity() } }
     var password: String? { didSet { checkFormValidity() } }
+    var isMale: Bool? { didSet {
+        checkFormValidity()
+        checkGender()
+    } }
     
     
     // MARK: Bindlable
     var bindalbeIsFormValid = Bindable<Bool>()
+    var bindableIsMaleSelected = Bindable<Bool>()
     var bindableIsRegistering = Bindable<Bool>()
 }
 
@@ -37,7 +43,7 @@ extension SignupVM {
         let uid = Auth.auth().currentUser?.uid ?? ""
         let userInfo = [
             "uid": uid,
-            "fullname": fullName ?? "",
+            "fullname": firstName ?? "",
             "email": email ?? "",
             "isAdminUser": false
             ] as [String : Any]
@@ -56,7 +62,12 @@ extension SignupVM {
     
     
     func checkFormValidity() {
-        let isFormValid = fullName?.isEmpty == false && email?.isEmpty == false && password?.isEmpty == false && password?.count ?? 0 >= 6
+        let isFormValid = firstName?.isEmpty == false && lastName?.isEmpty == false && email?.isEmpty == false && password?.isEmpty == false && password?.count ?? 0 >= 6 && isMale != nil
         bindalbeIsFormValid.value = isFormValid
+    }
+    
+    
+    func checkGender() {
+        bindableIsMaleSelected.value = isMale
     }
 }
