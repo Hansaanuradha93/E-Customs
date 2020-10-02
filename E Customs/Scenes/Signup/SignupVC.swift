@@ -5,14 +5,24 @@ class SignupVC: UIViewController {
     // MARK: Properties
     fileprivate let viewModel = SignupVM()
 
-    fileprivate let fullNameTextField = ECTextField(padding: 16, placeholderText: Strings.enterFullName)
-    fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: Strings.enterEmail)
-    fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: Strings.enterPassword)
+    fileprivate let firstNameTextField = ECTextField(padding: 16, placeholderText: Strings.firstName)
+    fileprivate let lastNameTextField = ECTextField(padding: 16, placeholderText: Strings.lastName)
+    fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: Strings.email)
+    fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: Strings.password)
+    fileprivate let maleButton = ECButton(title: Strings.male, titleColor: .gray, fontSize: 17)
+    fileprivate let femaleButton = ECButton(title: Strings.female, titleColor: .gray, fontSize: 17)
     fileprivate let signupButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.signup, titleColor: .gray, fontSize: 18)
     fileprivate let goToLoginButton = ECButton(backgroundColor: .white, title: Strings.gotoLogin, titleColor: .black, fontSize: 15)
     
+    fileprivate lazy var horizontalStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [maleButton, femaleButton])
+        stackView.distribution = .fillEqually
+        stackView.spacing = 24
+        return stackView
+    }()
+    
     fileprivate lazy var verticalStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, signupButton])
+        let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, firstNameTextField, lastNameTextField,  horizontalStackView,signupButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 24
@@ -53,8 +63,19 @@ extension SignupVC {
     }
     
     
+    @objc fileprivate func handleMaleButtonClick() {
+        viewModel.isMale = true
+    }
+    
+    
+    @objc fileprivate func handleFemaleButtonClick() {
+        viewModel.isMale = false
+    }
+    
+    
     @objc fileprivate func handleTextChange(textField: UITextField) {
-        viewModel.fullName = fullNameTextField.text
+        viewModel.firstName = firstNameTextField.text
+        viewModel.lastName = lastNameTextField.text
         viewModel.email = emailTextField.text
         viewModel.password = passwordTextField.text
     }
@@ -99,6 +120,27 @@ extension SignupVC {
     
     
     fileprivate func setupViewModelObserver() {
+        viewModel.bindableIsMaleSelected.bind { [weak self] isMale in
+            guard let self = self, let isMale = isMale else { return }
+            if isMale {
+                self.maleButton.backgroundColor = .black
+                self.maleButton.setTitleColor(.white, for: .normal)
+                self.maleButton.setRoundedBorder(borderColor: .black, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+                
+                self.femaleButton.backgroundColor = .white
+                self.femaleButton.setTitleColor(.gray, for: .normal)
+                self.femaleButton.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+            } else {
+                self.femaleButton.backgroundColor = .black
+                self.femaleButton.setTitleColor(.white, for: .normal)
+                self.femaleButton.setRoundedBorder(borderColor: .black, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+                
+                self.maleButton.backgroundColor = .white
+                self.maleButton.setTitleColor(.gray, for: .normal)
+                self.maleButton.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+            }
+        }
+        
         viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
@@ -124,10 +166,13 @@ extension SignupVC {
     
     fileprivate func addTargets() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
-        fullNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        firstNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        lastNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        maleButton.addTarget(self, action: #selector(handleMaleButtonClick), for: .touchUpInside)
+        femaleButton.addTarget(self, action: #selector(handleFemaleButtonClick), for: .touchUpInside)
         goToLoginButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
     }
     
@@ -138,20 +183,25 @@ extension SignupVC {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = Strings.signup
         
-        fullNameTextField.autocorrectionType = .no
+        firstNameTextField.autocorrectionType = .no
         emailTextField.keyboardType = .emailAddress
         emailTextField.autocorrectionType = .no
         passwordTextField.isSecureTextEntry = true
         passwordTextField.autocorrectionType = .no
         signupButton.isEnabled = false
         
-        fullNameTextField.setRoundedBorder(borderColor: .black, borderWidth: 0.5, radius: 2)
-        emailTextField.setRoundedBorder(borderColor: .black, borderWidth: 0.5, radius: 2)
-        passwordTextField.setRoundedBorder(borderColor: .black, borderWidth: 0.5, radius: 2)
-        signupButton.setRoundedBorder(borderColor: .black, borderWidth: 0, radius: 2)
-        
+        firstNameTextField.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        lastNameTextField.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        emailTextField.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        passwordTextField.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        signupButton.setRoundedBorder(borderColor: .gray, borderWidth: 0, radius: GlobalDimensions.cornerRadius)
+        maleButton.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        femaleButton.setRoundedBorder(borderColor: .gray, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+
         view.addSubview(verticalStackView)
-        signupButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        signupButton.heightAnchor.constraint(equalToConstant: GlobalDimensions.height).isActive = true
+        maleButton.heightAnchor.constraint(equalToConstant: GlobalDimensions.height).isActive = true
+        femaleButton.heightAnchor.constraint(equalToConstant: GlobalDimensions.height).isActive = true
         verticalStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 30, left: 20, bottom: 0, right: 20))
         
         view.addSubview(goToLoginButton)

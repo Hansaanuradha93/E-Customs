@@ -25,9 +25,10 @@ struct Strings {
     
     // Placeholders
     static let empty = ""
-    static let enterEmail = "Enter email"
-    static let enterPassword = "Enter password"
-    static let enterFullName = "Enter full name"
+    static let email = "Email"
+    static let password = "Password"
+    static let firstName = "First Name"
+    static let lastName = "Last Name"
     
     // Alerts
     static let loginFailed = "Login Failed!"
@@ -39,4 +40,14 @@ struct Strings {
     static let gotoSignup = "Go to sign up"
     static let signup = "Sign Up"
     static let gotoLogin = "Go to login"
+    static let male = "Male"
+    static let female = "Female"
+}
+
+
+struct GlobalDimensions {
+    
+    static let height: CGFloat = 44
+    static let cornerRadius: CGFloat = 3
+    static let borderWidth: CGFloat = 0.5
 }

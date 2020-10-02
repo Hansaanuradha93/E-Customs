@@ -5,8 +5,8 @@ class LoginVC: UIViewController {
     // MARK: Properties
     fileprivate let viewModel = LoginVM()
     
-    fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: Strings.enterEmail)
-    fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: Strings.enterPassword)
+    fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: Strings.email)
+    fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: Strings.password)
     fileprivate let loginButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.login, titleColor: .gray, fontSize: 18)
     fileprivate let gotoSignupButton = ECButton(backgroundColor: .white, title: Strings.gotoSignup, titleColor: .black, fontSize: 15)
     
