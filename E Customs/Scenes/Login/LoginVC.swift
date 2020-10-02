@@ -140,12 +140,12 @@ extension LoginVC {
         passwordTextField.autocorrectionType = .no
         loginButton.isEnabled = false
         
-        emailTextField.setRoundedBorder(borderColor: .black, borderWidth: 0.5, radius: 2)
-        passwordTextField.setRoundedBorder(borderColor: .black, borderWidth: 0.5, radius: 2)
+        emailTextField.setRoundedBorder(borderColor: GlobalDimensions.borderColor, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        passwordTextField.setRoundedBorder(borderColor: GlobalDimensions.borderColor, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
         loginButton.setRoundedBorder(borderColor: .black, borderWidth: 0, radius: 2)
         
         view.addSubview(verticalStackView)
-        loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loginButton.heightAnchor.constraint(equalToConstant: GlobalDimensions.height).isActive = true
         verticalStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 30, left: 20, bottom: 0, right: 20))
         
         view.addSubview(gotoSignupButton)
