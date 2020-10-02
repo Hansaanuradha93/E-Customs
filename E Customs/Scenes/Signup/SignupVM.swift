@@ -24,14 +24,14 @@ class SignupVM {
 // MARK: - Methods
 extension SignupVM {
     
-    func performSignUp(completion: @escaping (Error?) -> ()) {
+    func performSignUp(completion: @escaping (Bool, String) -> ()) {
         guard let email = email, let password = password else { return }
         self.bindableIsRegistering.value = true
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
             if let error = error {
                 self.bindableIsRegistering.value = false
-                completion(error)
+                completion(false, error.localizedDescription)
                 return
             }
             self.saveInfoToFirestore(completion: completion)
@@ -39,7 +39,7 @@ extension SignupVM {
     }
     
     
-    fileprivate func saveInfoToFirestore(completion: @escaping (Error?) -> ()) {
+    fileprivate func saveInfoToFirestore(completion: @escaping (Bool, String) -> ()) {
         let uid = Auth.auth().currentUser?.uid ?? ""
         let userInfo = [
             "uid": uid,
@@ -54,11 +54,10 @@ extension SignupVM {
             guard let self = self else { return }
             self.bindableIsRegistering.value = false
             if let error = error {
-                completion(error)
+                completion(false, error.localizedDescription)
                 return
             }
-            print("Authentication successfull")
-            completion(nil)
+            completion(true, "Authentication successfull")
         }
     }
     

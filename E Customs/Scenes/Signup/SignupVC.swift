@@ -52,13 +52,13 @@ extension SignupVC {
     
     @objc fileprivate func handleSignUp() {
         handleTapDismiss()
-        viewModel.performSignUp { [weak self] error in
+        viewModel.performSignUp { [weak self] status, message in
             guard let self = self else { return }
-            if let error = error {
-                self.presentAlert(title: Strings.signupFailed, message: error.localizedDescription, buttonTitle: Strings.ok)
-                return
+            if status {
+                self.navigateToHome()
+            } else {
+                self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
             }
-            self.navigateToHome()
         }
     }
     
