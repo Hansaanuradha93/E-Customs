@@ -15,7 +15,7 @@ class ECMediumLabel: UILabel {
         self.init(frame: .zero)
         self.init(frame: .zero)
         let traits = [UIFontDescriptor.TraitKey.weight: UIFont.Weight.medium]
-        var descriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: "Avenir Next"])
+        var descriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: Fonts.avenirNext])
         descriptor = descriptor.addingAttributes([UIFontDescriptor.AttributeName.traits: traits])
 
         self.text = text

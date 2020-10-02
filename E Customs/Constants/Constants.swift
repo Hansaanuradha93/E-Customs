@@ -2,19 +2,18 @@ import UIKit
 
 struct Asserts {
     
-    // Images
-    static let placeHolder = UIImage(named: "placeholder")!
-    
-    // System Icons
-    
     // Tab Bar
     static let house = UIImage(systemName: "house")!
     static let houseFill = UIImage(systemName: "house.fill")!
-    static let plus = UIImage(systemName: "plus")!
     static let document = UIImage(systemName: "doc.text")!
     static let documentFill = UIImage(systemName: "doc.text.fill")!
     static let envelope = UIImage(systemName: "envelope")!
     static let envelopeFill = UIImage(systemName: "envelope.fill")!
+    static let bag = UIImage(systemName: "bag")!
+    static let bagFill = UIImage(systemName: "bag.fill")!
+    
+    // Common
+    static let placeHolder = UIImage(named: "placeholder")!
     
     // Bag
     static let close = UIImage(systemName: "xmark")!
@@ -61,6 +60,11 @@ struct Strings {
     static let female = "Female"
     static let addToBag = "ADD TO BAG"
     static let checkout = "CHECKOUT"
+}
+
+
+struct Fonts {
+    static let avenirNext = "Avenir Next"
 }
 
 

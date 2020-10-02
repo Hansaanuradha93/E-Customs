@@ -34,7 +34,7 @@ extension ECButton {
         self.backgroundColor = backgroundColor
         self.layer.cornerRadius = radius
         let traits = [UIFontDescriptor.TraitKey.weight: UIFont.Weight.medium]
-        var descriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: "Avenir Next"])
+        var descriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: Fonts.avenirNext])
         descriptor = descriptor.addingAttributes([UIFontDescriptor.AttributeName.traits: traits])
         
         self.titleLabel?.font = UIFont(descriptor: descriptor, size: fontSize)
