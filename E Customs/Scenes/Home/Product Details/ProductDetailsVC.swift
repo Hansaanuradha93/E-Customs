@@ -188,12 +188,7 @@ extension ProductDetailsVC {
         addToBagButton.isEnabled = false
         addToBagButton.addTarget(self, action: #selector(handleAddToBag), for: .touchUpInside)
         
-        contentView.addSubview(thumbnailImageView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(descriptionLabel)
-        contentView.addSubview(sizeLabel)
-        contentView.addSubview(collectionView)
-        contentView.addSubview(addToBagButton)
+        contentView.addSubviews(thumbnailImageView, titleLabel, descriptionLabel, sizeLabel, collectionView, addToBagButton)
     
         let paddingTop: CGFloat = 36
         let paddindCorders: CGFloat = 24
