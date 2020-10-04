@@ -11,6 +11,7 @@ class SignupVC: UIViewController {
     fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: Strings.password)
     fileprivate let maleButton = ECButton(title: Strings.male, titleColor: .gray, fontSize: 17)
     fileprivate let femaleButton = ECButton(title: Strings.female, titleColor: .gray, fontSize: 17)
+    
     fileprivate let signupButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.signup, titleColor: .gray, fontSize: 18)
     fileprivate let goToLoginButton = ECButton(backgroundColor: .white, title: Strings.gotoLogin, titleColor: .black, fontSize: 15)
     
