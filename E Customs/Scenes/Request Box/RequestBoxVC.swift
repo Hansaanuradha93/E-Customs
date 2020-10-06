@@ -37,7 +37,7 @@ class RequestBoxVC: UIViewController {
 extension RequestBoxVC {
     
     @objc fileprivate func handleSubmit() {
-        print("submit")
+        submitRequestInfo()
     }
     
     
@@ -62,6 +62,31 @@ extension RequestBoxVC {
 
 // MARK: - Methods
 extension RequestBoxVC {
+    
+    fileprivate func clearData() {
+        photoButton.setImage(nil, for: .normal)
+        sneakerNameTextField.text = ""
+        ideaDescriptionTextView.text = ""
+        
+        viewModel.bindableImage.value = nil
+        viewModel.sneakerName = ""
+        viewModel.ideaDescription = ""
+    }
+    
+    
+    fileprivate func submitRequestInfo() {
+        handleTapDismiss()
+        viewModel.submitRequest { [weak self] status, message in
+            guard let self = self else { return }
+            if status {
+                self.presentAlert(title: Strings.successfull, message: message, buttonTitle: Strings.ok)
+            } else {
+                self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
+            }
+            self.clearData()
+        }
+    }
+    
     
     fileprivate func setupViewModelObserver() {
         viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
