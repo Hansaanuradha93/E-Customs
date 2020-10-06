@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		47250E7C252C87E500DF323D /* ECTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47250E7B252C87E500DF323D /* ECTextView.swift */; };
+		47250E7F252C9C5000DF323D /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47250E7E252C9C5000DF323D /* Keys.swift */; };
 		4734F836251122B000192BCB /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734F835251122B000192BCB /* Product.swift */; };
 		4767D29325151A4A004C23CB /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767D29225151A4A004C23CB /* ProductCell.swift */; };
 		4767D29725151AA8004C23CB /* ECImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767D29625151AA8004C23CB /* ECImageView.swift */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		33E5A76D829FEBFBFEA71488 /* Pods-E Customs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E Customs.release.xcconfig"; path = "Target Support Files/Pods-E Customs/Pods-E Customs.release.xcconfig"; sourceTree = "<group>"; };
 		47250E7B252C87E500DF323D /* ECTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECTextView.swift; sourceTree = "<group>"; };
+		47250E7E252C9C5000DF323D /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		4734F835251122B000192BCB /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		4767D29225151A4A004C23CB /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		4767D29625151AA8004C23CB /* ECImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECImageView.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				4767D29B25151B49004C23CB /* Constants.swift */,
+				47250E7E252C9C5000DF323D /* Keys.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				4786707B251682AC00591FCD /* UIImageView+Ext.swift in Sources */,
 				477F40AA25087C060053A149 /* ECTextField.swift in Sources */,
 				47B10624251F82DB0009D04C /* BagVC.swift in Sources */,
+				47250E7F252C9C5000DF323D /* Keys.swift in Sources */,
 				479C4D0B250E7EE100A7E399 /* OrderListVM.swift in Sources */,
 				479C4D0F250E7F1700A7E399 /* RequestBoxVM.swift in Sources */,
 				47B1062C251F85460009D04C /* NumberOfItemsCell.swift in Sources */,

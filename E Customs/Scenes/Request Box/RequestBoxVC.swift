@@ -28,6 +28,34 @@ class RequestBoxVC: UIViewController {
         setupUI()
         layoutUI()
         addTargets()
+        setupViewModelObserver()
+    }
+}
+
+
+// MARK: - Objc Methods
+extension RequestBoxVC {
+    
+    @objc fileprivate func handleSubmit() {
+        print("submit")
+    }
+    
+    
+    @objc fileprivate func handleSelectPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true)
+    }
+    
+    
+    @objc fileprivate func handleTextChange(textField: UITextField) {
+        viewModel.sneakerName = sneakerNameTextField.text
+    }
+    
+    
+    @objc fileprivate func handleTapDismiss() {
+        view.endEditing(true)
     }
 }
 
@@ -35,7 +63,42 @@ class RequestBoxVC: UIViewController {
 // MARK: - Methods
 extension RequestBoxVC {
     
-    fileprivate func addTargets() {}
+    fileprivate func setupViewModelObserver() {
+        viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
+            guard let self = self, let isFormValid = isFormValid else { return }
+            if isFormValid {
+                self.submitButton.backgroundColor = .black
+                self.submitButton.setTitleColor(.white, for: .normal)
+            } else {
+                self.submitButton.backgroundColor = UIColor.appColor(.lightGray)
+                self.submitButton.setTitleColor(.gray, for: .disabled)
+            }
+            self.submitButton.isEnabled = isFormValid
+        }
+        
+        viewModel.bindableImage.bind { [weak self] image in
+            guard let self = self else { return }
+            let buttonImage = image?.withRenderingMode(.alwaysOriginal)
+            self.photoButton.setImage(buttonImage, for: .normal)
+        }
+        
+        viewModel.bindableIsSaving.bind { [weak self] isSaving in
+            guard let self = self, let isSaving = isSaving else { return }
+            if isSaving {
+                self.showPreloader()
+            } else {
+                self.hidePreloader()
+            }
+        }
+    }
+    
+    
+    fileprivate func addTargets() {
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
+        photoButton.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
+        sneakerNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        submitButton.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
+    }
     
     
     fileprivate func setupUI() {
@@ -58,10 +121,12 @@ extension RequestBoxVC {
     
     
     fileprivate func layoutUI() {
+        submitButton.isEnabled = false
         ideaDescriptionTextView.delegate = self
         
         sneakerNameTextField.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
         ideaDescriptionTextView.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
+        submitButton.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: 0, radius: GlobalConstants.cornerRadius)
 
         contentView.addSubview(verticalStackView)
         
@@ -90,5 +155,26 @@ extension RequestBoxVC: UITextViewDelegate {
             textView.text = Strings.yourIdea
             textView.textColor = UIColor.lightGray
         }
+    }
+    
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if let text = textView.text {
+            viewModel.ideaDescription = text
+        }
+    }
+}
+
+
+// MARK: - UIImagePickerControllerDelegate && UINavigationControllerDelegate
+extension RequestBoxVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.EditedImage.key)] as? UIImage {
+            viewModel.bindableImage.value = editedImage
+        } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.OriginalImage.key)] as? UIImage {
+            viewModel.bindableImage.value = originalImage
+        }
+        dismiss(animated: true, completion: nil)
     }
 }
