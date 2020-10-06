@@ -5,6 +5,7 @@ class LoginVC: UIViewController {
     // MARK: Properties
     fileprivate let viewModel = LoginVM()
     
+    fileprivate let titleLabel = ECMediumLabel(text: Strings.login, textAlignment: .left, fontSize: 30)
     fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: Strings.email)
     fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: Strings.password)
     fileprivate let loginButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.login, titleColor: .gray, fontSize: 18)
@@ -129,10 +130,9 @@ extension LoginVC {
     
     
     fileprivate func setupUI() {
-        navigationController?.navigationBar.barTintColor = UIColor.white
         view.backgroundColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = Strings.login
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.isHidden = true
         
         emailTextField.keyboardType = .emailAddress
         emailTextField.autocorrectionType = .no
@@ -140,15 +140,17 @@ extension LoginVC {
         passwordTextField.autocorrectionType = .no
         loginButton.isEnabled = false
         
-        emailTextField.setRoundedBorder(borderColor: GlobalDimensions.borderColor, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
-        passwordTextField.setRoundedBorder(borderColor: GlobalDimensions.borderColor, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        emailTextField.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
+        passwordTextField.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
         loginButton.setRoundedBorder(borderColor: .black, borderWidth: 0, radius: 2)
         
-        view.addSubview(verticalStackView)
-        loginButton.heightAnchor.constraint(equalToConstant: GlobalDimensions.height).isActive = true
-        verticalStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 30, left: 20, bottom: 0, right: 20))
-        
-        view.addSubview(gotoSignupButton)
+        let paddingTop: CGFloat = 30
+        let paddingCorners: CGFloat = 24
+        view.addSubviews(titleLabel, verticalStackView, gotoSignupButton)
+        titleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: paddingTop, left: paddingCorners, bottom: 0, right: paddingCorners))
+        loginButton.heightAnchor.constraint(equalToConstant: GlobalConstants.height).isActive = true
+        verticalStackView.anchor(top: titleLabel.bottomAnchor, leading: titleLabel.leadingAnchor, bottom: nil, trailing: titleLabel.trailingAnchor, padding: .init(top: paddingTop, left: 0, bottom: 0, right: 0))
+
         gotoSignupButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
 }

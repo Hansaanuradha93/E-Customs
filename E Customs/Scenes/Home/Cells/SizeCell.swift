@@ -22,7 +22,7 @@ class SizeCell: UICollectionViewCell {
 extension SizeCell {
     
     fileprivate func setupUI() {
-        self.setRoundedBorder(borderColor: GlobalDimensions.borderColor, borderWidth: GlobalDimensions.borderWidth, radius: GlobalDimensions.cornerRadius)
+        self.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
 
         addSubview(sizeLabel)
         sizeLabel.fillSuperview()

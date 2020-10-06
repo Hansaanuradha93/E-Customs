@@ -68,7 +68,7 @@ struct Fonts {
 }
 
 
-struct GlobalDimensions {
+struct GlobalConstants {
     static let height: CGFloat = 44
     static let cornerRadius: CGFloat = 3
     static let borderWidth: CGFloat = 0.5

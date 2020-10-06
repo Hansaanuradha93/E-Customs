@@ -64,7 +64,7 @@ extension ProductDetialsVM {
             if snapshot?.exists ?? false {
                 self.bindableIsSaving.value = false
                 completion(true, "Product is already in the Bag")
-            } else {                
+            } else {
                 let documentData : [String : Any] = [
                     "id" : productID,
                     "name" : self.product.name ?? "",

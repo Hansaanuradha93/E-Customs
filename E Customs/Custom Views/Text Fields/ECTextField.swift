@@ -30,5 +30,5 @@ class ECTextField: UITextField {
     override func textRect(forBounds bounds: CGRect) -> CGRect { return bounds.insetBy(dx: padding, dy: 0) }
     
     
-    override var intrinsicContentSize: CGSize { return .init(width: 0, height: GlobalDimensions.height) }
+    override var intrinsicContentSize: CGSize { return .init(width: 0, height: GlobalConstants.height) }
 }
