@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47250E7C252C87E500DF323D /* ECTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47250E7B252C87E500DF323D /* ECTextView.swift */; };
 		4734F836251122B000192BCB /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734F835251122B000192BCB /* Product.swift */; };
 		4767D29325151A4A004C23CB /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767D29225151A4A004C23CB /* ProductCell.swift */; };
 		4767D29725151AA8004C23CB /* ECImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767D29625151AA8004C23CB /* ECImageView.swift */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		33E5A76D829FEBFBFEA71488 /* Pods-E Customs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E Customs.release.xcconfig"; path = "Target Support Files/Pods-E Customs/Pods-E Customs.release.xcconfig"; sourceTree = "<group>"; };
+		47250E7B252C87E500DF323D /* ECTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECTextView.swift; sourceTree = "<group>"; };
 		4734F835251122B000192BCB /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		4767D29225151A4A004C23CB /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		4767D29625151AA8004C23CB /* ECImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECImageView.swift; sourceTree = "<group>"; };
@@ -114,6 +116,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47250E7A252C87CA00DF323D /* Text Views */ = {
+			isa = PBXGroup;
+			children = (
+				47250E7B252C87E500DF323D /* ECTextView.swift */,
+			);
+			path = "Text Views";
+			sourceTree = "<group>";
+		};
 		4767D29125151A2B004C23CB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +210,7 @@
 				4767D29425151A63004C23CB /* Labels */,
 				477F40AB25087EC50053A149 /* Buttons */,
 				477F40A825087BE00053A149 /* Text Fields */,
+				47250E7A252C87CA00DF323D /* Text Views */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -501,6 +512,7 @@
 				47C83ED72508A865003A26D4 /* LoginVC.swift in Sources */,
 				47B1063A251F976D0009D04C /* CheckoutButtonCell.swift in Sources */,
 				477D22CA2507D51E009C572B /* SignupVM.swift in Sources */,
+				47250E7C252C87E500DF323D /* ECTextView.swift in Sources */,
 				4767D29725151AA8004C23CB /* ECImageView.swift in Sources */,
 				477D22AA2507D067009C572B /* AppDelegate.swift in Sources */,
 				477F40B22508898D0053A149 /* UIViewController+Ext.swift in Sources */,

@@ -26,6 +26,7 @@ struct Strings {
     static let home = "HOME"
     static let detail = "DETAIL"
     static let bag = "BAG"
+    static let requestBox = "REQUEST BOX"
     
     // Placeholders
     static let empty = ""
@@ -33,6 +34,8 @@ struct Strings {
     static let password = "Password"
     static let firstName = "First Name"
     static let lastName = "Last Name"
+    static let sneakerName = "Sneaker Name"
+    static let yourIdea = "Your Idea"
     
     // Alerts
     static let failed = "Failed"
@@ -60,6 +63,8 @@ struct Strings {
     static let female = "Female"
     static let addToBag = "ADD TO BAG"
     static let checkout = "CHECKOUT"
+    static let selectPhoto = "Select Photo"
+    static let submit = "SUBMIT"
 }
 
 
