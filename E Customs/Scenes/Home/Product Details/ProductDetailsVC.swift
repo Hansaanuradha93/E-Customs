@@ -10,9 +10,9 @@ class ProductDetailsVC: UIViewController {
     
     fileprivate let thumbnailImageView = ECImageView(contentMode: .scaleAspectFill)
     fileprivate let titleLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
-    fileprivate let descriptionLabel = ECRegularLabel(textAlignment: .left, fontSize: 12, numberOfLines: 3)
+    fileprivate let descriptionLabel = ECRegularLabel(textAlignment: .left, textColor: .lightGray, fontSize: 15, numberOfLines: 0)
     fileprivate let sizeLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
-    fileprivate let addToBagButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.addToBag, titleColor: .gray, radius: 2, fontSize: 16)
+    fileprivate let addToBagButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.addToBag, titleColor: .gray, radius: GlobalConstants.cornerRadius, fontSize: 16)
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -198,6 +198,6 @@ extension ProductDetailsVC {
         descriptionLabel.anchor(top: titleLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorders, bottom: 0, right: paddindCorders))
         sizeLabel.anchor(top: descriptionLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorders, bottom: 0, right: paddindCorders))
         collectionView.anchor(top: sizeLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorders, bottom: 0, right: paddindCorders), size: .init(width: 0, height: 60))
-        addToBagButton.anchor(top: collectionView.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorders, bottom: 0, right: paddindCorders), size: .init(width: 0, height: 50))
+        addToBagButton.anchor(top: collectionView.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorders, bottom: 0, right: paddindCorders), size: .init(width: 0, height: GlobalConstants.height))
     }
 }
