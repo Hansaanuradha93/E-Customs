@@ -68,7 +68,8 @@ extension RequestBoxVM {
             "uid": uid,
             "sneakerName": sneakerName ?? "",
             "ideaDescription": ideaDescription ?? "",
-            "thumbnailUrl": imageUrl
+            "thumbnailUrl": imageUrl,
+            "isApproved": false
         ]
         
         reference.document(documentId).setData(productInfo) { [weak self] error in
