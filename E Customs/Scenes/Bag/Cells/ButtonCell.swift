@@ -5,7 +5,8 @@ class ButtonCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "CheckoutButtonCell"
     
-    fileprivate let checkoutButton = ECButton(backgroundColor: .black, titleColor: .white, radius: 2, fontSize: 16)
+    fileprivate let button = ECButton(backgroundColor: .black, titleColor: .white, radius: 2, fontSize: 16)
+    var buttonAction: (() -> Void)? = nil
 
     
     // MARK: Initializers
@@ -22,6 +23,11 @@ class ButtonCell: UITableViewCell {
 // MARK: - Methods
 extension ButtonCell {
     
+    @objc fileprivate func handleButtonAction() {
+        buttonAction?()
+    }
+    
+    
     func set(buttonType: ButtonType) {
         var title = ""
         if buttonType == .checkout {
@@ -29,16 +35,18 @@ extension ButtonCell {
         } else if buttonType == .checkOrders {
             title = Strings.checkOrders
         }
-        checkoutButton.setTitle(title, for: .normal)
+        button.setTitle(title, for: .normal)
     }
     
     
     fileprivate func setupUI() {
         selectionStyle = .none
-        let padding: CGFloat = 24
-        contentView.addSubview(checkoutButton)
+        button.addTarget(self, action: #selector(handleButtonAction), for: .touchUpInside)
         
-        checkoutButton.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: padding, bottom: 0, right: padding))
-        checkoutButton.centerVertically(in: self, size: .init(width: 0, height: GlobalConstants.height))
+        let padding: CGFloat = 24
+        contentView.addSubview(button)
+        
+        button.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: padding, bottom: 0, right: padding))
+        button.centerVertically(in: self, size: .init(width: 0, height: GlobalConstants.height))
     }
 }

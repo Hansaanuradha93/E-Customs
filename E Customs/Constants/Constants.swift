@@ -33,6 +33,7 @@ struct Strings {
     static let requestBox = "REQUEST BOX"
     static let requestDetail = "REQUEST DETAIL"
     static let profile = "PROFILE"
+    static let orders = "ORDERS"
     
     // Placeholders
     static let empty = ""

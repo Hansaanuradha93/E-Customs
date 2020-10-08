@@ -39,7 +39,8 @@ extension ProfileVC {
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ProfileDetailCell.reuseID, for: indexPath) as! ProfileDetailCell
-            
+            cell.set(name: "...", value: "...")
+
             if let user = viewModel.user {
                 if indexPath.row == 0 {
                     cell.set(name: "First Name", value: user.firstname)
@@ -55,8 +56,13 @@ extension ProfileVC {
             
             return cell
         } else if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: CheckoutButtonCell.reuseID, for: indexPath) as! CheckoutButtonCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.reuseID, for: indexPath) as! ButtonCell
             cell.set(buttonType: .checkOrders)
+            
+            cell.buttonAction = {
+                let controller = OrderListVC()
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
             return cell
         }
         return UITableViewCell()
@@ -101,6 +107,6 @@ extension ProfileVC {
         tableView.separatorStyle = .none
         tableView.register(ProfilePictureCell.self, forCellReuseIdentifier: ProfilePictureCell.reuseID)
         tableView.register(ProfileDetailCell.self, forCellReuseIdentifier: ProfileDetailCell.reuseID)
-        tableView.register(CheckoutButtonCell.self, forCellReuseIdentifier: CheckoutButtonCell.reuseID)
+        tableView.register(ButtonCell.self, forCellReuseIdentifier: ButtonCell.reuseID)
     }
 }

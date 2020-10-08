@@ -72,7 +72,7 @@ extension BagVC {
             cell.set(subtotal: viewModel.calculateSubtotal(), tax: viewModel.calculateTax(), total: viewModel.calculateTotal())
             return cell
         } else if indexPath.section == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: CheckoutButtonCell.reuseID, for: indexPath) as! CheckoutButtonCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.reuseID, for: indexPath) as! ButtonCell
             cell.set(buttonType: .checkout)
             return cell
         }
@@ -183,7 +183,7 @@ extension BagVC {
         tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
         tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
         tableView.register(TotalLabel.self, forCellReuseIdentifier: TotalLabel.reuseID)
-        tableView.register(CheckoutButtonCell.self, forCellReuseIdentifier: CheckoutButtonCell.reuseID)
+        tableView.register(ButtonCell.self, forCellReuseIdentifier: ButtonCell.reuseID)
     }
     
     
