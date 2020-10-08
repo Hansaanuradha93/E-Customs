@@ -49,7 +49,9 @@ extension ECTabBar {
         let traits = [UIFontDescriptor.TraitKey.weight: UIFont.Weight.medium]
         var descriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: Fonts.avenirNext])
         descriptor = descriptor.addingAttributes([UIFontDescriptor.AttributeName.traits: traits])
-        let attributes = [NSAttributedString.Key.font: UIFont(descriptor: descriptor, size: 18)]
-        UINavigationBar.appearance().titleTextAttributes = attributes
+        let attributesForTitle = [NSAttributedString.Key.font: UIFont(descriptor: descriptor, size: 18)]
+        let attributesForLargeTitle = [NSAttributedString.Key.font: UIFont(descriptor: descriptor, size: 28)]
+        UINavigationBar.appearance().titleTextAttributes = attributesForTitle
+        UINavigationBar.appearance().largeTitleTextAttributes = attributesForLargeTitle
     }
 }

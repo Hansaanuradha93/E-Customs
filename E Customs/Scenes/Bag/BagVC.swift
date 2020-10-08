@@ -188,8 +188,9 @@ extension BagVC {
     
     fileprivate func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
-        title = Strings.bag
+        title = Strings.shoppingBag
         tabBarItem.title = Strings.empty
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))

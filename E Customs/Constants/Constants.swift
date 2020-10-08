@@ -25,8 +25,9 @@ struct Strings {
     // Titles
     static let home = "HOME"
     static let detail = "DETAIL"
-    static let bag = "BAG"
+    static let shoppingBag = "SHOPPING BAG"
     static let requestBox = "REQUEST BOX"
+    static let requestDetail = "REQUEST DETAIL"
     
     // Placeholders
     static let empty = ""

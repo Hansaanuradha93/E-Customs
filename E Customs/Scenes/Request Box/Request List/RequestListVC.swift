@@ -71,6 +71,7 @@ extension RequestListVC {
     
     fileprivate func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
         title = Strings.requestBox
         tabBarItem.title = Strings.empty

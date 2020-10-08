@@ -64,11 +64,13 @@ extension HomeVC {
     
     fileprivate func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
         title = Strings.home
         tabBarItem.title = Strings.empty
         
         tableView.separatorStyle = .none
+        tableView.contentInset.top = 24
         tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.reuseID)
     }
 }
