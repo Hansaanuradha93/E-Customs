@@ -13,9 +13,7 @@ class RequestDetailsVC: UIViewController {
     fileprivate let sneakerNameLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
     fileprivate let ideaDescriptionLabel =  ECRegularLabel(textAlignment: .left, textColor: .lightGray, fontSize: 15, numberOfLines: 0)
     fileprivate let statusLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
-    
-    fileprivate let approveButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.approve, titleColor: .gray, radius: GlobalConstants.cornerRadius, fontSize: 16)
-    
+        
     
     // MARK: Initializers
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -63,49 +61,16 @@ extension RequestDetailsVC {
     }
     
     
-//    fileprivate func approveRequest() {
-//        viewModel.updateStatus(request: request) { [weak self] status, message in
-//            guard let self = self else { return }
-//            if status {
-//                self.presentAlert(title: Strings.successfull, message: message, buttonTitle: Strings.ok)
-//                self.updateUI()
-//            } else {
-//                self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
-//            }
-//        }
-//    }
-    
-    
-    fileprivate func updateUI() {
-        approveButton.backgroundColor = UIColor.appColor(.lightGray)
-        approveButton.setTitleColor(.gray, for: .normal)
-        approveButton.isEnabled = false
-        statusLabel.text = "REQUEST IS APPROVED"
-    }
-    
-    
     fileprivate func setData() {
         thumbnailImageView.downloadImage(from: request.thumbnailUrl ?? "")
         sneakerNameLabel.text = (request.sneakerName ?? "").uppercased()
         ideaDescriptionLabel.text = request.ideaDescription ?? ""
-        
-        if request.isApproved ?? false {
-            approveButton.backgroundColor = UIColor.appColor(.lightGray)
-            approveButton.setTitleColor(.gray, for: .normal)
-            approveButton.isEnabled = false
-            statusLabel.text = "REQUEST IS APPROVED"
-        } else {
-            approveButton.backgroundColor = .black
-            approveButton.setTitleColor(.white, for: .normal)
-            approveButton.isEnabled = true
-            statusLabel.text = "REQUEST IS STILL PENDING"
-        }
+        statusLabel.text = (request.isApproved ?? false) ? "REQUEST IS APPROVED" : "REQUEST IS STILL PENDING"
     }
     
     
     fileprivate func setupUI() {
-        approveButton.addTarget(self, action: #selector(handleApprove), for: .touchUpInside)
-        contentView.addSubviews(thumbnailImageView, sneakerNameLabel, ideaDescriptionLabel, statusLabel, approveButton)
+        contentView.addSubviews(thumbnailImageView, sneakerNameLabel, ideaDescriptionLabel, statusLabel)
 
         let paddingTop: CGFloat = 36
         let paddindCorders: CGFloat = 24
@@ -114,7 +79,6 @@ extension RequestDetailsVC {
         sneakerNameLabel.anchor(top: thumbnailImageView.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorders, bottom: 0, right: paddindCorders))
         ideaDescriptionLabel.anchor(top: sneakerNameLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorders, bottom: 0, right: paddindCorders))
         statusLabel.anchor(top: ideaDescriptionLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorders, bottom: 0, right: paddindCorders))
-        approveButton.anchor(top: statusLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorders, bottom: 0, right: paddindCorders), size: .init(width: 0, height: GlobalConstants.height))
     }
     
     
