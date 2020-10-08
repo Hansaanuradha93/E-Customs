@@ -16,6 +16,7 @@ struct Asserts {
     
     // Common
     static let placeHolder = UIImage(named: "placeholder")!
+    static let user = UIImage(named: "user")!
     
     // Bag
     static let close = UIImage(systemName: "xmark")!

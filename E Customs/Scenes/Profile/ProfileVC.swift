@@ -39,9 +39,9 @@ extension ProfileVC {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 300
+            return 236
         }
-        return 100
+        return 70
     }
 }
 
