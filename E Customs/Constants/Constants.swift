@@ -26,6 +26,7 @@ struct Strings {
     static let home = "HOME"
     static let detail = "DETAIL"
     static let shoppingBag = "SHOPPING BAG"
+    static let requestList = "REQUEST LIST"
     static let requestBox = "REQUEST BOX"
     static let requestDetail = "REQUEST DETAIL"
     

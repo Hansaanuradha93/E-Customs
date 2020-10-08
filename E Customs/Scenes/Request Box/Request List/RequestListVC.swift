@@ -78,7 +78,7 @@ extension RequestListVC {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
-        title = Strings.requestBox
+        title = Strings.requestList
         tabBarItem.title = Strings.empty
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequest))
