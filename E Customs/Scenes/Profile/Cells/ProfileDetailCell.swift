@@ -24,14 +24,17 @@ class ProfileDetailCell: UITableViewCell {
 // MARK: - Methods
 extension ProfileDetailCell {
     
+    func set(name: String, value: String?) {
+        nameLabel.text = name
+        valueLabel.text = value ?? ""
+    }
+    
+    
     fileprivate func setupUI() {
         backgroundColor = .white
         selectionStyle = .none
         separatorLine.backgroundColor = .lightGray
-        
-        nameLabel.text = "First Name"
-        valueLabel.text = "Hansa"
-        
+                
         contentView.addSubviews(nameLabel, valueLabel, separatorLine)
         
         let padding: CGFloat = 24

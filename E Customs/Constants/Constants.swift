@@ -69,6 +69,7 @@ struct Strings {
     static let female = "Female"
     static let addToBag = "ADD TO BAG"
     static let checkout = "CHECKOUT"
+    static let checkOrders = "CHECK ORDERS"
     static let selectPhoto = "Select Photo"
     static let submit = "SUBMIT"
     static let approve = "APPROVE"

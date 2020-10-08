@@ -2,9 +2,15 @@ import UIKit
 
 class ProfileVC: UITableViewController {
 
+    // MARK: Properties
+    let viewModel = ProfileVM()
+    
+    
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        fetchUserProfile()
     }
 }
 
@@ -13,15 +19,17 @@ class ProfileVC: UITableViewController {
 extension ProfileVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        switch section {
+        case 1:
+            return 4
+        default:
             return 1
         }
-        return 4
     }
     
     
@@ -31,6 +39,24 @@ extension ProfileVC {
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ProfileDetailCell.reuseID, for: indexPath) as! ProfileDetailCell
+            
+            if let user = viewModel.user {
+                if indexPath.row == 0 {
+                    cell.set(name: "First Name", value: user.firstname)
+                } else if indexPath.row == 1 {
+                    cell.set(name: "Last Name", value: user.lastname)
+                } else if indexPath.row == 2 {
+                    cell.set(name: "Email", value: user.email)
+                } else if indexPath.row == 3 {
+                    let gender = (user.isMale ?? false) ? "Male" : "Female"
+                    cell.set(name: "Gender", value: gender)
+                }
+            }
+            
+            return cell
+        } else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CheckoutButtonCell.reuseID, for: indexPath) as! CheckoutButtonCell
+            cell.set(buttonType: .checkOrders)
             return cell
         }
         return UITableViewCell()
@@ -38,16 +64,32 @@ extension ProfileVC {
     
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 236
+        switch indexPath.section {
+        case 0:
+            return 230
+        case 1:
+            return 70
+        case 2:
+            return 75
+        default:
+            return 0
         }
-        return 70
     }
 }
 
 
 // MARK: - Methods
 extension ProfileVC {
+    
+    fileprivate func fetchUserProfile() {
+        viewModel.fetchUserProfile { [weak self] status in
+            guard let self = self else { return }
+            if status {
+                DispatchQueue.main.async { self.tableView.reloadData() }
+            }
+        }
+    }
+    
     
     fileprivate func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
@@ -59,5 +101,6 @@ extension ProfileVC {
         tableView.separatorStyle = .none
         tableView.register(ProfilePictureCell.self, forCellReuseIdentifier: ProfilePictureCell.reuseID)
         tableView.register(ProfileDetailCell.self, forCellReuseIdentifier: ProfileDetailCell.reuseID)
+        tableView.register(CheckoutButtonCell.self, forCellReuseIdentifier: CheckoutButtonCell.reuseID)
     }
 }

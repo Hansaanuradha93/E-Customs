@@ -30,9 +30,9 @@ extension ProfilePictureCell {
         contentView.addSubviews(profileImage, separatorLine)
         
         let dimensions: CGFloat = 150
-        let paddingTop: CGFloat = 44
-        profileImage.centerInSuperview(size: .init(width: dimensions, height: dimensions))
-        separatorLine.anchor(top: profileImage.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: paddingTop, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 0.2))
+        profileImage.centerHorizontallyInSuperView()
+        profileImage.centerVerticallyInSuperView(padding: -10, size: .init(width: dimensions, height: dimensions))
+        separatorLine.anchor(top: nil, leading: leadingAnchor, bottom: contentView.bottomAnchor, trailing: trailingAnchor, size: .init(width: 0, height: 0.2))
         
         profileImage.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: dimensions / 2)
     }

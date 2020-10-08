@@ -73,6 +73,7 @@ extension BagVC {
             return cell
         } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: CheckoutButtonCell.reuseID, for: indexPath) as! CheckoutButtonCell
+            cell.set(buttonType: .checkout)
             return cell
         }
         return UITableViewCell()
