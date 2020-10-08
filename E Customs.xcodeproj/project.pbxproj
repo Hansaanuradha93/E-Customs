@@ -189,8 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				4728D653252F048F00E7E099 /* Cells */,
-				4728D64C252EFFFB00E7E099 /* ProfileVC.swift */,
-				4728D650252F000F00E7E099 /* ProfileVM.swift */,
+				479C4D02250E7E1C00A7E399 /* Order List */,
+				4728D661252F299000E7E099 /* Profile */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -202,6 +202,15 @@
 				4728D657252F061B00E7E099 /* ProfileDetailCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		4728D661252F299000E7E099 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				4728D64C252EFFFB00E7E099 /* ProfileVC.swift */,
+				4728D650252F000F00E7E099 /* ProfileVM.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		4767D29125151A2B004C23CB /* Cells */ = {
@@ -305,7 +314,6 @@
 				4728D64B252EFFE100E7E099 /* Profile */,
 				47B10622251F82BB0009D04C /* Bag */,
 				479C4D03250E7E4700A7E399 /* Request Box */,
-				479C4D02250E7E1C00A7E399 /* Order List */,
 				47D61DD625091F4300AB7C11 /* Home */,
 				47C83ED52508A849003A26D4 /* Login */,
 				477D22C62507D4E8009C572B /* Signup */,

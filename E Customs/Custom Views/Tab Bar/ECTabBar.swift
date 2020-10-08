@@ -27,13 +27,6 @@ extension ECTabBar {
     }
     
     
-    fileprivate func createOrderListNC() -> UINavigationController {
-        let orderListVC = OrderListVC()
-        orderListVC.tabBarItem = UITabBarItem(title: Strings.empty, image: Asserts.document, selectedImage: Asserts.documentFill)
-        return UINavigationController(rootViewController: orderListVC)
-    }
-    
-    
     fileprivate func createBagNC() -> UINavigationController {
         let bagVC = BagVC()
         bagVC.tabBarItem = UITabBarItem(title: Strings.empty, image: Asserts.bag, selectedImage: Asserts.bagFill)
@@ -51,8 +44,7 @@ extension ECTabBar {
     fileprivate func setupUI() {
         UITabBar.appearance().tintColor = .black
         tabBar.barTintColor = .white
-//        viewControllers = [createHomeNC(), createRequestListNC(), createOrderListNC(), createBagNC(), createProfileNC()]
-        viewControllers = [createProfileNC()]
+        viewControllers = [createHomeNC(), createRequestListNC(), createBagNC(), createProfileNC()]
         
         let traits = [UIFontDescriptor.TraitKey.weight: UIFont.Weight.medium]
         var descriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: Fonts.avenirNext])
