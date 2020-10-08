@@ -30,6 +30,7 @@ class ProductDetailsVC: UIViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
+    
     required init?(coder: NSCoder) { fatalError() }
     
     

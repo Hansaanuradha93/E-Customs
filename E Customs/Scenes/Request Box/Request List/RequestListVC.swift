@@ -11,7 +11,6 @@ class RequestListVC: UITableViewController {
         super.viewDidLoad()
         setupUI()
         setupTableView()
-//        fetchRequests()
     }
     
     
@@ -53,6 +52,12 @@ extension RequestListVC {
 // MARK: - Methods
 extension RequestListVC {
     
+    @objc fileprivate func addRequest() {
+        let controller = RequestBoxVC()
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    
     fileprivate func fetchRequests() {
         viewModel.fetchRequests { [weak self] status in
             guard let self = self else { return }
@@ -75,5 +80,8 @@ extension RequestListVC {
         view.backgroundColor = .white
         title = Strings.requestBox
         tabBarItem.title = Strings.empty
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequest))
+        navigationItem.rightBarButtonItem = addButton
     }
 }

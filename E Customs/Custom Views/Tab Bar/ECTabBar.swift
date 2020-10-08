@@ -53,5 +53,6 @@ extension ECTabBar {
         let attributesForLargeTitle = [NSAttributedString.Key.font: UIFont(descriptor: descriptor, size: 28)]
         UINavigationBar.appearance().titleTextAttributes = attributesForTitle
         UINavigationBar.appearance().largeTitleTextAttributes = attributesForLargeTitle
+        UINavigationBar.appearance().tintColor = .darkGray
     }
 }
