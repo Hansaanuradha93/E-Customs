@@ -5,7 +5,6 @@ class LoginVC: UIViewController {
     // MARK: Properties
     fileprivate let viewModel = LoginVM()
     
-    fileprivate let titleLabel = ECMediumLabel(text: Strings.login, textAlignment: .left, fontSize: 30)
     fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: Strings.email)
     fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: Strings.password)
     fileprivate let loginButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.login, titleColor: .gray, fontSize: 18)
@@ -130,9 +129,11 @@ extension LoginVC {
     
     
     fileprivate func setupUI() {
-        view.backgroundColor = .white
         navigationController?.navigationBar.barTintColor = UIColor.white
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = .white
+        title = Strings.login
+        tabBarItem.title = Strings.empty
         
         emailTextField.keyboardType = .emailAddress
         emailTextField.autocorrectionType = .no
@@ -146,10 +147,9 @@ extension LoginVC {
         
         let paddingTop: CGFloat = 30
         let paddingCorners: CGFloat = 24
-        view.addSubviews(titleLabel, verticalStackView, gotoSignupButton)
-        titleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: paddingTop, left: paddingCorners, bottom: 0, right: paddingCorners))
+        view.addSubviews(verticalStackView, gotoSignupButton)
         loginButton.heightAnchor.constraint(equalToConstant: GlobalConstants.height).isActive = true
-        verticalStackView.anchor(top: titleLabel.bottomAnchor, leading: titleLabel.leadingAnchor, bottom: nil, trailing: titleLabel.trailingAnchor, padding: .init(top: paddingTop, left: 0, bottom: 0, right: 0))
+        verticalStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: paddingTop, left: paddingCorners, bottom: 0, right: paddingCorners))
 
         gotoSignupButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }

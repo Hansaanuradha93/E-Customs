@@ -4,8 +4,6 @@ class SignupVC: UIViewController {
     
     // MARK: Properties
     fileprivate let viewModel = SignupVM()
-
-    fileprivate let titleLabel = ECMediumLabel(text: Strings.signup, textAlignment: .left, fontSize: 30)
     
     fileprivate let firstNameTextField = ECTextField(padding: 16, placeholderText: Strings.firstName)
     fileprivate let lastNameTextField = ECTextField(padding: 16, placeholderText: Strings.lastName)
@@ -181,9 +179,11 @@ extension SignupVC {
     
     
     fileprivate func setupUI() {
-        view.backgroundColor = .white
         navigationController?.navigationBar.barTintColor = UIColor.white
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = .white
+        title = Strings.signup
+        tabBarItem.title = Strings.empty
         
         firstNameTextField.autocorrectionType = .no
         emailTextField.keyboardType = .emailAddress
@@ -202,12 +202,11 @@ extension SignupVC {
 
         let paddingTop: CGFloat = 30
         let paddingCorners: CGFloat = 24
-        view.addSubviews(titleLabel, verticalStackView, goToLoginButton)
-        titleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: paddingTop, left: paddingCorners, bottom: 0, right: paddingCorners))
+        view.addSubviews(verticalStackView, goToLoginButton)
         signupButton.heightAnchor.constraint(equalToConstant: GlobalConstants.height).isActive = true
         maleButton.heightAnchor.constraint(equalToConstant: GlobalConstants.height).isActive = true
         femaleButton.heightAnchor.constraint(equalToConstant: GlobalConstants.height).isActive = true
-        verticalStackView.anchor(top: titleLabel.bottomAnchor, leading: titleLabel.leadingAnchor, bottom: nil, trailing: titleLabel.trailingAnchor, padding: .init(top: paddingTop, left: 0, bottom: 0, right: 0))
+        verticalStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: paddingTop, left: paddingCorners, bottom: 0, right: paddingCorners))
         goToLoginButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
 }
