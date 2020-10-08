@@ -11,29 +11,27 @@ class RequestListVM {
 // MARK: - Methods
 extension RequestListVM {
     
-    func fetchRequest(completion: @escaping (Bool) -> ()) -> ListenerRegistration? {
-        let reference = Firestore.firestore().collection("requests")
-        
+    func fetchRequests(completion: @escaping (Bool) -> ()) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let reference = Firestore.firestore()
         requests.removeAll()
         
-        let listener = reference.addSnapshotListener { querySnapshot, error in
+        reference.collection("requests").whereField("uid", isEqualTo: uid)
+            .getDocuments() { (querySnapshot, error) in
             if let error = error {
                 print(error)
                 completion(false)
                 return
             }
-            guard let documentChanges = querySnapshot?.documentChanges else {
+            guard let documents = querySnapshot?.documents else {
                 completion(false)
                 return
             }
-            for change in documentChanges {
-                if change.type == .added {
-                    let request = Request(dictionary: change.document.data())
-                    self.requests.append(request)
-                }
+            for document in documents {
+                let request = Request(dictionary: document.data())
+                self.requests.append(request)
             }
             completion(true)
         }
-        return listener
     }
 }

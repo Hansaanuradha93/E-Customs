@@ -1,11 +1,9 @@
 import UIKit
-import Firebase
 
 class RequestListVC: UITableViewController {
     
     // MARK: Properties
     let viewModel = RequestListVM()
-    fileprivate var listener: ListenerRegistration?
 
     
     // MARK: View Controller
@@ -13,13 +11,13 @@ class RequestListVC: UITableViewController {
         super.viewDidLoad()
         setupUI()
         setupTableView()
-        fetchRequests()
+//        fetchRequests()
     }
     
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if isMovingFromParent { listener?.remove() }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchRequests()
     }
 }
 
@@ -56,7 +54,7 @@ extension RequestListVC {
 extension RequestListVC {
     
     fileprivate func fetchRequests() {
-        listener = viewModel.fetchRequest { [weak self] status in
+        viewModel.fetchRequests { [weak self] status in
             guard let self = self else { return }
             if status {
                 DispatchQueue.main.async { self.tableView.reloadData() }

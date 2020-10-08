@@ -44,11 +44,6 @@ class RequestDetailsVC: UIViewController {
 // MARK: - Methods
 extension RequestDetailsVC {
     
-    @objc fileprivate func handleApprove() {
-//        approveRequest()
-    }
-    
-    
     fileprivate func setupViewModelObserver() {
         viewModel.bindableIsApproving.bind { [weak self] isSaving in
             guard let self = self, let isSaving = isSaving else { return }
