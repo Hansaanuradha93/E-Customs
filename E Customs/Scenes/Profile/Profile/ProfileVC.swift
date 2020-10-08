@@ -87,6 +87,11 @@ extension ProfileVC {
 // MARK: - Methods
 extension ProfileVC {
     
+    @objc fileprivate func signout() {
+        signoutUser()
+    }
+    
+    
     fileprivate func fetchUserProfile() {
         viewModel.fetchUserProfile { [weak self] status in
             guard let self = self else { return }
@@ -97,12 +102,32 @@ extension ProfileVC {
     }
     
     
+    fileprivate func signoutUser() {
+        viewModel.signout { [weak self] status, message in
+            guard let self = self else { return }
+            if status {
+                self.goToSignup()
+            } else {
+                self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
+            }
+        }
+    }
+    
+    
+    fileprivate func goToSignup() {
+        UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = UINavigationController(rootViewController: SignupVC())
+    }
+    
+    
     fileprivate func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
         title = Strings.profile
         tabBarItem.title = Strings.empty
+        
+        let signoutButton = UIBarButtonItem(title: Strings.signout, style: .plain, target: self, action: #selector(signout))
+        navigationItem.rightBarButtonItem = signoutButton
         
         tableView.separatorStyle = .none
         tableView.register(ProfilePictureCell.self, forCellReuseIdentifier: ProfilePictureCell.reuseID)

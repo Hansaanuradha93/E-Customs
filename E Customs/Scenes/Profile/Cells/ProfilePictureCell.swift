@@ -25,6 +25,7 @@ extension ProfilePictureCell {
     
     fileprivate func setupUI() {
         backgroundColor = .white
+        selectionStyle = .none
         separatorLine.backgroundColor = .lightGray
 
         contentView.addSubviews(profileImage, separatorLine)

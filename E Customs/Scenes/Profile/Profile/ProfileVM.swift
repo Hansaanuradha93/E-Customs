@@ -28,4 +28,15 @@ extension ProfileVM {
             completion(true)
         }
     }
+    
+    
+    func signout(completion: @escaping (Bool, String) -> ()) {
+        do {
+            try Auth.auth().signOut()
+            completion(true, "")
+        } catch( let error) {
+            print(error)
+            completion(false, error.localizedDescription)
+        }
+    }
 }

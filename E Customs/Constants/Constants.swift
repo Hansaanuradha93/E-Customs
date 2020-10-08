@@ -16,10 +16,12 @@ struct Asserts {
     
     // Common
     static let placeHolder = UIImage(named: "placeholder")!
-    static let user = UIImage(named: "user")!
     
     // Bag
     static let close = UIImage(systemName: "xmark")!
+    
+    // Profile
+    static let user = UIImage(named: "user")!
 }
 
 
@@ -74,6 +76,7 @@ struct Strings {
     static let selectPhoto = "Select Photo"
     static let submit = "SUBMIT"
     static let approve = "APPROVE"
+    static let signout = "SIGN OUT"
 }
 
 
