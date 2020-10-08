@@ -65,6 +65,7 @@ struct Strings {
     static let checkout = "CHECKOUT"
     static let selectPhoto = "Select Photo"
     static let submit = "SUBMIT"
+    static let approve = "APPROVE"
 }
 
 
