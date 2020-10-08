@@ -11,6 +11,8 @@ struct Asserts {
     static let envelopeFill = UIImage(systemName: "envelope.fill")!
     static let bag = UIImage(systemName: "bag")!
     static let bagFill = UIImage(systemName: "bag.fill")!
+    static let person = UIImage(systemName: "person")!
+    static let personFill = UIImage(systemName: "person.fill")!
     
     // Common
     static let placeHolder = UIImage(named: "placeholder")!
@@ -29,6 +31,7 @@ struct Strings {
     static let requestList = "REQUEST LIST"
     static let requestBox = "REQUEST BOX"
     static let requestDetail = "REQUEST DETAIL"
+    static let profile = "PROFILE"
     
     // Placeholders
     static let empty = ""
