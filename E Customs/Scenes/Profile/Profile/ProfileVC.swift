@@ -39,18 +39,18 @@ extension ProfileVC {
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ProfileDetailCell.reuseID, for: indexPath) as! ProfileDetailCell
-            cell.set(name: "...", value: "...")
+            cell.set(name: Strings.lodingIndicatorDots, value: Strings.lodingIndicatorDots)
 
             if let user = viewModel.user {
                 if indexPath.row == 0 {
-                    cell.set(name: "First Name", value: user.firstname)
+                    cell.set(name: Strings.firstName, value: user.firstname)
                 } else if indexPath.row == 1 {
-                    cell.set(name: "Last Name", value: user.lastname)
+                    cell.set(name: Strings.lastName, value: user.lastname)
                 } else if indexPath.row == 2 {
-                    cell.set(name: "Email", value: user.email)
+                    cell.set(name: Strings.email, value: user.email)
                 } else if indexPath.row == 3 {
-                    let gender = (user.isMale ?? false) ? "Male" : "Female"
-                    cell.set(name: "Gender", value: gender)
+                    let gender = (user.isMale ?? false) ? Strings.male : Strings.female
+                    cell.set(name: Strings.gender, value: gender)
                 }
             }
             
