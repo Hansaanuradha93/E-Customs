@@ -1,5 +1,6 @@
 import UIKit
 
+// MARK: - Asserts
 struct Asserts {
     
     // Tab Bar
@@ -25,6 +26,7 @@ struct Asserts {
 }
 
 
+// MARK: - Strings
 struct Strings {
     
     // Titles
@@ -82,11 +84,13 @@ struct Strings {
 }
 
 
+// MARK: - Fonts
 struct Fonts {
     static let avenirNext = "Avenir Next"
 }
 
 
+// MARK: - GlobalConstants
 struct GlobalConstants {
     static let height: CGFloat = 44
     static let cornerRadius: CGFloat = 3
