@@ -60,6 +60,8 @@ struct Strings {
     static let shipping = "Shipping"
     static let tax = "Tax"
     static let total = "Total"
+    static let gender = "Gender"
+    static let lodingIndicatorDots = "..."
     
     // Buttons
     static let ok = "OK"
