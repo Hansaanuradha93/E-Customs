@@ -52,13 +52,16 @@ extension PaymentInfoCell {
 // MARK: - Methods
 extension PaymentInfoCell {
     
-    func set(subtotalPennies: Int, processingFeesPennies: Int, totalPennies: Int) {
+    func set(subtotalPennies: Int, processingFeesPennies: Int, totalPennies: Int, paymentMethod: String?, shippingMethod: String?) {
         let subtotal = Double(subtotalPennies / 100)
         let processingFees = Double(processingFeesPennies / 100)
         let total = Double(totalPennies / 100)
         subTotalValueLabel.text = "$\(subtotal)"
         processingFeesValueLabel.text = "$\(processingFees)"
         totalValueLabel.text = "$\(total)"
+        
+        shippingMethodValueLabel.text = (shippingMethod ?? "")
+        paymentMethodValueLabel.text = paymentMethod ?? ""
     }
     
     

@@ -72,7 +72,7 @@ extension BagVC {
             return cell
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: PaymentInfoCell.reuseID, for: indexPath) as! PaymentInfoCell
-            cell.set(subtotalPennies: viewModel.subtotal, processingFeesPennies: viewModel.processingFees, totalPennies: viewModel.total)
+            cell.set(subtotalPennies: viewModel.subtotal, processingFeesPennies: viewModel.processingFees, totalPennies: viewModel.total, paymentMethod: viewModel.paymentMethod, shippingMethod: viewModel.shippingMethod)
             
             cell.shippingMethodAction = {
                 self.paymentContext.pushShippingViewController()
@@ -111,8 +111,23 @@ extension BagVC {
 extension BagVC: STPPaymentContextDelegate {
     
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
+        if let paymentMethod = paymentContext.selectedPaymentOption {
+            viewModel.paymentMethod = paymentMethod.label
+            tableView.reloadSections(IndexSet(integer: 2), with: .none)
+        } else {
+            viewModel.paymentMethod = Strings.select + " ↓"
+            tableView.reloadSections(IndexSet(integer: 2), with: .none)
+        }
         
+        if let shippingMethod = paymentContext.selectedShippingMethod {
+            viewModel.shippingMethod = shippingMethod.label
+            tableView.reloadSections(IndexSet(integer: 2), with: .none)
+        } else {
+            viewModel.shippingMethod = Strings.select + " ↓"
+            tableView.reloadSections(IndexSet(integer: 2), with: .none)
+        }
     }
+    
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
         
@@ -126,6 +141,18 @@ extension BagVC: STPPaymentContextDelegate {
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
         
+    }
+    
+    
+    func paymentContext(_ paymentContext: STPPaymentContext, didUpdateShippingAddress address: STPAddress, completion: @escaping STPShippingMethodsCompletionBlock) {
+        
+        let upsGround = PKShippingMethod()
+        upsGround.amount = 0
+        upsGround.label = "UPS Ground"
+        upsGround.detail = "Arrives in 3-5 days"
+        upsGround.identifier = "ups_ground"
+        
+        completion(.valid, nil, [upsGround], upsGround)
     }
 }
 
