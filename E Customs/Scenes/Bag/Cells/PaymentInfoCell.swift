@@ -9,13 +9,19 @@ class PaymentInfoCell: UITableViewCell {
     fileprivate let subTotalValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
     
     fileprivate let shippingMethodLabel = ECRegularLabel(text: Strings.shipping, textAlignment: .left, textColor: .gray, fontSize: 15)
-    fileprivate let shippingMethodValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
+    fileprivate let shippingMethodValueLabel = ECRegularLabel(text: Strings.select + " ↓", textAlignment: .left, textColor: .gray, fontSize: 15)
+    
+    fileprivate let paymentMethodLabel = ECRegularLabel(text: Strings.paymentMethod, textAlignment: .left, textColor: .gray, fontSize: 15)
+    fileprivate let paymentMethodValueLabel = ECRegularLabel(text: Strings.select + " ↓", textAlignment: .left, textColor: .gray, fontSize: 15)
     
     fileprivate let processingFeesLabel = ECRegularLabel(text: Strings.processingFees, textAlignment: .left, textColor: .gray, fontSize: 15)
     fileprivate let processingFeesValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
     
     fileprivate let totalLabel = ECRegularLabel(text: Strings.total, textAlignment: .left, fontSize: 15)
     fileprivate let totalValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
+    
+    var shippingMethodAction: (() -> Void)? = nil
+    var paymentMethodAction: (() -> Void)? = nil
 
     
     // MARK: Initializers
@@ -29,6 +35,20 @@ class PaymentInfoCell: UITableViewCell {
 }
 
 
+// MARK: - Objc Methods
+extension PaymentInfoCell {
+    
+    @objc fileprivate func handleShippingMethod() {
+        shippingMethodAction?()
+    }
+    
+    
+    @objc fileprivate func handlePaymentMethod() {
+        paymentMethodAction?()
+    }
+}
+
+
 // MARK: - Methods
 extension PaymentInfoCell {
     
@@ -37,7 +57,6 @@ extension PaymentInfoCell {
         let processingFees = Double(processingFeesPennies / 100)
         let total = Double(totalPennies / 100)
         subTotalValueLabel.text = "$\(subtotal)"
-        shippingMethodValueLabel.text = Strings.free
         processingFeesValueLabel.text = "$\(processingFees)"
         totalValueLabel.text = "$\(total)"
     }
@@ -45,6 +64,11 @@ extension PaymentInfoCell {
     
     fileprivate func setupUI() {
         selectionStyle = .none
+        
+        shippingMethodValueLabel.isUserInteractionEnabled = true
+        shippingMethodValueLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShippingMethod)))
+        paymentMethodValueLabel.isUserInteractionEnabled = true
+        paymentMethodValueLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlePaymentMethod)))
         let paddingTop: CGFloat = 24
         
         let subTotalStackView = UIStackView(arrangedSubviews: [subTotalLabel, subTotalValueLabel])
@@ -55,17 +79,21 @@ extension PaymentInfoCell {
         shippingMethodStackView.alignment = .center
         shippingMethodStackView.distribution = .equalCentering
         
-        let taxStackView = UIStackView(arrangedSubviews: [processingFeesLabel, processingFeesValueLabel])
-        taxStackView.alignment = .center
-        taxStackView.distribution = .equalCentering
+        let processingFeesStackView = UIStackView(arrangedSubviews: [processingFeesLabel, processingFeesValueLabel])
+        processingFeesStackView.alignment = .center
+        processingFeesStackView.distribution = .equalCentering
+        
+        let paymentMethodStackView = UIStackView(arrangedSubviews: [paymentMethodLabel, paymentMethodValueLabel])
+        paymentMethodStackView.alignment = .center
+        paymentMethodStackView.distribution = .equalCentering
         
         let totalStackView = UIStackView(arrangedSubviews: [totalLabel, totalValueLabel])
         totalStackView.alignment = .center
         totalStackView.distribution = .equalCentering
         
-        let overrallStackView = UIStackView(arrangedSubviews: [subTotalStackView, shippingMethodStackView, taxStackView])
+        let overrallStackView = UIStackView(arrangedSubviews: [subTotalStackView, processingFeesStackView, shippingMethodStackView, paymentMethodStackView])
         overrallStackView.axis = .vertical
-        overrallStackView.spacing = 4
+        overrallStackView.spacing = 6
         overrallStackView.distribution = .fillEqually
         
         contentView.addSubviews(overrallStackView, totalStackView)

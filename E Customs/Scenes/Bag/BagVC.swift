@@ -70,6 +70,15 @@ extension BagVC {
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: PaymentInfoCell.reuseID, for: indexPath) as! PaymentInfoCell
             cell.set(subtotalPennies: viewModel.subtotal, processingFeesPennies: viewModel.processingFees, totalPennies: viewModel.total)
+            
+            cell.shippingMethodAction = {
+                print("shipping")
+            }
+            
+            cell.paymentMethodAction = {
+                print("payment")
+            }
+            
             return cell
         } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.reuseID, for: indexPath) as! ButtonCell
@@ -86,7 +95,7 @@ extension BagVC {
         } else if indexPath.section == 1 {
             return 170
         } else if indexPath.section == 2 {
-            return 160
+            return 190
         } else if indexPath.section == 3 {
             return 75
         }
