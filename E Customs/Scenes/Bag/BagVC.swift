@@ -1,6 +1,7 @@
 import UIKit
 import Firebase
 import Stripe
+import FirebaseFunctions
 
 class BagVC: UITableViewController {
     
@@ -21,6 +22,7 @@ class BagVC: UITableViewController {
         createToolBar()
         setupTableView()
         fetchItems()
+        setupViewModelObserver()
     }
     
     
@@ -86,6 +88,10 @@ extension BagVC {
         } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.reuseID, for: indexPath) as! ButtonCell
             cell.set(buttonType: .checkout)
+            cell.buttonAction = {
+                self.paymentContext.requestPayment()
+                self.viewModel.bindableIsMakingPayment.value = true
+            }
             return cell
         }
         return UITableViewCell()
@@ -115,7 +121,7 @@ extension BagVC: STPPaymentContextDelegate {
             viewModel.paymentMethod = paymentMethod.label
             tableView.reloadSections(IndexSet(integer: 2), with: .none)
         } else {
-            viewModel.paymentMethod = Strings.select + " ↓"
+            viewModel.paymentMethod = nil
             tableView.reloadSections(IndexSet(integer: 2), with: .none)
         }
         
@@ -123,24 +129,56 @@ extension BagVC: STPPaymentContextDelegate {
             viewModel.shippingMethod = shippingMethod.label
             tableView.reloadSections(IndexSet(integer: 2), with: .none)
         } else {
-            viewModel.shippingMethod = Strings.select + " ↓"
+            viewModel.shippingMethod = nil
             tableView.reloadSections(IndexSet(integer: 2), with: .none)
         }
     }
     
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
-        
+        presentAlert(title: Strings.failed, message: Strings.somethingWentWrong, buttonTitle: Strings.ok) { (_) in
+            self.paymentContext.retryLoading()
+        }
     }
     
     
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
+        let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")
+        let customerId = UserDefaults.standard.string(forKey: UserDefaultsKeys.stripeId) ?? ""
+        let data: [String: Any] = [
+            "total_amount": paymentContext.paymentAmount,
+            "customer_id" : customerId,
+            "payment_method_id" : paymentResult.paymentMethod?.stripeId ?? "",
+            "idempotency" : idempotency
+        ]
         
+        Functions.functions().httpsCallable("makeCharge").call(data) { (result, error) in
+            if let error = error {
+                print(error)
+                completion(.error, error)
+                return
+            }
+            
+            self.viewModel.items.removeAll()
+            self.tableView.reloadData()
+            completion(.success, nil)
+        }
     }
     
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
+        viewModel.bindableIsMakingPayment.value = false
         
+        switch status {
+        case .error:
+            presentAlert(title: Strings.failed, message: error?.localizedDescription ?? "", buttonTitle: Strings.ok)
+        case .success:
+            presentAlert(title: Strings.successfull, message: Strings.orderPlacedSuccessfully, buttonTitle: Strings.ok)
+        case .userCancellation:
+            return
+        @unknown default:
+            return
+        }
     }
     
     
@@ -171,7 +209,19 @@ extension BagVC {
     }
     
     
-    func setupStripeConfig() {
+    fileprivate func setupViewModelObserver() {
+        viewModel.bindableIsMakingPayment.bind { [weak self] isMakingPayment in
+            guard let self = self, let isMakingPayment = isMakingPayment else { return }
+            if isMakingPayment {
+                self.showPreloader()
+            } else {
+                self.hidePreloader()
+            }
+        }
+    }
+    
+    
+    fileprivate func setupStripeConfig() {
         let config = STPPaymentConfiguration.shared()
         config.requiredBillingAddressFields = .none
         config.requiredShippingAddressFields = [.postalAddress]
@@ -180,7 +230,7 @@ extension BagVC {
         let customerContext = STPCustomerContext(keyProvider: StripeAPI.shared)
         paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
         
-        paymentContext.paymentAmount = 10029 // $10 Change this amount if you add or remove items from cart
+        paymentContext.paymentAmount = viewModel.total
         paymentContext.delegate = self
         paymentContext.hostViewController = self
     }
@@ -237,8 +287,11 @@ extension BagVC {
             guard let self = self else { return }
             if status {
                 self.viewModel.items.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-                self.tableView.reloadData()
+                self.paymentContext.paymentAmount = self.viewModel.total
+                DispatchQueue.main.async {
+                    self.tableView.deleteRows(at: [indexPath], with: .fade)
+                    self.tableView.reloadData()
+                }
             } else {
                 self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
             }
@@ -249,6 +302,7 @@ extension BagVC {
     fileprivate func fetchItems() {
         listener = viewModel.fetchItems { (status) in
             if status {
+                self.paymentContext.paymentAmount = self.viewModel.total
                 DispatchQueue.main.async { self.tableView.reloadData() }
             }
         }
@@ -290,13 +344,16 @@ extension BagVC: UIPickerViewDataSource, UIPickerViewDelegate {
         return 1
     }
 
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return 10
     }
 
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return "\(row + 1)"
     }
+    
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         viewModel.selectedQuantity = row + 1

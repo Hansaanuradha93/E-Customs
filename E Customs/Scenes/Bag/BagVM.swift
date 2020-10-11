@@ -11,12 +11,12 @@ class BagVM {
     private let stripeCreditCardCut = 0.029
     private let flatFeeCents = 30
     
-    var shippingMethod: String? { didSet { checkShoppingBagReady() } }
-    var paymentMethod: String? { didSet { checkShoppingBagReady() } }
+    var shippingMethod: String?
+    var paymentMethod: String?
     
     
     // MARK: Bindables
-    var bindalbeIsShoppingBagReady = Bindable<Bool>()
+    var bindableIsMakingPayment = Bindable<Bool>()
     
     
     // MARK: Computed Properties
@@ -60,12 +60,6 @@ class BagVM {
 
 // MARK: - Methods
 extension BagVM {
-    
-    func checkShoppingBagReady() {
-        let isShoppingBagReady = shippingMethod?.isEmpty == false && paymentMethod?.isEmpty == false
-        bindalbeIsShoppingBagReady.value = isShoppingBagReady
-    }
-    
     
     func updateQuanitity(completion: @escaping (Bool, String) -> ()) {
         guard let itemId = selectedItem?.id, let currentUserId = Auth.auth().currentUser?.uid, selectedQuantity != 0 else { return }

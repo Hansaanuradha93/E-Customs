@@ -60,8 +60,8 @@ extension PaymentInfoCell {
         processingFeesValueLabel.text = "$\(processingFees)"
         totalValueLabel.text = "$\(total)"
         
-        shippingMethodValueLabel.text = (shippingMethod ?? "")
-        paymentMethodValueLabel.text = paymentMethod ?? ""
+        shippingMethodValueLabel.text = shippingMethod ?? (Strings.select + " ↓")
+        paymentMethodValueLabel.text = paymentMethod ?? (Strings.select + " ↓")
     }
     
     

@@ -17,7 +17,6 @@ extension StripeAPI {
     
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
         let customerId = UserDefaults.standard.string(forKey: UserDefaultsKeys.stripeId) ?? ""
-        print(customerId)
         let data = [
             "stripe_version": apiVersion,
             "customer_id": customerId

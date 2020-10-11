@@ -51,6 +51,8 @@ struct Strings {
     // Alerts
     static let failed = "Failed"
     static let successfull = "Successful"
+    static let somethingWentWrong = "Something Went Wrong, Please Try Again"
+    static let orderPlacedSuccessfully = "Order Placed Successfully, Thank you!"
     
     // Labels
     static let size = "Size"
