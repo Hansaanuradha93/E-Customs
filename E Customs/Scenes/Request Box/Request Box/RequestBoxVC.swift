@@ -186,9 +186,9 @@ extension RequestBoxVC: UITextViewDelegate {
 extension RequestBoxVC: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let editedImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.EditedImage.key)] as? UIImage {
+        if let editedImage = info[UIImagePickerController.InfoKey(rawValue: ImagePickerKeys.EditedImage.key)] as? UIImage {
             viewModel.bindableImage.value = editedImage
-        } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.OriginalImage.key)] as? UIImage {
+        } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: ImagePickerKeys.OriginalImage.key)] as? UIImage {
             viewModel.bindableImage.value = originalImage
         }
         dismiss(animated: true, completion: nil)

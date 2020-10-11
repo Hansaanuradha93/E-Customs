@@ -1,5 +1,6 @@
 import UIKit
 import Firebase
+import Stripe
 
 class BagVC: UITableViewController {
     
@@ -9,11 +10,13 @@ class BagVC: UITableViewController {
     let toolBar = UIToolbar()
     
     fileprivate var listener: ListenerRegistration?
+    fileprivate var paymentContext: STPPaymentContext!
     
     
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupStripeConfig()
         setupUI()
         createToolBar()
         setupTableView()
@@ -72,11 +75,11 @@ extension BagVC {
             cell.set(subtotalPennies: viewModel.subtotal, processingFeesPennies: viewModel.processingFees, totalPennies: viewModel.total)
             
             cell.shippingMethodAction = {
-                print("shipping")
+                self.paymentContext.pushShippingViewController()
             }
             
             cell.paymentMethodAction = {
-                print("payment")
+                self.paymentContext.pushPaymentOptionsViewController()
             }
             
             return cell
@@ -104,6 +107,29 @@ extension BagVC {
 }
 
 
+// MARK: - STPPaymentContextDelegate
+extension BagVC: STPPaymentContextDelegate {
+    
+    func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
+        
+    }
+    
+    func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
+        
+    }
+    
+    
+    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
+        
+    }
+    
+    
+    func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
+        
+    }
+}
+
+
 // MARK: - Methods
 extension BagVC {
     
@@ -115,6 +141,21 @@ extension BagVC {
     
     @objc fileprivate func handleTap() {
         hidePickerWithAnimation()
+    }
+    
+    
+    func setupStripeConfig() {
+        let config = STPPaymentConfiguration.shared()
+        config.requiredBillingAddressFields = .none
+        config.requiredShippingAddressFields = [.postalAddress]
+        
+        
+        let customerContext = STPCustomerContext(keyProvider: StripeAPI.shared)
+        paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
+        
+        paymentContext.paymentAmount = 10029 // $10 Change this amount if you add or remove items from cart
+        paymentContext.delegate = self
+        paymentContext.hostViewController = self
     }
     
     
