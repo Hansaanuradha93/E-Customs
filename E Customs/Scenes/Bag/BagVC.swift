@@ -161,8 +161,10 @@ extension BagVC: STPPaymentContextDelegate {
                 return
             }
             
+            // TODO: Remove items from Firestore
             self.viewModel.items.removeAll()
             self.tableView.reloadData()
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             completion(.success, nil)
         }
     }
