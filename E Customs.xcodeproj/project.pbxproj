@@ -58,7 +58,7 @@
 		47B1062C251F85460009D04C /* NumberOfItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B1062B251F85460009D04C /* NumberOfItemsCell.swift */; };
 		47B10630251F86B50009D04C /* ECSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B1062F251F86B50009D04C /* ECSemiBoldLabel.swift */; };
 		47B10634251F88E40009D04C /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B10633251F88E40009D04C /* ItemCell.swift */; };
-		47B10637251F8F7C0009D04C /* TotalLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B10636251F8F7C0009D04C /* TotalLabel.swift */; };
+		47B10637251F8F7C0009D04C /* PaymentInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B10636251F8F7C0009D04C /* PaymentInfoCell.swift */; };
 		47B1063A251F976D0009D04C /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B10639251F976D0009D04C /* ButtonCell.swift */; };
 		47B1063D251FA0E90009D04C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B1063C251FA0E90009D04C /* Item.swift */; };
 		47C83ED72508A865003A26D4 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C83ED62508A865003A26D4 /* LoginVC.swift */; };
@@ -121,7 +121,7 @@
 		47B1062B251F85460009D04C /* NumberOfItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfItemsCell.swift; sourceTree = "<group>"; };
 		47B1062F251F86B50009D04C /* ECSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECSemiBoldLabel.swift; sourceTree = "<group>"; };
 		47B10633251F88E40009D04C /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
-		47B10636251F8F7C0009D04C /* TotalLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalLabel.swift; sourceTree = "<group>"; };
+		47B10636251F8F7C0009D04C /* PaymentInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentInfoCell.swift; sourceTree = "<group>"; };
 		47B10639251F976D0009D04C /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		47B1063C251FA0E90009D04C /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		47C83ED62508A865003A26D4 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -447,7 +447,7 @@
 			children = (
 				47B1062B251F85460009D04C /* NumberOfItemsCell.swift */,
 				47B10633251F88E40009D04C /* ItemCell.swift */,
-				47B10636251F8F7C0009D04C /* TotalLabel.swift */,
+				47B10636251F8F7C0009D04C /* PaymentInfoCell.swift */,
 				47B10639251F976D0009D04C /* ButtonCell.swift */,
 			);
 			path = Cells;
@@ -641,7 +641,7 @@
 				4728D61A252EBF4400E7E099 /* RequestListVC.swift in Sources */,
 				47B10628251F82E70009D04C /* BagVM.swift in Sources */,
 				47B1060C251F797F0009D04C /* ECMediumLabel.swift in Sources */,
-				47B10637251F8F7C0009D04C /* TotalLabel.swift in Sources */,
+				47B10637251F8F7C0009D04C /* PaymentInfoCell.swift in Sources */,
 				4728D64D252EFFFB00E7E099 /* ProfileVC.swift in Sources */,
 				4728D658252F061B00E7E099 /* ProfileDetailCell.swift in Sources */,
 				47B10609251F795E0009D04C /* ECBoldLabel.swift in Sources */,

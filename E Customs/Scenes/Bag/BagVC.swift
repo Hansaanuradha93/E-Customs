@@ -49,7 +49,7 @@ extension BagVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: NumberOfItemsCell.reuseID, for: indexPath) as! NumberOfItemsCell
-            cell.set(count: viewModel.getNumberOfItems())
+            cell.set(count: viewModel.numberOfItems)
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseID, for: indexPath) as! ItemCell
@@ -68,8 +68,8 @@ extension BagVC {
             
             return cell
         } else if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: TotalLabel.reuseID, for: indexPath) as! TotalLabel
-            cell.set(subtotal: viewModel.calculateSubtotal(), tax: viewModel.calculateTax(), total: viewModel.calculateTotal())
+            let cell = tableView.dequeueReusableCell(withIdentifier: PaymentInfoCell.reuseID, for: indexPath) as! PaymentInfoCell
+            cell.set(subtotalPennies: viewModel.subtotal, processingFeesPennies: viewModel.processingFees, totalPennies: viewModel.total)
             return cell
         } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.reuseID, for: indexPath) as! ButtonCell
@@ -182,7 +182,7 @@ extension BagVC {
         tableView.separatorStyle = .none
         tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
         tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
-        tableView.register(TotalLabel.self, forCellReuseIdentifier: TotalLabel.reuseID)
+        tableView.register(PaymentInfoCell.self, forCellReuseIdentifier: PaymentInfoCell.reuseID)
         tableView.register(ButtonCell.self, forCellReuseIdentifier: ButtonCell.reuseID)
     }
     

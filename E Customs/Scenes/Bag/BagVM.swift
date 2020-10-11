@@ -7,45 +7,52 @@ class BagVM {
     var items = [Item]()
     var selectedQuantity: Int = 0
     var selectedItem: Item?
-}
-
-
-// MARK: - Methods
-extension BagVM {
     
-    func getNumberOfItems() -> Int {
+    private let stripeCreditCardCut = 0.029
+    private let flatFeeCents = 30
+    
+    
+    // MARK: Computed Properties
+    var numberOfItems: Int {
         var count = 0
-        
         for item in items {
             count += item.quantity ?? 0
         }
         return count
     }
     
-    
-    func calculateSubtotal() -> Double {
-        var subtotal = 0.0
-        var price = 0.0
-        var quantity = 0.0
+    var subtotal: Int {
+        var amount = 0
+        var pricePennies = 0
+        var quantity = 0
         
         for item in items {
-            price = Double(item.price ?? "0") ?? 0
-            quantity = Double(item.quantity ?? 0)
-            subtotal += price * quantity
+            pricePennies = Int((Double(item.price ?? "0") ?? 0) * 100)
+            quantity = item.quantity ?? 0
+            amount += pricePennies * quantity
         }
-        return subtotal
+        
+        return amount
     }
     
-    
-    func calculateTax() -> Double {
-        return 0.0
+    var processingFees: Int {
+        if subtotal == 0 {
+            return 0
+        }
+        
+        let sub = Double(subtotal)
+        let fees = Int((sub * stripeCreditCardCut)) + flatFeeCents
+        return fees
     }
     
-    
-    func calculateTotal() -> Double {
-        return calculateSubtotal() + calculateTax()
+    var total: Int {
+        return  subtotal + processingFees
     }
-    
+}
+
+
+// MARK: - Methods
+extension BagVM {
     
     func updateQuanitity(completion: @escaping (Bool, String) -> ()) {
         guard let itemId = selectedItem?.id, let currentUserId = Auth.auth().currentUser?.uid, selectedQuantity != 0 else { return }

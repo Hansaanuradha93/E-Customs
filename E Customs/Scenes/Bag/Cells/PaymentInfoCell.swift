@@ -1,20 +1,20 @@
 import UIKit
 
-class TotalLabel: UITableViewCell {
+class PaymentInfoCell: UITableViewCell {
 
     // MARK: Properties
-    static let reuseID = "TotalLabel"
+    static let reuseID = "PaymentInfoCell"
     
-    fileprivate let subTotalLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
+    fileprivate let subTotalLabel = ECRegularLabel(text: Strings.subtotal, textAlignment: .left, textColor: .gray, fontSize: 15)
     fileprivate let subTotalValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
     
-    fileprivate let shippingMethodLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
+    fileprivate let shippingMethodLabel = ECRegularLabel(text: Strings.shipping, textAlignment: .left, textColor: .gray, fontSize: 15)
     fileprivate let shippingMethodValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
     
-    fileprivate let taxLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
-    fileprivate let taxValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
+    fileprivate let processingFeesLabel = ECRegularLabel(text: Strings.processingFees, textAlignment: .left, textColor: .gray, fontSize: 15)
+    fileprivate let processingFeesValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
     
-    fileprivate let totalLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
+    fileprivate let totalLabel = ECRegularLabel(text: Strings.total, textAlignment: .left, fontSize: 15)
     fileprivate let totalValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
 
     
@@ -30,12 +30,15 @@ class TotalLabel: UITableViewCell {
 
 
 // MARK: - Methods
-extension TotalLabel {
+extension PaymentInfoCell {
     
-    func set(subtotal: Double, tax: Double, total: Double) {
+    func set(subtotalPennies: Int, processingFeesPennies: Int, totalPennies: Int) {
+        let subtotal = Double(subtotalPennies / 100)
+        let processingFees = Double(processingFeesPennies / 100)
+        let total = Double(totalPennies / 100)
         subTotalValueLabel.text = "$\(subtotal)"
         shippingMethodValueLabel.text = Strings.free
-        taxValueLabel.text = "$\(tax)"
+        processingFeesValueLabel.text = "$\(processingFees)"
         totalValueLabel.text = "$\(total)"
     }
     
@@ -43,11 +46,6 @@ extension TotalLabel {
     fileprivate func setupUI() {
         selectionStyle = .none
         let paddingTop: CGFloat = 24
-        
-        subTotalLabel.text = Strings.subtotal
-        shippingMethodLabel.text = Strings.shipping
-        taxLabel.text = Strings.tax
-        totalLabel.text = Strings.total
         
         let subTotalStackView = UIStackView(arrangedSubviews: [subTotalLabel, subTotalValueLabel])
         subTotalStackView.alignment = .center
@@ -57,7 +55,7 @@ extension TotalLabel {
         shippingMethodStackView.alignment = .center
         shippingMethodStackView.distribution = .equalCentering
         
-        let taxStackView = UIStackView(arrangedSubviews: [taxLabel, taxValueLabel])
+        let taxStackView = UIStackView(arrangedSubviews: [processingFeesLabel, processingFeesValueLabel])
         taxStackView.alignment = .center
         taxStackView.distribution = .equalCentering
         

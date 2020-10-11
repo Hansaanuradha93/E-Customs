@@ -60,7 +60,7 @@ struct Strings {
     static let free = "Free"
     static let subtotal = "Subtotal"
     static let shipping = "Shipping"
-    static let tax = "Tax"
+    static let processingFees = "Processing Fees"
     static let total = "Total"
     static let gender = "Gender"
     static let lodingIndicatorDots = "..."
