@@ -30,8 +30,8 @@ extension ButtonCell {
     
     func set(buttonType: ButtonType) {
         var title = ""
-        if buttonType == .checkout {
-            title = Strings.checkout
+        if buttonType == .placeOrder {
+            title = Strings.placeOrder
         } else if buttonType == .checkOrders {
             title = Strings.checkOrders
         }

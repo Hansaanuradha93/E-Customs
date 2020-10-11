@@ -1,6 +1,6 @@
 import Foundation
 
 public enum ButtonType {
-    case checkout
+    case placeOrder
     case checkOrders
 }

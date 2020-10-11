@@ -42,10 +42,12 @@ extension BagVC {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 || section == 2 || section == 3 {
+        if section == 0 {
             return 1
         } else if section == 1 {
             return viewModel.items.count
+        } else if section == 2 || section == 3 {
+            return viewModel.items.count > 0 ? 1 : 0
         }
         return 0
     }
@@ -87,7 +89,7 @@ extension BagVC {
             return cell
         } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.reuseID, for: indexPath) as! ButtonCell
-            cell.set(buttonType: .checkout)
+            cell.set(buttonType: .placeOrder)
             cell.buttonAction = {
                 self.paymentContext.requestPayment()
                 self.viewModel.bindableIsMakingPayment.value = true
