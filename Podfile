@@ -9,5 +9,6 @@ target 'E Customs' do
 	pod 'Firebase/Auth'
 	pod 'Firebase/Firestore'
 	pod 'Firebase/Storage'
-
+  pod 'Firebase/Functions'
+  pod 'Stripe'
 end
