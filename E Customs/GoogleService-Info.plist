@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>971002881702-k8drs3bq331n9onsbvhjud1795c4aq43.apps.googleusercontent.com</string>
+	<string>551782884144-63enjrfhmkf0ad0im58a9hlqg4skh03f.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.971002881702-k8drs3bq331n9onsbvhjud1795c4aq43</string>
+	<string>com.googleusercontent.apps.551782884144-63enjrfhmkf0ad0im58a9hlqg4skh03f</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBXACXdNseBjcny6Mo8gTQWsqJpFnSdRzI</string>
+	<string>AIzaSyAmcNqqZmgNJrYdk-k4ATE9e9nLSYUkfzs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>971002881702</string>
+	<string>551782884144</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.castleCode.E-Customs</string>
 	<key>PROJECT_ID</key>
-	<string>e-customs-5a26d</string>
+	<string>development-4963d</string>
 	<key>STORAGE_BUCKET</key>
-	<string>e-customs-5a26d.appspot.com</string>
+	<string>development-4963d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:971002881702:ios:26b135a647275a9f1db667</string>
+	<string>1:551782884144:ios:db877a8068f4e6ea0edef5</string>
 	<key>DATABASE_URL</key>
-	<string>https://e-customs-5a26d.firebaseio.com</string>
+	<string>https://development-4963d.firebaseio.com</string>
 </dict>
 </plist>
