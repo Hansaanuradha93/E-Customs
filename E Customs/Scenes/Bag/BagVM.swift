@@ -13,6 +13,7 @@ class BagVM {
     
     var shippingMethod: String?
     var paymentMethod: String?
+    var address: String?
     
     
     // MARK: Bindables
@@ -60,6 +61,60 @@ class BagVM {
 
 // MARK: - Methods
 extension BagVM {
+    
+    func saveOrderDetails(completion: @escaping (Bool, String) -> ()) {
+        let uid = Auth.auth().currentUser?.uid ?? ""
+        let orderReference = Firestore.firestore().collection("orders")
+        let orderId = orderReference.document().documentID
+        let orderRefarence = orderReference.document(orderId)
+        
+        guard let address = address, let shippingMethod = shippingMethod, let paymentMethod = paymentMethod else { return }
+        let subtotoal = Double(self.subtotal) / 100
+        let proccessingFees = Double(self.processingFees) / 100
+        let total = Double(self.total) / 100
+        
+        let orderData: [String : Any] = [
+            "orderId": orderId,
+            "uid": uid,
+            "status": "Created",
+            "itemCount": numberOfItems,
+            "shippingMethod": shippingMethod,
+            "paymentMethod": paymentMethod,
+            "address": address,
+            "subtotal": subtotoal,
+            "proccessingFees": proccessingFees,
+            "total": total,
+            "timestamp": Timestamp()
+            
+        ]
+        
+        var itemData = [String: Any]()
+        
+        orderRefarence.setData(orderData) { (error) in
+            if let error = error {
+                print(error)
+                completion(false, error.localizedDescription)
+                return
+            }
+            
+            for item in self.items {
+                itemData = [
+                    "id" : item.id ?? "",
+                    "name" : item.name ?? "",
+                    "description": item.description ?? "",
+                    "price" : item.price ?? "",
+                    "thumbnail" : item.thumbnailUrl ?? "",
+                    "selectedSize": item.selectedSize ?? "0",
+                    "quantity": item.quantity ?? 1
+                ]
+                let itemReference = orderRefarence.collection("items").document(item.id ?? "")
+                
+                itemReference.setData(itemData)
+            }
+            completion(true, "")
+        }
+    }
+    
     
     func updateQuanitity(completion: @escaping (Bool, String) -> ()) {
         guard let itemId = selectedItem?.id, let currentUserId = Auth.auth().currentUser?.uid, selectedQuantity != 0 else { return }
