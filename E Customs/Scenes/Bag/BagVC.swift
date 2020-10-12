@@ -21,8 +21,13 @@ class BagVC: UITableViewController {
         setupUI()
         createToolBar()
         setupTableView()
-        fetchItems()
         setupViewModelObserver()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchItems()
     }
     
     
@@ -144,29 +149,7 @@ extension BagVC: STPPaymentContextDelegate {
     }
     
     
-    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
-        let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")
-        let customerId = UserDefaults.standard.string(forKey: UserDefaultsKeys.stripeId) ?? ""
-        let data: [String: Any] = [
-            "total_amount": paymentContext.paymentAmount,
-            "customer_id" : customerId,
-            "payment_method_id" : paymentResult.paymentMethod?.stripeId ?? "",
-            "idempotency" : idempotency
-        ]
-        
-        Functions.functions().httpsCallable("makeCharge").call(data) { (result, error) in
-            if let error = error {
-                print(error)
-                completion(.error, error)
-                return
-            }
-            
-            // TODO: Remove items from Firestore
-            self.viewModel.items.removeAll()
-            self.tableView.reloadData()
-            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-            completion(.success, nil)
-        }
+    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {        makeCharge(paymentContext: paymentContext, paymentResult: paymentResult, completion: completion)
     }
     
     
@@ -177,7 +160,8 @@ extension BagVC: STPPaymentContextDelegate {
         case .error:
             presentAlert(title: Strings.failed, message: error?.localizedDescription ?? "", buttonTitle: Strings.ok)
         case .success:
-            presentAlert(title: Strings.successfull, message: Strings.orderPlacedSuccessfully, buttonTitle: Strings.ok)
+            self.saveOrderDetails()
+            self.deleteAllBagItems()
         case .userCancellation:
             return
         @unknown default:
@@ -187,6 +171,11 @@ extension BagVC: STPPaymentContextDelegate {
     
     
     func paymentContext(_ paymentContext: STPPaymentContext, didUpdateShippingAddress address: STPAddress, completion: @escaping STPShippingMethodsCompletionBlock) {
+        let line1 = address.line1 ?? ""
+        let city = address.city ?? ""
+        let state = address.state ?? ""
+        let country = address.country ?? ""
+        viewModel.address = "\(line1), \(city), \(state), \(country)"
         
         let upsGround = PKShippingMethod()
         upsGround.amount = 0
@@ -213,6 +202,46 @@ extension BagVC {
     }
     
     
+    fileprivate func deleteAllBagItems() {
+        viewModel.deleteAllBagItems()
+    }
+    
+    
+    fileprivate func makeCharge(paymentContext: STPPaymentContext, paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
+        let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")
+        let customerId = UserDefaults.standard.string(forKey: UserDefaultsKeys.stripeId) ?? ""
+        let data: [String: Any] = [
+            "total_amount": paymentContext.paymentAmount,
+            "customer_id" : customerId,
+            "payment_method_id" : paymentResult.paymentMethod?.stripeId ?? "",
+            "idempotency" : idempotency
+        ]
+        
+        viewModel.makeCharge(data: data) { status, error in
+            if status {
+                completion(.success, nil)
+            } else {
+                completion(.error, error)
+            }
+        }
+    }
+    
+    
+    fileprivate func saveOrderDetails() {
+        viewModel.saveOrderDetails { [weak self] status, message in
+            guard let self = self else { return }
+            if status {
+                self.presentAlert(title: Strings.successfull, message: Strings.orderPlacedSuccessfully, buttonTitle: Strings.ok)
+                self.viewModel.items.removeAll()
+                self.tableView.reloadData()
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            } else {
+                self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
+            }
+        }
+    }
+    
+    
     fileprivate func setupViewModelObserver() {
         viewModel.bindableIsMakingPayment.bind { [weak self] isMakingPayment in
             guard let self = self, let isMakingPayment = isMakingPayment else { return }
@@ -230,7 +259,6 @@ extension BagVC {
         config.requiredBillingAddressFields = .none
         config.requiredShippingAddressFields = [.postalAddress]
         
-        
         let customerContext = STPCustomerContext(keyProvider: StripeAPI.shared)
         paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
         
@@ -242,7 +270,6 @@ extension BagVC {
     
     fileprivate func createToolBar() {
         toolBar.sizeToFit()
-        
         let doneButton = UIBarButtonItem(title: Strings.done, style: .plain, target: self, action: #selector(handleDone))
         
         toolBar.setItems([doneButton], animated: false)

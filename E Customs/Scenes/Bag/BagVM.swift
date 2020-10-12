@@ -62,6 +62,28 @@ class BagVM {
 // MARK: - Methods
 extension BagVM {
     
+    func deleteAllBagItems() {
+        Functions.functions().httpsCallable("recursiveDelete").call([]) { result, error in
+            if let error = error {
+                print(error)
+                return
+            }
+        }
+    }
+    
+    
+    func makeCharge(data: [String: Any], completion: @escaping (Bool, Error?) -> ()) {
+        Functions.functions().httpsCallable("makeCharge").call(data) { result, error in
+            if let error = error {
+                print(error)
+                completion(false, error)
+                return
+            }
+            completion(true, nil)
+        }
+    }
+    
+    
     func saveOrderDetails(completion: @escaping (Bool, String) -> ()) {
         let uid = Auth.auth().currentUser?.uid ?? ""
         let orderReference = Firestore.firestore().collection("orders")
@@ -85,7 +107,6 @@ extension BagVM {
             "proccessingFees": proccessingFees,
             "total": total,
             "timestamp": Timestamp()
-            
         ]
         
         var itemData = [String: Any]()
