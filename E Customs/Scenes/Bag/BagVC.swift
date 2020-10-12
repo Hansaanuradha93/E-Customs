@@ -1,7 +1,6 @@
 import UIKit
 import Firebase
 import Stripe
-import FirebaseFunctions
 
 class BagVC: UITableViewController {
     
@@ -171,11 +170,7 @@ extension BagVC: STPPaymentContextDelegate {
     
     
     func paymentContext(_ paymentContext: STPPaymentContext, didUpdateShippingAddress address: STPAddress, completion: @escaping STPShippingMethodsCompletionBlock) {
-        let line1 = address.line1 ?? ""
-        let city = address.city ?? ""
-        let state = address.state ?? ""
-        let country = address.country ?? ""
-        viewModel.address = "\(line1), \(city), \(state), \(country)"
+        setShippingAddress(address)
         
         let upsGround = PKShippingMethod()
         upsGround.amount = 0
@@ -188,7 +183,7 @@ extension BagVC: STPPaymentContextDelegate {
 }
 
 
-// MARK: - Methods
+// MARK: - Objc Method
 extension BagVC {
     
     @objc fileprivate func handleDone() {
@@ -200,7 +195,11 @@ extension BagVC {
     @objc fileprivate func handleTap() {
         hidePickerWithAnimation()
     }
-    
+}
+
+
+// MARK: - Firebase Methods
+extension BagVC {
     
     fileprivate func deleteAllBagItems() {
         viewModel.deleteAllBagItems()
@@ -242,63 +241,6 @@ extension BagVC {
     }
     
     
-    fileprivate func setupViewModelObserver() {
-        viewModel.bindableIsMakingPayment.bind { [weak self] isMakingPayment in
-            guard let self = self, let isMakingPayment = isMakingPayment else { return }
-            if isMakingPayment {
-                self.showPreloader()
-            } else {
-                self.hidePreloader()
-            }
-        }
-    }
-    
-    
-    fileprivate func setupStripeConfig() {
-        let config = STPPaymentConfiguration.shared()
-        config.requiredBillingAddressFields = .none
-        config.requiredShippingAddressFields = [.postalAddress]
-        
-        let customerContext = STPCustomerContext(keyProvider: StripeAPI.shared)
-        paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
-        
-        paymentContext.paymentAmount = viewModel.total
-        paymentContext.delegate = self
-        paymentContext.hostViewController = self
-    }
-    
-    
-    fileprivate func createToolBar() {
-        toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: Strings.done, style: .plain, target: self, action: #selector(handleDone))
-        
-        toolBar.setItems([doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        toolBar.barTintColor = .white
-        toolBar.tintColor = .black
-        toolBar.alpha = 0
-        view.addSubview(toolBar)
-        
-        toolBar.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: picker.topAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
-    }
-    
-    
-    fileprivate func showPickerWithAnimation() {
-        UIView.animate(withDuration: 0.5) {
-            self.picker.alpha = 1
-            self.toolBar.alpha = 1
-        }
-    }
-    
-    
-    fileprivate func hidePickerWithAnimation() {
-        UIView.animate(withDuration: 0.5) {
-            self.picker.alpha = 0
-            self.toolBar.alpha = 0
-        }
-    }
-    
-    
     fileprivate func updateQuantity() {
         viewModel.updateQuanitity { [weak self] status, message in
             guard let self = self else { return }
@@ -336,6 +278,75 @@ extension BagVC {
                 self.paymentContext.paymentAmount = self.viewModel.total
                 DispatchQueue.main.async { self.tableView.reloadData() }
             }
+        }
+    }
+}
+
+
+// MARK: - Methods
+extension BagVC {
+    
+    fileprivate func setShippingAddress(_ address: STPAddress) {
+        let line1 = address.line1 ?? ""
+        let city = address.city ?? ""
+        let state = address.state ?? ""
+        let country = address.country ?? ""
+        viewModel.address = "\(line1), \(city), \(state), \(country)"
+    }
+    
+    
+    fileprivate func setupViewModelObserver() {
+        viewModel.bindableIsMakingPayment.bind { [weak self] isMakingPayment in
+            guard let self = self, let isMakingPayment = isMakingPayment else { return }
+            if isMakingPayment {
+                self.showPreloader()
+            } else {
+                self.hidePreloader()
+            }
+        }
+    }
+    
+    
+    fileprivate func setupStripeConfig() {
+        let config = STPPaymentConfiguration.shared()
+        config.requiredBillingAddressFields = .none
+        config.requiredShippingAddressFields = [.postalAddress]
+        
+        let customerContext = STPCustomerContext(keyProvider: StripeAPI.shared)
+        paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
+        paymentContext.paymentAmount = viewModel.total
+        paymentContext.delegate = self
+        paymentContext.hostViewController = self
+    }
+    
+    
+    fileprivate func createToolBar() {
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: Strings.done, style: .plain, target: self, action: #selector(handleDone))
+        
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        toolBar.barTintColor = .white
+        toolBar.tintColor = .black
+        toolBar.alpha = 0
+        view.addSubview(toolBar)
+        
+        toolBar.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: picker.topAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
+    }
+    
+    
+    fileprivate func showPickerWithAnimation() {
+        UIView.animate(withDuration: 0.5) {
+            self.picker.alpha = 1
+            self.toolBar.alpha = 1
+        }
+    }
+    
+    
+    fileprivate func hidePickerWithAnimation() {
+        UIView.animate(withDuration: 0.5) {
+            self.picker.alpha = 0
+            self.toolBar.alpha = 0
         }
     }
     
