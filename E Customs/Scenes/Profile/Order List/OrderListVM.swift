@@ -5,6 +5,7 @@ class OrderListVM {
     
     // MARK: Properties
     var orders = [Order]()
+    fileprivate var ordersDictionary = [String : Order]()
 }
 
 
@@ -32,11 +33,21 @@ extension OrderListVM {
             for change in documentChanges {
                 if change.type == .added {
                     let order = Order(dictionary: change.document.data())
-                    self.orders.append(order)
+                    self.ordersDictionary[order.orderId ?? ""] = order
                 }
             }
-            completion(true)
+            self.sortOrdersByTimestamp(completion: completion)
         }
         return listener
+    }
+    
+    
+    fileprivate func sortOrdersByTimestamp(completion: @escaping (Bool) -> ()) {
+        let values = Array(ordersDictionary.values)
+        orders = values.sorted(by: { (order1, order2) -> Bool in
+            guard let timestamp1 = order1.timestamp, let timestamp2 = order2.timestamp else { return false }
+            return timestamp1.compare(timestamp2) == .orderedDescending
+        })
+        completion(true)
     }
 }
