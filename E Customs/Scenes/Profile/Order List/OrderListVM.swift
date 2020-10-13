@@ -32,7 +32,6 @@ extension OrderListVM {
             for change in documentChanges {
                 if change.type == .added {
                     let order = Order(dictionary: change.document.data())
-                    print(order)
                     self.orders.append(order)
                 }
             }
