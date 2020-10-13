@@ -1,10 +1,11 @@
-import Foundation
+import Firebase
 
 struct Request {
     
     // MARK: Properties
     var id, uid, sneakerName, ideaDescription, thumbnailUrl : String?
     var isApproved: Bool?
+    var timestamp: Timestamp?
     
     
     // MARK: Initializers
@@ -15,5 +16,6 @@ struct Request {
         self.ideaDescription = dictionary["ideaDescription"] as? String
         self.thumbnailUrl = dictionary["thumbnailUrl"] as? String
         self.isApproved = dictionary["isApproved"] as? Bool
+        self.timestamp = dictionary["timestamp"] as? Timestamp
     }
 }
