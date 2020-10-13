@@ -7,7 +7,7 @@ class ProductCell: UITableViewCell {
     
     fileprivate let thumbnailImageView = ECImageView(image: Asserts.placeHolder)
     fileprivate let titleLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
-    fileprivate let priceLabel = ECRegularLabel(textAlignment: .left, fontSize: 13)
+    fileprivate let priceLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
 
     
     // MARK: Initilizers
