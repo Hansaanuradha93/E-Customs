@@ -38,7 +38,5 @@ extension ProfilePictureCell {
         profileImageView.centerHorizontallyInSuperView()
         profileImageView.centerVerticallyInSuperView(padding: -10, size: .init(width: dimensions, height: dimensions))
         separatorLine.anchor(top: nil, leading: leadingAnchor, bottom: contentView.bottomAnchor, trailing: trailingAnchor, size: .init(width: 0, height: 0.2))
-        
-        profileImageView.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: dimensions / 2)
     }
 }

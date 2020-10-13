@@ -26,17 +26,30 @@ class OrderCell: UITableViewCell {
 // MARK: - Methods
 extension OrderCell {
     
-//    func set(request: Request, isLastRequest: Bool) {
-//        sneakerNameLabel.text = request.sneakerName ?? ""
-//        ideaDescriptionLabel.text = request.ideaDescription ?? ""
-//        thumbnailImageView.downloadImage(from: request.thumbnailUrl ?? "")
-//
-//        if isLastRequest {
-//            separatorLine.alpha = 0
-//        } else {
-//            separatorLine.alpha = 1
-//        }
-//    }
+    func set(order: Order, isLastOrder: Bool) {
+        orderNumberLabel.text = "Order #\(order.orderId ?? "")"
+        priceLabel.text = "$\(order.total ?? 0.00)"
+        thumbnailImageView.downloadImage(from: order.thumbnailUrl ?? "")
+        
+        var itemCountString = ""
+        if let itemCount = order.itemCount {
+            if itemCount == 0 {
+                itemCountString = Strings.noItemsYet
+            } else if itemCount == 1 {
+                itemCountString = "\(itemCount) ITEM"
+            } else {
+                itemCountString = "\(itemCount) ITEMS"
+            }
+        }
+        
+        itemsCountLabel.text = itemCountString
+        
+        if isLastOrder {
+            separatorLine.alpha = 0
+        } else {
+            separatorLine.alpha = 1
+        }
+    }
     
     
     fileprivate func setupUI() {
