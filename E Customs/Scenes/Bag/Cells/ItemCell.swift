@@ -41,7 +41,7 @@ extension ItemCell {
     }
     
     
-    func set(item: Item) {
+    func set(item: Item, setCloseHidden: Bool = false) {
         thumbnailImageView.downloadImage(from: item.thumbnailUrl ?? "")
         nameLabel.text = item.name ?? ""
         descriptionLabel.text = item.description ?? ""
@@ -58,6 +58,12 @@ extension ItemCell {
         
         let price = (Double(item.price ?? "0") ?? 0) * Double(quantity)
         priceLabel.text = "$\(price)"
+        
+        if setCloseHidden {
+            closeButton.alpha = 0
+        } else {
+            closeButton.alpha = 1
+        }
     }
     
     

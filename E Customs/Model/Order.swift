@@ -7,6 +7,7 @@ struct Order {
     var subtotal, proccessingFees, total : Double?
     var itemCount: Int?
     var timestamp: Timestamp?
+    var items = [Item]()
     
    
     // MARK: Initializers

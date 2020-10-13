@@ -65,6 +65,7 @@
 		47B6B19C25356DD10037D024 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6B19B25356DD10037D024 /* Order.swift */; };
 		47B6B1A2253591C30037D024 /* OrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6B1A1253591C30037D024 /* OrderDetailsVC.swift */; };
 		47B6B1A52535926B0037D024 /* OrderDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6B1A42535926B0037D024 /* OrderDetailsVM.swift */; };
+		47B6B1A8253599390037D024 /* OrderHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6B1A7253599390037D024 /* OrderHeaderCell.swift */; };
 		47C83ED72508A865003A26D4 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C83ED62508A865003A26D4 /* LoginVC.swift */; };
 		47C83ED92508A883003A26D4 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C83ED82508A883003A26D4 /* LoginVM.swift */; };
 		47E8EC7625334E4100F2861F /* StripeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E8EC7525334E4100F2861F /* StripeAPI.swift */; };
@@ -133,6 +134,7 @@
 		47B6B19B25356DD10037D024 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		47B6B1A1253591C30037D024 /* OrderDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsVC.swift; sourceTree = "<group>"; };
 		47B6B1A42535926B0037D024 /* OrderDetailsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsVM.swift; sourceTree = "<group>"; };
+		47B6B1A7253599390037D024 /* OrderHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHeaderCell.swift; sourceTree = "<group>"; };
 		47C83ED62508A865003A26D4 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		47C83ED82508A883003A26D4 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		47E8EC7525334E4100F2861F /* StripeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAPI.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				4728D654252F04B300E7E099 /* ProfilePictureCell.swift */,
 				4728D657252F061B00E7E099 /* ProfileDetailCell.swift */,
 				47B6B19825356B330037D024 /* OrderCell.swift */,
+				47B6B1A7253599390037D024 /* OrderHeaderCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -701,6 +704,7 @@
 				479C4D0D250E7EFF00A7E399 /* RequestBoxVC.swift in Sources */,
 				47B6B1A52535926B0037D024 /* OrderDetailsVM.swift in Sources */,
 				4767D29C25151B49004C23CB /* Constants.swift in Sources */,
+				47B6B1A8253599390037D024 /* OrderHeaderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
