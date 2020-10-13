@@ -76,7 +76,7 @@ extension ProfileVC {
         case 1:
             return 70
         case 2:
-            return 75
+            return 120
         default:
             return 0
         }

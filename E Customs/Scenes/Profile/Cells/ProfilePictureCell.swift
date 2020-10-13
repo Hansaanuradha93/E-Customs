@@ -5,7 +5,8 @@ class ProfilePictureCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "ProfilePictureCell"
     
-    fileprivate let profileImage = ECImageView(image: Asserts.user, contentMode: .scaleAspectFill)
+    fileprivate let profileImage = Asserts.personFill.withRenderingMode(.alwaysOriginal)
+    fileprivate let profileImageView = ECImageView(image: Asserts.personFill, contentMode: .scaleAspectFit)
     fileprivate let separatorLine = UIView()
     
     
@@ -26,15 +27,18 @@ extension ProfilePictureCell {
     fileprivate func setupUI() {
         backgroundColor = .white
         selectionStyle = .none
+        
         separatorLine.backgroundColor = .lightGray
-
-        contentView.addSubviews(profileImage, separatorLine)
+        profileImageView.image = profileImageView.image?.withRenderingMode(.alwaysTemplate)
+        profileImageView.tintColor = .lightGray
+        
+        contentView.addSubviews(profileImageView, separatorLine)
         
         let dimensions: CGFloat = 150
-        profileImage.centerHorizontallyInSuperView()
-        profileImage.centerVerticallyInSuperView(padding: -10, size: .init(width: dimensions, height: dimensions))
+        profileImageView.centerHorizontallyInSuperView()
+        profileImageView.centerVerticallyInSuperView(padding: -10, size: .init(width: dimensions, height: dimensions))
         separatorLine.anchor(top: nil, leading: leadingAnchor, bottom: contentView.bottomAnchor, trailing: trailingAnchor, size: .init(width: 0, height: 0.2))
         
-        profileImage.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: dimensions / 2)
+        profileImageView.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: dimensions / 2)
     }
 }
