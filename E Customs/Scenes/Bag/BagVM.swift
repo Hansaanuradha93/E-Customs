@@ -106,6 +106,7 @@ extension BagVM {
             "subtotal": subtotoal,
             "proccessingFees": proccessingFees,
             "total": total,
+            "thumbnailUrl": items.first?.thumbnailUrl ?? "",
             "timestamp": Timestamp()
         ]
         
