@@ -24,7 +24,8 @@ class OrderDetailsVC: UITableViewController {
 extension OrderDetailsVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
+        
     }
     
     
@@ -37,30 +38,34 @@ extension OrderDetailsVC {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let order = viewModel.order
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: OrderHeaderCell.reuseID, for: indexPath) as! OrderHeaderCell
-            cell.set(order: viewModel.order)
+            cell.set(order: order)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: NumberOfItemsCell.reuseID, for: indexPath) as! NumberOfItemsCell
-            cell.set(count: viewModel.order.itemCount ?? 0)
+            cell.set(count: order.itemCount ?? 0)
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseID, for: indexPath) as! ItemCell
-            if viewModel.order.items.count > 0 {
-                let item = viewModel.order.items[indexPath.row]
-                cell.set(item: item, setCloseHidden: true)
+            if order.items.count > 0 {
+                let item = order.items[indexPath.row]
+                cell.set(item: item, itemType: .orderItem)
             }
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: PaymentInfoCell.reuseID, for: indexPath) as! PaymentInfoCell
-            let order = viewModel.order
             let subtotal = Int((order.subtotal ?? 0) * 100)
             let proccessingFeesPennies = Int((order.proccessingFees ?? 0) * 100)
             let totalPennies = Int((order.total ?? 0) * 100)
 
             cell.set(subtotalPennies: subtotal, processingFeesPennies: proccessingFeesPennies, totalPennies: totalPennies, paymentMethod: order.paymentMethod ?? "", shippingMethod: order.shippingMethod ?? "")
+            return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ShippingAddressCell.reuseID, for: indexPath) as! ShippingAddressCell
+            cell.set(address: order.address ?? "")
             return cell
         default:
             return UITableViewCell()
@@ -77,6 +82,8 @@ extension OrderDetailsVC {
         case 2:
             return 170
         case 3:
+            return 190
+        case 4:
             return 190
         default:
             return 0
@@ -109,5 +116,6 @@ extension OrderDetailsVC {
         tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
         tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
         tableView.register(PaymentInfoCell.self, forCellReuseIdentifier: PaymentInfoCell.reuseID)
+        tableView.register(ShippingAddressCell.self, forCellReuseIdentifier: ShippingAddressCell.reuseID)
     }
 }

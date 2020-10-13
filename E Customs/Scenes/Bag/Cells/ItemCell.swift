@@ -41,7 +41,7 @@ extension ItemCell {
     }
     
     
-    func set(item: Item, setCloseHidden: Bool = false) {
+    func set(item: Item, itemType: ItemType = .bagItem) {
         thumbnailImageView.downloadImage(from: item.thumbnailUrl ?? "")
         nameLabel.text = item.name ?? ""
         descriptionLabel.text = item.description ?? ""
@@ -54,15 +54,16 @@ extension ItemCell {
         let range = (quantityString as NSString).range(of: arrowString)
         let attributedString = NSMutableAttributedString(string:quantityString)
         attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.gray, range: range)
-        quantityLabel.attributedText = attributedString
         
         let price = (Double(item.price ?? "0") ?? 0) * Double(quantity)
         priceLabel.text = "$\(price)"
         
-        if setCloseHidden {
+        if itemType == .orderItem {
             closeButton.alpha = 0
-        } else {
+            quantityLabel.text = "\(Strings.qty) \(quantity)"
+        } else if itemType ==  .bagItem {
             closeButton.alpha = 1
+            quantityLabel.attributedText = attributedString
         }
     }
     

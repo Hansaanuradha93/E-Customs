@@ -7,7 +7,7 @@ class OrderHeaderCell: UITableViewCell {
     static let reuseID = "OrderHeaderCell"
     
     fileprivate let orderNumberLabel = ECMediumLabel(textAlignment: .left, fontSize: 17, numberOfLines: 0)
-    fileprivate let statusLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
+    fileprivate let statusLabel = ECMediumLabel(textAlignment: .left, textColor: .gray, fontSize: 17)
     fileprivate let dateLabel = ECMediumLabel(textAlignment: .left, textColor: .gray, fontSize: 17)
     fileprivate let separatorLine = UIView()
 
@@ -30,7 +30,7 @@ extension OrderHeaderCell {
         orderNumberLabel.text = "Order #" + (order.orderId ?? "").uppercased()
         statusLabel.text =  "Order " + (order.status ?? "").uppercased()
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.dateFormat = "EEEE, MMM d, yyyy"
         let date = (order.timestamp ?? Timestamp(date: Date())).dateValue()
         dateLabel.text = formatter.string(from: date)
     }
