@@ -7,7 +7,7 @@ class OrderHeaderCell: UITableViewCell {
     static let reuseID = "OrderHeaderCell"
     
     fileprivate let orderNumberLabel = ECMediumLabel(textAlignment: .left, fontSize: 17, numberOfLines: 0)
-    fileprivate let statusLabel = ECMediumLabel(textAlignment: .left, textColor: .gray, fontSize: 17)
+    fileprivate let statusLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
     fileprivate let dateLabel = ECMediumLabel(textAlignment: .left, textColor: .gray, fontSize: 17)
     fileprivate let separatorLine = UIView()
 

@@ -17,8 +17,8 @@ class PaymentInfoCell: UITableViewCell {
     fileprivate let processingFeesLabel = ECRegularLabel(text: Strings.processingFees, textAlignment: .left, textColor: .gray, fontSize: 15)
     fileprivate let processingFeesValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
     
-    fileprivate let totalLabel = ECRegularLabel(text: Strings.total, textAlignment: .left, fontSize: 15)
-    fileprivate let totalValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
+    fileprivate let totalLabel = ECRegularLabel(text: Strings.total, textAlignment: .left, fontSize: 17)
+    fileprivate let totalValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 17)
     
     var shippingMethodAction: (() -> Void)? = nil
     var paymentMethodAction: (() -> Void)? = nil

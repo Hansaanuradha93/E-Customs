@@ -4,7 +4,7 @@ class NumberOfItemsCell: UITableViewCell {
     
     // MARK: Properties
     static let reuseID = "NumberOfItemsCell"
-    fileprivate let itemsCountLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
+    fileprivate let itemsCountLabel = ECRegularLabel(textAlignment: .left, fontSize: 17)
     
     
     // MARK: Initializers
