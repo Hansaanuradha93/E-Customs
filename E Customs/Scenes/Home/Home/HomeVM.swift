@@ -12,6 +12,8 @@ extension HomeVM {
     
     func fetchProducts(completion: @escaping (Bool) -> ()) -> ListenerRegistration? {
         let reference = Firestore.firestore().collection("products")
+        products.removeAll()
+        
         let listener = reference.addSnapshotListener { querySnapshot, error in
             if let error = error {
                 print(error.localizedDescription)

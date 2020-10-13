@@ -14,6 +14,8 @@ extension OrderListVM {
     func fetchOrders(completion: @escaping (Bool) -> ()) -> ListenerRegistration? {
         let uid = Auth.auth().currentUser?.uid ?? ""
         let reference = Firestore.firestore().collection("orders")
+        
+        orders.removeAll()
                 
         let listener = reference.whereField("uid", isEqualTo: uid).addSnapshotListener { (querySnapshot, error) in
             if let error = error {
