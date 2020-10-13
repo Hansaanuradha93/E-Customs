@@ -25,4 +25,20 @@ struct Order {
         self.itemCount = dictionary["itemCount"] as? Int
         self.timestamp = dictionary["timestamp"] as? Timestamp
     }
+    
+    
+    init(orderId: String?, uid: String?, status: String?, paymentMethod: String?, shippingMethod: String?, address: String?, thumbnailUrl: String?, subtotal: Double, proccessingFees: Double?, total: Double?, itemCount: Int?, timestamp: Timestamp?) {
+        self.orderId = orderId
+        self.uid = uid
+        self.status = status
+        self.paymentMethod = paymentMethod
+        self.shippingMethod = shippingMethod
+        self.address = address
+        self.thumbnailUrl = thumbnailUrl
+        self.subtotal = subtotal
+        self.proccessingFees = proccessingFees
+        self.total = total
+        self.itemCount = itemCount
+        self.timestamp = timestamp
+    }
 }

@@ -230,10 +230,9 @@ extension BagVC {
         viewModel.saveOrderDetails { [weak self] status, message in
             guard let self = self else { return }
             if status {
-                self.presentAlert(title: Strings.successfull, message: Strings.orderPlacedSuccessfully, buttonTitle: Strings.ok)
-                self.viewModel.items.removeAll()
-                self.tableView.reloadData()
-                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.presentAlert(title: Strings.successfull, message: Strings.orderPlacedSuccessfully, buttonTitle: Strings.ok) { [weak self] _ in
+                    self?.goToOrderDetails()
+                }
             } else {
                 self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
             }
@@ -285,6 +284,22 @@ extension BagVC {
 
 // MARK: - Methods
 extension BagVC {
+    
+    fileprivate func goToOrderDetails() {
+        let subtotal = Double(viewModel.subtotal) / 100
+        let proccessingFees = Double(viewModel.processingFees) / 100
+        let total = Double(viewModel.total) / 100
+
+        let order = Order(orderId: viewModel.orderId, uid: viewModel.uid, status: viewModel.status, paymentMethod: viewModel.paymentMethod, shippingMethod: viewModel.shippingMethod, address: viewModel.address, thumbnailUrl: viewModel.thumbnailUrl, subtotal: subtotal , proccessingFees: proccessingFees, total: total, itemCount: viewModel.numberOfItems, timestamp: viewModel.timestamp)
+        
+        self.viewModel.items.removeAll()
+        self.tableView.reloadData()
+        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        
+        let controller = OrderDetailsVC()
+        controller.viewModel = OrderDetailsVM(order: order)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
     
     fileprivate func setShippingAddress(_ address: STPAddress) {
         let line1 = address.line1 ?? ""

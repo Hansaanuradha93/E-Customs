@@ -72,6 +72,7 @@ extension ItemCell {
         selectionStyle = .none
         quantityLabel.isUserInteractionEnabled = true
         quantityLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleQuntity)))
+        closeButton.alpha = 0
         
         let paddingTop: CGFloat = 24
         let dimensions: CGFloat = 102

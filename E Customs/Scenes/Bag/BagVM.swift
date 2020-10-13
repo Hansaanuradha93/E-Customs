@@ -10,10 +10,16 @@ class BagVM {
     
     private let stripeCreditCardCut = 0.029
     private let flatFeeCents = 30
-    
+        
     var shippingMethod: String?
     var paymentMethod: String?
     var address: String?
+    
+    var orderId = ""
+    var uid = ""
+    var status = "Created"
+    var thumbnailUrl = ""
+    var timestamp = Timestamp()
     
     
     // MARK: Bindables
@@ -85,9 +91,9 @@ extension BagVM {
     
     
     func saveOrderDetails(completion: @escaping (Bool, String) -> ()) {
-        let uid = Auth.auth().currentUser?.uid ?? ""
+        uid = Auth.auth().currentUser?.uid ?? ""
         let orderReference = Firestore.firestore().collection("orders")
-        let orderId = orderReference.document().documentID
+        orderId = orderReference.document().documentID
         let orderRefarence = orderReference.document(orderId)
         
         guard let address = address, let shippingMethod = shippingMethod, let paymentMethod = paymentMethod else { return }
@@ -95,10 +101,14 @@ extension BagVM {
         let proccessingFees = Double(self.processingFees) / 100
         let total = Double(self.total) / 100
         
+        thumbnailUrl = items.first?.thumbnailUrl ?? ""
+        timestamp = Timestamp()
+        
+        
         let orderData: [String : Any] = [
             "orderId": orderId,
             "uid": uid,
-            "status": "Created",
+            "status": status,
             "itemCount": numberOfItems,
             "shippingMethod": shippingMethod,
             "paymentMethod": paymentMethod,
@@ -106,8 +116,8 @@ extension BagVM {
             "subtotal": subtotoal,
             "proccessingFees": proccessingFees,
             "total": total,
-            "thumbnailUrl": items.first?.thumbnailUrl ?? "",
-            "timestamp": Timestamp()
+            "thumbnailUrl": thumbnailUrl,
+            "timestamp": timestamp
         ]
         
         var itemData = [String: Any]()
