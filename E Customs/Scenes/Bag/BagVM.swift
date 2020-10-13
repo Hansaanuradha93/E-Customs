@@ -19,6 +19,10 @@ class BagVM {
     var uid = ""
     var status = "Created"
     var thumbnailUrl = ""
+    var itemCount = 0
+    var subTotalDollars = 0.0
+    var proccessingFeesDollars = 0.0
+    var totalDollars = 0.0
     var timestamp = Timestamp()
     
     
@@ -97,10 +101,11 @@ extension BagVM {
         let orderRefarence = orderReference.document(orderId)
         
         guard let address = address, let shippingMethod = shippingMethod, let paymentMethod = paymentMethod else { return }
-        let subtotoal = Double(self.subtotal) / 100
-        let proccessingFees = Double(self.processingFees) / 100
-        let total = Double(self.total) / 100
+        subTotalDollars = Double(self.subtotal) / 100
+        proccessingFeesDollars = Double(self.processingFees) / 100
+        totalDollars = Double(self.total) / 100
         
+        itemCount = numberOfItems
         thumbnailUrl = items.first?.thumbnailUrl ?? ""
         timestamp = Timestamp()
         
@@ -113,9 +118,9 @@ extension BagVM {
             "shippingMethod": shippingMethod,
             "paymentMethod": paymentMethod,
             "address": address,
-            "subtotal": subtotoal,
-            "proccessingFees": proccessingFees,
-            "total": total,
+            "subtotal": subTotalDollars,
+            "proccessingFees": proccessingFeesDollars,
+            "total": totalDollars,
             "thumbnailUrl": thumbnailUrl,
             "timestamp": timestamp
         ]
