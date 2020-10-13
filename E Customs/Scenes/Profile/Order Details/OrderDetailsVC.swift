@@ -24,13 +24,13 @@ class OrderDetailsVC: UITableViewController {
 extension OrderDetailsVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 2: return viewModel.order.items.count
+        case 2: return viewModel.order.items.count > 0 ? viewModel.order.items.count : 1
         default: return 1
         }
     }
@@ -48,8 +48,19 @@ extension OrderDetailsVC {
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseID, for: indexPath) as! ItemCell
-            let item = viewModel.order.items[indexPath.row]
-            cell.set(item: item, setCloseHidden: true)
+            if viewModel.order.items.count > 0 {
+                let item = viewModel.order.items[indexPath.row]
+                cell.set(item: item, setCloseHidden: true)
+            }
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: PaymentInfoCell.reuseID, for: indexPath) as! PaymentInfoCell
+            let order = viewModel.order
+            let subtotal = Int((order.subtotal ?? 0) * 100)
+            let proccessingFeesPennies = Int((order.proccessingFees ?? 0) * 100)
+            let totalPennies = Int((order.total ?? 0) * 100)
+
+            cell.set(subtotalPennies: subtotal, processingFeesPennies: proccessingFeesPennies, totalPennies: totalPennies, paymentMethod: order.paymentMethod ?? "", shippingMethod: order.shippingMethod ?? "")
             return cell
         default:
             return UITableViewCell()
@@ -65,6 +76,8 @@ extension OrderDetailsVC {
             return 70
         case 2:
             return 170
+        case 3:
+            return 190
         default:
             return 0
         }
@@ -95,5 +108,6 @@ extension OrderDetailsVC {
         tableView.register(OrderHeaderCell.self, forCellReuseIdentifier: OrderHeaderCell.reuseID)
         tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
         tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
+        tableView.register(PaymentInfoCell.self, forCellReuseIdentifier: PaymentInfoCell.reuseID)
     }
 }
