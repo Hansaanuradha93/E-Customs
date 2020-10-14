@@ -66,7 +66,7 @@ extension RequestBoxVM {
         let productInfo: [String: Any] = [
             "id": documentId,
             "uid": uid,
-            "sneakerName": sneakerName ?? "",
+            "sneakerName": (sneakerName ?? "").uppercased(),
             "ideaDescription": ideaDescription ?? "",
             "thumbnailUrl": imageUrl,
             "isApproved": false,
