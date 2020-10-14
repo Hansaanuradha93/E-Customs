@@ -6,9 +6,10 @@ class OrderCell: UITableViewCell {
     static let reuseID = "OrderCell"
     
     fileprivate let thumbnailImageView = ECImageView(contentMode: .scaleAspectFill)
-    fileprivate let orderNumberLabel = ECRegularLabel(text: "Order #", textAlignment: .left, fontSize: 15, numberOfLines: 2)
-    fileprivate let itemsCountLabel = ECRegularLabel(text: "ITEMS",textAlignment: .left, textColor: .gray, fontSize: 15, numberOfLines: 2)
-    fileprivate let priceLabel = ECRegularLabel(text: "$", textAlignment: .left, textColor: .gray, fontSize: 15, numberOfLines: 2)
+    fileprivate let orderNumberLabel = ECRegularLabel(text: "Order #", textAlignment: .left, fontSize: 15)
+    fileprivate let itemsCountLabel = ECRegularLabel(text: "ITEMS",textAlignment: .left, textColor: .gray, fontSize: 15)
+    fileprivate let priceLabel = ECRegularLabel(text: "$", textAlignment: .left, textColor: .gray, fontSize: 15)
+    fileprivate let statusLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
     fileprivate let separatorLine = UIView()
 
     
@@ -29,6 +30,7 @@ extension OrderCell {
     func set(order: Order, isLastOrder: Bool) {
         orderNumberLabel.text = "Order #\(order.orderId ?? "")"
         priceLabel.text = "$\(order.total ?? 0.00)"
+        statusLabel.text = "\(order.status ?? "")"
         thumbnailImageView.downloadImage(from: order.thumbnailUrl ?? "")
         
         var itemCountString = ""
@@ -36,9 +38,9 @@ extension OrderCell {
             if itemCount == 0 {
                 itemCountString = Strings.noItemsYet
             } else if itemCount == 1 {
-                itemCountString = "\(itemCount) ITEM"
+                itemCountString = "\(itemCount) Item"
             } else {
-                itemCountString = "\(itemCount) ITEMS"
+                itemCountString = "\(itemCount) Items"
             }
         }
         
@@ -58,7 +60,7 @@ extension OrderCell {
         let paddingTop: CGFloat = 24
         let dimensions: CGFloat = 102
         
-        let stackView = UIStackView(arrangedSubviews: [orderNumberLabel, itemsCountLabel, priceLabel])
+        let stackView = UIStackView(arrangedSubviews: [orderNumberLabel, itemsCountLabel, priceLabel, statusLabel])
         stackView.axis = .vertical
         stackView.spacing = 8
         stackView.alignment = .leading
