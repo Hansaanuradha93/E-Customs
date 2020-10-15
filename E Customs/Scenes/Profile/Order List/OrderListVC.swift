@@ -61,7 +61,6 @@ extension OrderListVC {
 // MARK: - Methods
 extension OrderListVC {
     
-    
     fileprivate func fetchOrders() {
         listener = viewModel.fetchOrders { [weak self] status in
             guard let self = self else { return }
