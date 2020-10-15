@@ -258,14 +258,7 @@ extension BagVC {
         
         viewModel.delete(item) { [weak self] status, message in
             guard let self = self else { return }
-            if status {
-                self.viewModel.items.remove(at: indexPath.row)
-                self.paymentContext.paymentAmount = self.viewModel.total
-                DispatchQueue.main.async {
-                    self.tableView.deleteRows(at: [indexPath], with: .fade)
-                    self.tableView.reloadData()
-                }
-            } else {
+            if !status {
                 self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
             }
         }

@@ -1,6 +1,6 @@
 import Foundation
 
-struct Item {
+struct Item: Equatable {
     
     // MARK: Properties
     var id, name, description, price, selectedSize, thumbnailUrl: String?

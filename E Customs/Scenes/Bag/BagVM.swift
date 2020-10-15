@@ -201,9 +201,14 @@ extension BagVM {
                 return
             }
             for change in documentChanges {
-                if change.type == .added {
-                    let item = Item(dictionary: change.document.data())
+                let item = Item(dictionary: change.document.data())
+                switch change.type {
+                case .added:
                     self.items.append(item)
+                case .removed:
+                    if let index = self.items.firstIndex(of: item) { self.items.remove(at: index) }
+                case .modified:
+                    print()
                 }
             }
             completion(true)
