@@ -9,7 +9,6 @@ class OrderHeaderCell: UITableViewCell {
     fileprivate let orderNumberLabel = ECMediumLabel(textAlignment: .left, fontSize: 17, numberOfLines: 0)
     fileprivate let statusLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
     fileprivate let dateLabel = ECMediumLabel(textAlignment: .left, textColor: .gray, fontSize: 17)
-    fileprivate let separatorLine = UIView()
 
     
     // MARK: Initializers
@@ -39,16 +38,13 @@ extension OrderHeaderCell {
     fileprivate func setupUI() {
         selectionStyle = .none
         let padding: CGFloat = 24
-        separatorLine.backgroundColor = .lightGray
         
         let stackView = UIStackView(arrangedSubviews: [orderNumberLabel, statusLabel, dateLabel])
         stackView.axis = .vertical
         stackView.spacing = 24
         stackView.alignment = .leading
         
-        contentView.addSubviews(stackView, separatorLine)
-        
+        contentView.addSubviews(stackView)
         stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: padding, left: padding, bottom: 0, right: padding))
-        separatorLine.anchor(top: stackView.bottomAnchor, leading: stackView.leadingAnchor, bottom: nil, trailing: stackView.trailingAnchor, padding: .init(top: padding, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 0.2))
     }
 }
