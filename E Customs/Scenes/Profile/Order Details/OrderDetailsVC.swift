@@ -15,6 +15,7 @@ class OrderDetailsVC: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        fetchCustomerDetails()
         fetchItems()
     }
 }
@@ -32,6 +33,7 @@ extension OrderDetailsVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 2: return viewModel.order.items.count > 0 ? viewModel.order.items.count : 1
+        case 4: return viewModel.user != nil ? 1 : 0
         default: return 1
         }
     }
@@ -64,8 +66,10 @@ extension OrderDetailsVC {
             cell.set(subtotalPennies: subtotal, processingFeesPennies: proccessingFeesPennies, totalPennies: totalPennies, paymentMethod: order.paymentMethod ?? "", shippingMethod: order.shippingMethod ?? "")
             return cell
         case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ShippingAddressCell.reuseID, for: indexPath) as! ShippingAddressCell
-            cell.set(address: order.address ?? "")
+            let cell = tableView.dequeueReusableCell(withIdentifier: CustomerDetailsCell.reuseID, for: indexPath) as! CustomerDetailsCell
+            if let user = viewModel.user, let address = viewModel.order.address {
+                cell.set(user: user, address: address)
+            }
             return cell
         default:
             return UITableViewCell()
@@ -82,9 +86,9 @@ extension OrderDetailsVC {
         case 2:
             return 170
         case 3:
-            return 190
+            return 200
         case 4:
-            return 190
+            return 450
         default:
             return 0
         }
@@ -94,6 +98,16 @@ extension OrderDetailsVC {
 
 // MARK: - Methods
 extension OrderDetailsVC {
+    
+    fileprivate func fetchCustomerDetails() {
+        viewModel.fetchCustomerDetails { [weak self] status in
+            guard let self = self else { return }
+            if status {
+                DispatchQueue.main.async { self.tableView.reloadData() }
+            }
+        }
+    }
+    
     
     fileprivate func fetchItems() {
         viewModel.fetchItems { [weak self] status in
@@ -116,6 +130,6 @@ extension OrderDetailsVC {
         tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
         tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
         tableView.register(PaymentInfoCell.self, forCellReuseIdentifier: PaymentInfoCell.reuseID)
-        tableView.register(ShippingAddressCell.self, forCellReuseIdentifier: ShippingAddressCell.reuseID)
+        tableView.register(CustomerDetailsCell.self, forCellReuseIdentifier: CustomerDetailsCell.reuseID)
     }
 }
