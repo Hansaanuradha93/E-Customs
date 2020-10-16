@@ -34,6 +34,8 @@ extension ButtonCell {
             title = Strings.placeOrder
         } else if buttonType == .checkOrders {
             title = Strings.checkOrders
+        } else if buttonType == .orderDetails {
+            title = Strings.completeOrder
         }
         button.setTitle(title, for: .normal)
     }

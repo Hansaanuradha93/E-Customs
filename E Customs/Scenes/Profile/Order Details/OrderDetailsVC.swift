@@ -25,7 +25,7 @@ class OrderDetailsVC: UITableViewController {
 extension OrderDetailsVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 6
         
     }
     
@@ -34,6 +34,7 @@ extension OrderDetailsVC {
         switch section {
         case 2: return viewModel.order.items.count > 0 ? viewModel.order.items.count : 1
         case 4: return viewModel.user != nil ? 1 : 0
+        case 5: return 1 // TODO: add the order status == "Shipped" logic
         default: return 1
         }
     }
@@ -71,6 +72,14 @@ extension OrderDetailsVC {
                 cell.set(user: user, address: address)
             }
             return cell
+        case 5:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.reuseID, for: indexPath) as! ButtonCell
+            cell.set(buttonType: .orderDetails)
+            
+            cell.buttonAction = {
+                print("Complete order")
+            }
+            return cell
         default:
             return UITableViewCell()
         }
@@ -89,6 +98,8 @@ extension OrderDetailsVC {
             return 200
         case 4:
             return 450
+        case 5:
+            return 100
         default:
             return 0
         }
@@ -131,5 +142,6 @@ extension OrderDetailsVC {
         tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
         tableView.register(PaymentInfoCell.self, forCellReuseIdentifier: PaymentInfoCell.reuseID)
         tableView.register(CustomerDetailsCell.self, forCellReuseIdentifier: CustomerDetailsCell.reuseID)
+        tableView.register(ButtonCell.self, forCellReuseIdentifier: ButtonCell.reuseID)
     }
 }

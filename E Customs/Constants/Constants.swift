@@ -86,6 +86,7 @@ struct Strings {
     static let submit = "SUBMIT"
     static let approve = "APPROVE"
     static let signout = "SIGN OUT"
+    static let completeOrder = "COMPLETE ORDER"
 }
 
 
