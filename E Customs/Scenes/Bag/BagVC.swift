@@ -64,17 +64,19 @@ extension BagVC {
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseID, for: indexPath) as! ItemCell
-            let item = viewModel.items[indexPath.row]
-            cell.set(item: item)
-            
-            cell.removeAction =  {
-                self.deleteItem(at: indexPath)
-                self.hidePickerWithAnimation()
-            }
-            
-            cell.selectQuntity = {
-                self.viewModel.selectedItem = item
-                self.showPickerWithAnimation()
+            if viewModel.items.count > 0 {
+                let item = viewModel.items[indexPath.row]
+                cell.set(item: item)
+                
+                cell.removeAction =  {
+                    self.deleteItem(at: indexPath)
+                    self.hidePickerWithAnimation()
+                }
+                
+                cell.selectQuntity = {
+                    self.viewModel.selectedItem = item
+                    self.showPickerWithAnimation()
+                }
             }
             
             return cell
@@ -95,8 +97,10 @@ extension BagVC {
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.reuseID, for: indexPath) as! ButtonCell
             cell.set(buttonType: .placeOrder)
             cell.buttonAction = {
-                self.paymentContext.requestPayment()
-                self.viewModel.bindableIsMakingPayment.value = true
+                self.presentAlertAction(title: Strings.confirmPayment, message: Strings.paymentConfirmationMessage, rightButtonTitle: Strings.yes, leftButtonTitle: Strings.no, rightButtonAction:  { (_) in
+                    self.paymentContext.requestPayment()
+                    self.viewModel.bindableIsMakingPayment.value = true
+                })
             }
             return cell
         }

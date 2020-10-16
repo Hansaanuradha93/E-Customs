@@ -56,6 +56,8 @@ struct Strings {
     static let orderPlacedSuccessfully = "Order Placed Successfully, Thank you!"
     static let areYouSure = "Are you sure?"
     static let doYouWantToCompleteOrder = "Do you want to complete the order"
+    static let confirmPayment = "Confirm Payment"
+    static let paymentConfirmationMessage = "This action will deduct payment from your card. Do you want to proceed with the payment?"
     static let yes = "Yes"
     static let no = "No"
     
