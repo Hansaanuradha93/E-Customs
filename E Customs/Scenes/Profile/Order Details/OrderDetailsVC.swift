@@ -26,7 +26,6 @@ extension OrderDetailsVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 6
-        
     }
     
     
@@ -34,7 +33,7 @@ extension OrderDetailsVC {
         switch section {
         case 2: return viewModel.order.items.count > 0 ? viewModel.order.items.count : 1
         case 4: return viewModel.user != nil ? 1 : 0
-        case 5: return 1 // TODO: add the order status == "Shipped" logic
+        case 5: return  ((viewModel.order.status ?? "") == OrderStatusType.shipped.rawValue) ? 1 : 0
         default: return 1
         }
     }
@@ -77,7 +76,9 @@ extension OrderDetailsVC {
             cell.set(buttonType: .orderDetails)
             
             cell.buttonAction = {
-                print("Complete order")
+                self.presentAlertAction(title: "Are you sure?", message: "Do you want to complete the order", rightButtonTitle: "Yes", leftButtonTitle: "No", rightButtonAction:  { (_) in
+                    self.completeOrder()
+                })
             }
             return cell
         default:
@@ -110,6 +111,19 @@ extension OrderDetailsVC {
 // MARK: - Methods
 extension OrderDetailsVC {
     
+    fileprivate func completeOrder() {
+        viewModel.completeOrder { [weak self] status, message in
+            guard let self = self else { return }
+            if status {
+                self.presentAlert(title: Strings.successfull, message: message, buttonTitle: Strings.ok)
+                self.updateUI()
+            } else {
+                self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
+            }
+        }
+    }
+    
+    
     fileprivate func fetchCustomerDetails() {
         viewModel.fetchCustomerDetails { [weak self] status in
             guard let self = self else { return }
@@ -126,6 +140,14 @@ extension OrderDetailsVC {
             if status {
                 DispatchQueue.main.async { self.tableView.reloadData() }
             }
+        }
+    }
+    
+    
+    fileprivate func updateUI() {
+        viewModel.order.status = OrderStatusType.completed.rawValue
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
     
