@@ -65,13 +65,19 @@ extension OrderListVC {
         listener = viewModel.fetchOrders { [weak self] status in
             guard let self = self else { return }
             if status {
-                if self.viewModel.orders.isEmpty {
-                    DispatchQueue.main.async { self.tableView.backgroundView = ECEmptyStateView(emptyStateType: .order) }
-                } else {
-                    DispatchQueue.main.async { self.tableView.backgroundView = nil }
-                }
-                DispatchQueue.main.async { self.tableView.reloadData() }}
+                self.updateUI()
+            }
         }
+    }
+    
+    
+    fileprivate func updateUI() {
+        if self.viewModel.orders.isEmpty {
+            DispatchQueue.main.async { self.tableView.backgroundView = ECEmptyStateView(emptyStateType: .order) }
+        } else {
+            DispatchQueue.main.async { self.tableView.backgroundView = nil }
+        }
+        DispatchQueue.main.async { self.tableView.reloadData() }
     }
     
     

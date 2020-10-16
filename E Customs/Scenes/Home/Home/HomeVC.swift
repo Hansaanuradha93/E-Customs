@@ -61,14 +61,19 @@ extension HomeVC {
     fileprivate func fetchProducts() {
         listener = viewModel.fetchProducts { (status) in
             if status {
-                if self.viewModel.products.isEmpty {
-                    DispatchQueue.main.async { self.tableView.backgroundView = ECEmptyStateView(emptyStateType: .home) }
-                } else {
-                    DispatchQueue.main.async { self.tableView.backgroundView = nil }
-                }
-                DispatchQueue.main.async { self.tableView.reloadData() }
+                self.updateUI()
             }
         }
+    }
+    
+    
+    fileprivate func updateUI() {
+        if self.viewModel.products.isEmpty {
+            DispatchQueue.main.async { self.tableView.backgroundView = ECEmptyStateView(emptyStateType: .home) }
+        } else {
+            DispatchQueue.main.async { self.tableView.backgroundView = nil }
+        }
+        DispatchQueue.main.async { self.tableView.reloadData() }
     }
     
     

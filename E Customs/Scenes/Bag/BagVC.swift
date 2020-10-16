@@ -266,17 +266,11 @@ extension BagVC {
         }
     }
     
-    
     fileprivate func fetchItems() {
         listener = viewModel.fetchItems { (status) in
             if status {
                 self.paymentContext.paymentAmount = self.viewModel.total
-                if self.viewModel.items.isEmpty {
-                    DispatchQueue.main.async { self.tableView.backgroundView = ECEmptyStateView(emptyStateType: .shoppinBag) }
-                } else {
-                    DispatchQueue.main.async { self.tableView.backgroundView = nil }
-                }
-                DispatchQueue.main.async { self.tableView.reloadData() }
+                self.updateUIWithItems()
             }
         }
     }
@@ -286,11 +280,20 @@ extension BagVC {
 // MARK: - Methods
 extension BagVC {
     
+    fileprivate func updateUIWithItems() {
+        if self.viewModel.items.isEmpty {
+            DispatchQueue.main.async { self.tableView.backgroundView = ECEmptyStateView(emptyStateType: .shoppinBag) }
+        } else {
+            DispatchQueue.main.async { self.tableView.backgroundView = nil }
+        }
+        DispatchQueue.main.async { self.tableView.reloadData() }
+    }
+    
+    
     fileprivate func updateUI() {
         DispatchQueue.main.async {
             self.viewModel.items.removeAll()
             self.tableView.reloadData()
-//            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
     }
     
