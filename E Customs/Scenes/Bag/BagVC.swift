@@ -331,8 +331,17 @@ extension BagVC {
         config.requiredBillingAddressFields = .none
         config.requiredShippingAddressFields = [.postalAddress]
         
+        let theme = STPTheme()
+        theme.primaryBackgroundColor = .white
+        theme.secondaryBackgroundColor = .white
+        theme.accentColor = .darkGray
+        theme.primaryForegroundColor = .black
+        theme.secondaryForegroundColor = .black
+        theme.font = UIFont(name: Fonts.avenirNext, size: 17)
+        theme.emphasisFont = UIFont(name: Fonts.avenirNext, size: 17)
+        
         let customerContext = STPCustomerContext(keyProvider: StripeAPI.shared)
-        paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
+        paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: theme)
         paymentContext.paymentAmount = viewModel.total
         paymentContext.delegate = self
         paymentContext.hostViewController = self
