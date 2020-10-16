@@ -15,7 +15,6 @@ extension RequestListVM {
     func fetchRequests(completion: @escaping (Bool) -> ()) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let reference = Firestore.firestore()
-        requests.removeAll()
         
         reference.collection("requests").whereField("uid", isEqualTo: uid)
             .getDocuments() { (querySnapshot, error) in
