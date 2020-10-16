@@ -11,7 +11,7 @@ extension UIViewController {
     
     
     func presentAlertAction(title: String, message: String, rightButtonTitle: String, leftButtonTitle: String, rightButtonAction: ((_ alertAction: UIAlertAction) -> Void)? = nil, leftButtonAction: ((_ alertAction: UIAlertAction) -> Void)? = nil) {
-        let alertController = UIAlertController(title: "Are you sure?", message: "Do you want to complete the order", preferredStyle: .alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let rightAction = UIAlertAction(title: rightButtonTitle, style: .default, handler: rightButtonAction)
         let leftAction = UIAlertAction(title: leftButtonTitle, style: .cancel, handler: leftButtonAction)
