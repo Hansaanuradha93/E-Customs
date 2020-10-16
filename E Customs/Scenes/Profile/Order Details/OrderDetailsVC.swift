@@ -76,7 +76,7 @@ extension OrderDetailsVC {
             cell.set(buttonType: .orderDetails)
             
             cell.buttonAction = {
-                self.presentAlertAction(title: "Are you sure?", message: "Do you want to complete the order", rightButtonTitle: "Yes", leftButtonTitle: "No", rightButtonAction:  { (_) in
+                self.presentAlertAction(title: Strings.areYouSure, message: Strings.doYouWantToCompleteOrder, rightButtonTitle: Strings.yes, leftButtonTitle: Strings.no, rightButtonAction:  { (_) in
                     self.completeOrder()
                 })
             }

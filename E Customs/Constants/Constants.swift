@@ -54,6 +54,10 @@ struct Strings {
     static let successfull = "Successful"
     static let somethingWentWrong = "Something Went Wrong, Please Try Again"
     static let orderPlacedSuccessfully = "Order Placed Successfully, Thank you!"
+    static let areYouSure = "Are you sure?"
+    static let doYouWantToCompleteOrder = "Do you want to complete the order"
+    static let yes = "Yes"
+    static let no = "No"
     
     // Labels
     static let size = "Size"
