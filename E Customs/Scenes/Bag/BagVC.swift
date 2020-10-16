@@ -46,11 +46,9 @@ extension BagVC {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else if section == 1 {
+        if section == 1 {
             return viewModel.items.count
-        } else if section == 2 || section == 3 {
+        } else if section == 0 || section == 2 || section == 3 {
             return viewModel.items.count > 0 ? 1 : 0
         }
         return 0
@@ -273,6 +271,11 @@ extension BagVC {
         listener = viewModel.fetchItems { (status) in
             if status {
                 self.paymentContext.paymentAmount = self.viewModel.total
+                if self.viewModel.items.isEmpty {
+                    DispatchQueue.main.async { self.tableView.backgroundView = ECEmptyStateView(emptyStateType: .shoppinBag) }
+                } else {
+                    DispatchQueue.main.async { self.tableView.backgroundView = nil }
+                }
                 DispatchQueue.main.async { self.tableView.reloadData() }
             }
         }
@@ -287,7 +290,7 @@ extension BagVC {
         DispatchQueue.main.async {
             self.viewModel.items.removeAll()
             self.tableView.reloadData()
-            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+//            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
     }
     
