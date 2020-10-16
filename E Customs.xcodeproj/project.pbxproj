@@ -40,6 +40,7 @@
 		477F40B22508898D0053A149 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F40B12508898D0053A149 /* UIViewController+Ext.swift */; };
 		478670772516825000591FCD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478670762516825000591FCD /* NetworkManager.swift */; };
 		4786707B251682AC00591FCD /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4786707A251682AC00591FCD /* UIImageView+Ext.swift */; };
+		47998D4F25398D48003C2592 /* ECEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47998D4E25398D48003C2592 /* ECEmptyStateView.swift */; };
 		479C4D05250E7E6800A7E399 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479C4D04250E7E6800A7E399 /* HomeVC.swift */; };
 		479C4D07250E7E8A00A7E399 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479C4D06250E7E8A00A7E399 /* HomeVM.swift */; };
 		479C4D09250E7EC600A7E399 /* OrderListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479C4D08250E7EC600A7E399 /* OrderListVC.swift */; };
@@ -110,6 +111,7 @@
 		477F40B12508898D0053A149 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		478670762516825000591FCD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4786707A251682AC00591FCD /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
+		47998D4E25398D48003C2592 /* ECEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECEmptyStateView.swift; sourceTree = "<group>"; };
 		479C4D04250E7E6800A7E399 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		479C4D06250E7E8A00A7E399 /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
 		479C4D08250E7EC600A7E399 /* OrderListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListVC.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				477F40AB25087EC50053A149 /* Buttons */,
 				477F40A825087BE00053A149 /* Text Fields */,
 				47250E7A252C87CA00DF323D /* Text Views */,
+				47998D4D25398D24003C2592 /* Empty State */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -404,6 +407,14 @@
 				47E8EC7325334E1B00F2861F /* Network */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		47998D4D25398D24003C2592 /* Empty State */ = {
+			isa = PBXGroup;
+			children = (
+				47998D4E25398D48003C2592 /* ECEmptyStateView.swift */,
+			);
+			path = "Empty State";
 			sourceTree = "<group>";
 		};
 		479C4D02250E7E1C00A7E399 /* Order List */ = {
@@ -686,6 +697,7 @@
 				479C4D09250E7EC600A7E399 /* OrderListVC.swift in Sources */,
 				47B6B19C25356DD10037D024 /* Order.swift in Sources */,
 				477D22AC2507D067009C572B /* SceneDelegate.swift in Sources */,
+				47998D4F25398D48003C2592 /* ECEmptyStateView.swift in Sources */,
 				479C4D12250E7FA500A7E399 /* ECTabBar.swift in Sources */,
 				4728D61A252EBF4400E7E099 /* RequestListVC.swift in Sources */,
 				47B10628251F82E70009D04C /* BagVM.swift in Sources */,
