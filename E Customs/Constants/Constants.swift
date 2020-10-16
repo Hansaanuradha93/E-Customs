@@ -20,7 +20,11 @@ struct Asserts {
     
     // Bag
     static let close = UIImage(systemName: "xmark")!
-    
+    static let emptyCart = UIImage(named: "emptyCart")!
+    static let emptyDocument = UIImage(named: "emptyDocument")!
+    static let emptyEnvelope = UIImage(named: "emptyEnvelope")!
+    static let emptyShoe = UIImage(named: "emptyShoe")!
+
     // Profile
     static let user = UIImage(named: "user")!
 }
@@ -63,7 +67,10 @@ struct Strings {
     
     // Labels
     static let size = "Size"
-    static let noItemsYet = "NO ITEMS YET"
+    static let noShoesYet = "No Shoes Yet"
+    static let noItemsYet = "No Items Yet"
+    static let noRequestsYet = "No Requests Yet"
+    static let noOrdersYet = "No Orders Yet"
     static let notAvailable = "Not available"
     static let qty = "Qty"
     static let free = "Free"

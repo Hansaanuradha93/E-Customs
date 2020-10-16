@@ -18,3 +18,11 @@ public enum OrderStatusType: String {
     case shipped = "Shipped"
     case completed = "Completed"
 }
+
+
+public enum EmptyStateType {
+    case home
+    case requestBox
+    case shoppinBag
+    case order
+}
