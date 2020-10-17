@@ -30,7 +30,7 @@ extension ButtonCell {
     
     func set(buttonType: ButtonType) {
         var title = ""
-        if buttonType == .placeOrder {
+        if buttonType == .placeOrder || buttonType == .requestDetails {
             title = Strings.placeOrder
         } else if buttonType == .checkOrders {
             title = Strings.checkOrders

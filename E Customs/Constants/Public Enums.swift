@@ -4,6 +4,7 @@ public enum ButtonType {
     case placeOrder
     case checkOrders
     case orderDetails
+    case requestDetails
 }
 
 
