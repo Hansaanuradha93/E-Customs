@@ -13,8 +13,9 @@ class RequestDetailsVC: UIViewController {
     fileprivate let sneakerNameLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
     fileprivate let ideaDescriptionLabel =  ECRegularLabel(textAlignment: .left, textColor: .lightGray, fontSize: 15, numberOfLines: 0)
     fileprivate let statusLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
+    fileprivate let priceLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
+
         
-    
     // MARK: Initializers
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -60,20 +61,24 @@ extension RequestDetailsVC {
         thumbnailImageView.downloadImage(from: request.thumbnailUrl ?? "")
         sneakerNameLabel.text = (request.sneakerName ?? "").uppercased()
         ideaDescriptionLabel.text = request.ideaDescription ?? ""
-        statusLabel.text = (request.isApproved ?? false) ? "REQUEST IS APPROVED" : "REQUEST IS STILL PENDING"
+        statusLabel.text = (request.isApproved ?? false) ? Strings.requestIsApproved : Strings.requestIsPending
+        if let price = request.price { priceLabel.text = "$\(price)" }
     }
     
     
     fileprivate func setupUI() {
-        contentView.addSubviews(thumbnailImageView, sneakerNameLabel, ideaDescriptionLabel, statusLabel)
+        contentView.addSubviews(thumbnailImageView, sneakerNameLabel, ideaDescriptionLabel, priceLabel, statusLabel)
 
         let paddingTop: CGFloat = 36
         let paddingCorners: CGFloat = 24
+        let padding = UIEdgeInsets(top: paddingTop, left: paddingCorners, bottom: 0, right: paddingCorners)
         
         thumbnailImageView.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingCorners, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 375))
-        sneakerNameLabel.anchor(top: thumbnailImageView.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddingCorners, bottom: 0, right: paddingCorners))
-        ideaDescriptionLabel.anchor(top: sneakerNameLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddingCorners, bottom: 0, right: paddingCorners))
-        statusLabel.anchor(top: ideaDescriptionLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddingCorners, bottom: 0, right: paddingCorners))
+        sneakerNameLabel.anchor(top: thumbnailImageView.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: padding)
+        ideaDescriptionLabel.anchor(top: sneakerNameLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: padding)
+        statusLabel.anchor(top: ideaDescriptionLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: padding)
+        priceLabel.anchor(top: statusLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView
+                            .trailingAnchor, padding: padding)
     }
     
     

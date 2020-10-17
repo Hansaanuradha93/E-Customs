@@ -82,6 +82,8 @@ struct Strings {
     static let total = "Total"
     static let gender = "Gender"
     static let lodingIndicatorDots = "..."
+    static let requestIsApproved = "REQUEST IS APPROVED"
+    static let requestIsPending = "REQUEST IS STILL PENDING"
     static let requestApproved = "Request Approved"
     static let requestPending = "Request Pending"
     
