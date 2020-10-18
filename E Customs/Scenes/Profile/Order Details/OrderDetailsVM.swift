@@ -7,6 +7,43 @@ class OrderDetailsVM {
     var user: User? = nil
     
     
+    // MARK: Computed Properties
+    var orderDesriptionCellHeight: CGFloat {
+        var height: CGFloat = 0
+        let charactors = order.description?.count ?? 0
+        
+        if charactors <= 50 {
+            height = 100
+        } else if charactors <= 100 {
+            height = 120
+        } else if charactors <= 150 {
+            height = 145
+        } else if charactors <= 200 {
+            height = 165
+        } else if charactors <= 250 {
+            height = 190
+        } else if charactors <= 300 {
+            height = 215
+        } else if charactors <= 350 {
+            height = 240
+        } else if charactors <= 400 {
+            height = 265
+        } else if charactors <= 450 {
+            height = 290
+        } else if charactors <= 500 {
+            height = 300
+        } else if charactors <= 550 {
+            height = 325
+        } else if charactors <= 600 {
+            height = 350
+        } else {
+            height = 400
+        }
+        
+        return height
+    }
+    
+    
     // MARK: Initializers
     init(order: Order) {
         self.order = order

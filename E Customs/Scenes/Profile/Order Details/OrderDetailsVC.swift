@@ -25,15 +25,16 @@ class OrderDetailsVC: UITableViewController {
 extension OrderDetailsVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 2: return viewModel.order.items.count > 0 ? viewModel.order.items.count : 1
-        case 4: return viewModel.user != nil ? 1 : 0
-        case 5: return  ((viewModel.order.status ?? "") == OrderStatusType.shipped.rawValue) ? 1 : 0
+        case 4: return (viewModel.order.description != nil) ? 1: 0
+        case 5: return viewModel.user != nil ? 1 : 0
+        case 6: return  ((viewModel.order.status ?? "") == OrderStatusType.shipped.rawValue) ? 1 : 0
         default: return (viewModel.order.items.count > 0 && viewModel.user != nil) ? 1 : 0
         }
     }
@@ -66,12 +67,16 @@ extension OrderDetailsVC {
             cell.set(subtotalPennies: subtotal, processingFeesPennies: proccessingFeesPennies, totalPennies: totalPennies, paymentMethod: order.paymentMethod ?? "", shippingMethod: order.shippingMethod ?? "")
             return cell
         case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionCell.reuseID, for: indexPath) as! DescriptionCell
+            cell.set(description: order.description)
+            return cell
+        case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: CustomerDetailsCell.reuseID, for: indexPath) as! CustomerDetailsCell
             if let user = viewModel.user, let address = viewModel.order.address {
                 cell.set(user: user, address: address)
             }
             return cell
-        case 5:
+        case 6:
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.reuseID, for: indexPath) as! ButtonCell
             cell.set(buttonType: .orderDetails)
             
@@ -98,8 +103,10 @@ extension OrderDetailsVC {
         case 3:
             return 200
         case 4:
-            return 450
+            return viewModel.orderDesriptionCellHeight
         case 5:
+            return 450
+        case 6:
             return 100
         default:
             return 0
@@ -165,5 +172,6 @@ extension OrderDetailsVC {
         tableView.register(PaymentInfoCell.self, forCellReuseIdentifier: PaymentInfoCell.reuseID)
         tableView.register(CustomerDetailsCell.self, forCellReuseIdentifier: CustomerDetailsCell.reuseID)
         tableView.register(ButtonCell.self, forCellReuseIdentifier: ButtonCell.reuseID)
+        tableView.register(DescriptionCell.self, forCellReuseIdentifier: DescriptionCell.reuseID)
     }
 }

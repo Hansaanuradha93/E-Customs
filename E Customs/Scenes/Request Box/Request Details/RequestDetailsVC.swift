@@ -265,7 +265,7 @@ extension RequestDetailsVC {
         let proccessingFees = viewModel.proccessingFeesDollars
         let total = viewModel.totalDollars
 
-        let order = Order(orderId: viewModel.orderId, uid: viewModel.uid, type: OrderType.design.rawValue, status: viewModel.status, paymentMethod: viewModel.paymentMethod, shippingMethod: viewModel.shippingMethod, address: viewModel.address, thumbnailUrl: viewModel.thumbnailUrl, subtotal: subtotal , proccessingFees: proccessingFees, total: total, itemCount: viewModel.itemCount, timestamp: viewModel.timestamp)
+        let order = Order(orderId: viewModel.orderId, uid: viewModel.uid, type: OrderType.design.rawValue, status: viewModel.status, description: viewModel.request?.ideaDescription,paymentMethod: viewModel.paymentMethod, shippingMethod: viewModel.shippingMethod, address: viewModel.address, thumbnailUrl: viewModel.thumbnailUrl, subtotal: subtotal , proccessingFees: proccessingFees, total: total, itemCount: viewModel.itemCount, timestamp: viewModel.timestamp)
         
         let controller = OrderDetailsVC()
         controller.viewModel = OrderDetailsVM(order: order)

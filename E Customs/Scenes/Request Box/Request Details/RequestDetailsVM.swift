@@ -84,6 +84,7 @@ extension RequestDetailsVM {
             "uid": uid,
             "status": status,
             "type": OrderType.design.rawValue,
+            "description": request?.ideaDescription ?? "",
             "itemCount": itemCount,
             "shippingMethod": shippingMethod,
             "paymentMethod": paymentMethod,

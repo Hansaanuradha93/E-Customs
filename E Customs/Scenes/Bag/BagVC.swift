@@ -303,7 +303,7 @@ extension BagVC {
         let proccessingFees = viewModel.proccessingFeesDollars
         let total = viewModel.totalDollars
 
-        let order = Order(orderId: viewModel.orderId, uid: viewModel.uid, type: OrderType.item.rawValue, status: viewModel.status, paymentMethod: viewModel.paymentMethod, shippingMethod: viewModel.shippingMethod, address: viewModel.address, thumbnailUrl: viewModel.thumbnailUrl, subtotal: subtotal , proccessingFees: proccessingFees, total: total, itemCount: viewModel.itemCount, timestamp: viewModel.timestamp)
+        let order = Order(orderId: viewModel.orderId, uid: viewModel.uid, type: OrderType.item.rawValue, status: viewModel.status, description: nil, paymentMethod: viewModel.paymentMethod, shippingMethod: viewModel.shippingMethod, address: viewModel.address, thumbnailUrl: viewModel.thumbnailUrl, subtotal: subtotal , proccessingFees: proccessingFees, total: total, itemCount: viewModel.itemCount, timestamp: viewModel.timestamp)
         
         let controller = OrderDetailsVC()
         controller.viewModel = OrderDetailsVM(order: order)
