@@ -94,7 +94,7 @@ extension OrderDetailsVC {
         case 1:
             return 70
         case 2:
-            return 170
+            return 185
         case 3:
             return 200
         case 4:
