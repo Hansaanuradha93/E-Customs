@@ -12,27 +12,40 @@ class RequestListVM {
 // MARK: - Methods
 extension RequestListVM {
     
-    func fetchRequests(completion: @escaping (Bool) -> ()) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+    func fetchRequests(completion: @escaping (Bool) -> ()) -> ListenerRegistration? {
+        guard let uid = Auth.auth().currentUser?.uid else { return nil }
         let reference = Firestore.firestore()
+        let requestReference = reference.collection("requests").whereField("uid", isEqualTo: uid)
         
-        reference.collection("requests").whereField("uid", isEqualTo: uid)
-            .getDocuments() { (querySnapshot, error) in
+        let listener = requestReference.addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 print(error)
                 completion(false)
                 return
             }
-            guard let documents = querySnapshot?.documents else {
+            
+            guard let documentChanges = querySnapshot?.documentChanges else {
                 completion(false)
                 return
             }
-            for document in documents {
-                let request = Request(dictionary: document.data())
-                self.requestsDictionary[request.id ?? ""] = request
+            
+            for change in documentChanges {
+                switch change.type {
+                case .added:
+                    let request = Request(dictionary: change.document.data())
+                    self.requestsDictionary[request.id ?? ""] = request
+                case .modified:
+                    let request = Request(dictionary: change.document.data())
+                    self.requestsDictionary.removeValue(forKey: request.id ?? "")
+                    self.requestsDictionary[request.id ?? ""] = request
+                case .removed:
+                    let request = Request(dictionary: change.document.data())
+                    self.requestsDictionary.removeValue(forKey: request.id ?? "")
+                }
             }
             self.sortRequestsByTimestamp(completion: completion)
         }
+        return listener
     }
     
     
