@@ -31,11 +31,11 @@ class OrderDetailsVM {
         } else if charactors <= 450 {
             height = 290
         } else if charactors <= 500 {
-            height = 300
+            height = 315
         } else if charactors <= 550 {
-            height = 325
+            height = 340
         } else if charactors <= 600 {
-            height = 350
+            height = 365
         } else {
             height = 400
         }
