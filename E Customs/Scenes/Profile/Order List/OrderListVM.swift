@@ -29,9 +29,17 @@ extension OrderListVM {
             }
             
             for change in documentChanges {
-                if change.type == .added {
+                switch change.type {
+                case .added:
                     let order = Order(dictionary: change.document.data())
                     self.ordersDictionary[order.orderId ?? ""] = order
+                case .modified:
+                    let order = Order(dictionary: change.document.data())
+                    self.ordersDictionary.removeValue(forKey: order.orderId ?? "")
+                    self.ordersDictionary[order.orderId ?? ""] = order
+                case .removed:
+                    let order = Order(dictionary: change.document.data())
+                    self.ordersDictionary.removeValue(forKey: order.orderId ?? "")
                 }
             }
             self.sortOrdersByTimestamp(completion: completion)
