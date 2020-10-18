@@ -15,7 +15,7 @@ class RequestDetailsVM {
     
     var orderId = ""
     var uid = ""
-    var status = "Created"
+    var status = OrderStatusType.created.rawValue
     var thumbnailUrl = ""
     var itemCount = 0
     var subTotalDollars = 0.0
@@ -83,6 +83,7 @@ extension RequestDetailsVM {
             "orderId": orderId,
             "uid": uid,
             "status": status,
+            "type": OrderType.design.rawValue,
             "itemCount": itemCount,
             "shippingMethod": shippingMethod,
             "paymentMethod": paymentMethod,

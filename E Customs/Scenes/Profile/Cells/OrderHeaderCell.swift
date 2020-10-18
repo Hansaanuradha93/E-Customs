@@ -26,7 +26,7 @@ class OrderHeaderCell: UITableViewCell {
 extension OrderHeaderCell {
     
     func set(order: Order) {
-        orderNumberLabel.text = "Order #" + (order.orderId ?? "").uppercased()
+        orderNumberLabel.text = "\(order.type ?? "") Order #" + (order.orderId ?? "").uppercased()
         statusLabel.text =  "Order " + (order.status ?? "").uppercased()
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMM d, yyyy"

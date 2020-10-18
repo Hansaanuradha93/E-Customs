@@ -17,7 +17,7 @@ class BagVM {
     
     var orderId = ""
     var uid = ""
-    var status = "Created"
+    var status = OrderStatusType.created.rawValue
     var thumbnailUrl = ""
     var itemCount = 0
     var subTotalDollars = 0.0
@@ -114,6 +114,7 @@ extension BagVM {
             "orderId": orderId,
             "uid": uid,
             "status": status,
+            "type": OrderType.item.rawValue,
             "itemCount": numberOfItems,
             "shippingMethod": shippingMethod,
             "paymentMethod": paymentMethod,

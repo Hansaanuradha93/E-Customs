@@ -21,6 +21,12 @@ public enum OrderStatusType: String {
 }
 
 
+public enum OrderType: String {
+    case item = "Item"
+    case design = "Design"
+}
+
+
 public enum EmptyStateType {
     case home
     case requestBox
