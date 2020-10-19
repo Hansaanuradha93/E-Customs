@@ -130,8 +130,8 @@ extension BagVM {
         
         orderRefarence.setData(orderData) { (error) in
             if let error = error {
-                print(error)
-                completion(false, error.localizedDescription)
+                print(error.localizedDescription)
+                completion(false, Strings.somethingWentWrong)
                 return
             }
             
@@ -165,7 +165,7 @@ extension BagVM {
                 completion(false, error.localizedDescription)
                 return
             }
-            completion(true, "Quantity updated successfully")
+            completion(true, Strings.quantityUpdated)
         }
     }
     
@@ -180,7 +180,7 @@ extension BagVM {
                 completion(false, error.localizedDescription)
                 return
             }
-            completion(true, "Item deleted successfully")
+            completion(true, Strings.itemDeleted)
         }
     }
     
@@ -193,7 +193,7 @@ extension BagVM {
         
         let listener = reference.addSnapshotListener { querySnapshot, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 completion(false)
                 return
             }
