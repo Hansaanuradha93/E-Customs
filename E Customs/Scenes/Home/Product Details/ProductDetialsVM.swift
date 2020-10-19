@@ -79,8 +79,8 @@ extension ProductDetialsVM {
                     self.bindableIsSaving.value = false
 
                     if let error = error {
-                        print(error)
-                        completion(false, error.localizedDescription)
+                        print(error.localizedDescription)
+                        completion(false, Strings.somethingWentWrong)
                         return
                     }
 
