@@ -66,7 +66,7 @@ extension OrderDetailsVM {
                 return
             }
             
-            completion(true, "Order completed successfully")
+            completion(true, Strings.orderCompleted)
         }
     }
     
