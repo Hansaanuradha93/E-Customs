@@ -57,7 +57,7 @@ extension SignupVM {
                 completion(false, error.localizedDescription)
                 return
             }
-            completion(true, "Authentication successfull")
+            completion(true, Strings.authenticationSuccessfull)
         }
     }
     
