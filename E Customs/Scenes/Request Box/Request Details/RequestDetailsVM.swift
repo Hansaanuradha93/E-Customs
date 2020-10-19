@@ -100,8 +100,8 @@ extension RequestDetailsVM {
         
         orderRefarence.setData(orderData) { (error) in
             if let error = error {
-                print(error)
-                completion(false, error.localizedDescription)
+                print(error.localizedDescription)
+                completion(false, Strings.somethingWentWrong)
                 return
             }
             
@@ -128,10 +128,10 @@ extension RequestDetailsVM {
         
         reference.collection("requests").document(requestId).delete { error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
                 return
             }
-            print("Request Deleted Successfully")
+            print(Strings.requestDeleted)
         }
     }
 }
