@@ -64,6 +64,8 @@ struct Strings {
     static let paymentConfirmationMessage = "This action will deduct payment from your card. Do you want to proceed with the payment?"
     static let yes = "Yes"
     static let no = "No"
+    static let authenticationSuccessfull = "Authentication successfull"
+    static let loggedInSuccessfully = "Logged in successfully"
     static let productAlreadyInBag = "Product is already in the Bag"
     static let productAddedToBag = "Poduct added to Bag successfully!"
     static let orderCompleted = "Order completed successfully"

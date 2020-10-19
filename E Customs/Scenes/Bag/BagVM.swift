@@ -161,8 +161,8 @@ extension BagVM {
         let quntity = ["quantity": selectedQuantity]
         reference.updateData(quntity) { error in
             if let error = error {
-                print(error)
-                completion(false, error.localizedDescription)
+                print(error.localizedDescription)
+                completion(false, Strings.somethingWentWrong)
                 return
             }
             completion(true, Strings.quantityUpdated)
@@ -176,8 +176,8 @@ extension BagVM {
         
         reference.delete { error in
             if let error = error {
-                print(error)
-                completion(false, error.localizedDescription)
+                print(error.localizedDescription)
+                completion(false, Strings.somethingWentWrong)
                 return
             }
             completion(true, Strings.itemDeleted)
