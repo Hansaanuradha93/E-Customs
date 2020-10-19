@@ -27,7 +27,7 @@ extension LoginVM {
                 completion(false, error.localizedDescription)
                 return
             }
-            completion(true, "Logged in successfully")
+            completion(true, Strings.loggedInSuccessfully)
         }
     }
     
