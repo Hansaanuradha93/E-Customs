@@ -61,8 +61,8 @@ extension OrderDetailsVM {
                 
         reference.updateData(data) { (error) in
             if let error = error {
-                print(error)
-                completion(false, error.localizedDescription)
+                print(error.localizedDescription)
+                completion(false, Strings.somethingWentWrong)
                 return
             }
             
