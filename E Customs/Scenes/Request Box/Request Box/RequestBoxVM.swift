@@ -37,6 +37,7 @@ extension RequestBoxVM {
         storageRef.putData(uploadData, metadata: nil) { (_, error) in
             if let error = error {
                 self.bindableIsSaving.value = false
+                print(error.localizedDescription)
                 completion(false, Strings.somethingWentWrong)
                 return
             }
@@ -81,7 +82,7 @@ extension RequestBoxVM {
                 completion(false, Strings.somethingWentWrong)
                 return
             }
-            completion(true, "Request submitted successfully")
+            completion(true, Strings.requestSubmitted)
         }
     }
     
