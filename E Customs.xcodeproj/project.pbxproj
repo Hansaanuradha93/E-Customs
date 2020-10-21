@@ -470,8 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				47B1062A251F85280009D04C /* Cells */,
-				47B10623251F82DB0009D04C /* BagVC.swift */,
-				47B10627251F82E70009D04C /* BagVM.swift */,
+				47D1C9382540A42F00CF5CF3 /* Bag */,
 			);
 			path = Bag;
 			sourceTree = "<group>";
@@ -503,6 +502,15 @@
 				47C83ED82508A883003A26D4 /* LoginVM.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		47D1C9382540A42F00CF5CF3 /* Bag */ = {
+			isa = PBXGroup;
+			children = (
+				47B10623251F82DB0009D04C /* BagVC.swift */,
+				47B10627251F82E70009D04C /* BagVM.swift */,
+			);
+			path = Bag;
 			sourceTree = "<group>";
 		};
 		47D61DD625091F4300AB7C11 /* Home */ = {
