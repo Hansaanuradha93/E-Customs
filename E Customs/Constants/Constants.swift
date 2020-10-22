@@ -95,6 +95,9 @@ struct Strings {
     static let requestIsPending = "REQUEST IS STILL PENDING"
     static let requestApproved = "Request Approved"
     static let requestPending = "Request Pending"
+    static let customerDetails = "CUSTOMER DETAILS"
+    static let fullname =  "Full Name"
+    static let shippingAddress = "Shipping Address"
     
     // Buttons
     static let ok = "OK"
