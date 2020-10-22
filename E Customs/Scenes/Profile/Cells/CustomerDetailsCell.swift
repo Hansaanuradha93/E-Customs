@@ -5,18 +5,18 @@ class CustomerDetailsCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "CustomerDetailsCell"
     
-    fileprivate let titleLabel = ECMediumLabel(text: "CUSTOMER DETAILS", textAlignment: .left, fontSize: 17)
+    fileprivate let titleLabel = ECMediumLabel(text: Strings.customerDetails, textAlignment: .left, fontSize: 17)
     
-    fileprivate let fullnameLabel = ECMediumLabel(text: "Full Name", textAlignment: .left, fontSize: 17)
+    fileprivate let fullnameLabel = ECMediumLabel(text: Strings.fullname, textAlignment: .left, fontSize: 17)
     fileprivate let fullnameValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15, numberOfLines: 0)
     
-    fileprivate let emailLabel = ECMediumLabel(text: "Email", textAlignment: .left, fontSize: 17)
+    fileprivate let emailLabel = ECMediumLabel(text: Strings.email, textAlignment: .left, fontSize: 17)
     fileprivate let emailValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15, numberOfLines: 0)
     
-    fileprivate let genderLabel = ECMediumLabel(text: "Gender", textAlignment: .left, fontSize: 17)
+    fileprivate let genderLabel = ECMediumLabel(text: Strings.gender, textAlignment: .left, fontSize: 17)
     fileprivate let genderValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
     
-    fileprivate let addressLabel = ECMediumLabel(text: "Shipping Address", textAlignment: .left, fontSize: 17)
+    fileprivate let addressLabel = ECMediumLabel(text: Strings.shippingAddress, textAlignment: .left, fontSize: 17)
     fileprivate let addressValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15, numberOfLines: 0)
 
     
