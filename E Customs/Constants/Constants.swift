@@ -98,6 +98,7 @@ struct Strings {
     static let customerDetails = "CUSTOMER DETAILS"
     static let fullname =  "Full Name"
     static let shippingAddress = "Shipping Address"
+    static let designDescription = "DESIGN DESCRIPTION"
     
     // Buttons
     static let ok = "OK"

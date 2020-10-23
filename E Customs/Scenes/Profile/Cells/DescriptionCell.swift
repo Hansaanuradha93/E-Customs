@@ -5,7 +5,7 @@ class DescriptionCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "DescriptionCell"
         
-    fileprivate let titleLabel = ECMediumLabel(text: "DESIGN DESCRIPTION", textAlignment: .left, fontSize: 17)
+    fileprivate let titleLabel = ECMediumLabel(text: Strings.designDescription, textAlignment: .left, fontSize: 17)
     fileprivate let decriptionLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15, numberOfLines: 0)
 
     
