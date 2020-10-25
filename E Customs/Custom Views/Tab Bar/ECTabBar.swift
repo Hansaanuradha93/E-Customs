@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class ECTabBar: UITabBarController {
 
@@ -6,12 +7,31 @@ class ECTabBar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        fetchUserDetails()
     }
 }
 
 
 // MARK: - Private Methods
 extension ECTabBar {
+    
+    fileprivate func fetchUserDetails() {
+        let uid = Auth.auth().currentUser?.uid ?? ""
+        
+        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            if let data = snapshot?.data(), let stripeId = data["stripeId"] {
+                UserDefaults.standard.set(stripeId, forKey: UserDefaultsKeys.stripeId)
+            } else {
+                self.fetchUserDetails()
+            }
+        }
+    }
+    
     
     fileprivate func createHomeNC() -> UINavigationController {
         let homeVC = HomeVC()
