@@ -38,7 +38,10 @@ extension HomeVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.reuseID, for: indexPath) as! ProductCell
-        cell.set(product: viewModel.products[indexPath.row])
+        if viewModel.products.count > 0 {
+            cell.set(product: viewModel.products[indexPath.row])
+        }
+        
         return cell
     }
     
