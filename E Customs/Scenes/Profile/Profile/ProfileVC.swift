@@ -106,6 +106,7 @@ extension ProfileVC {
         viewModel.signout { [weak self] status, message in
             guard let self = self else { return }
             if status {
+                self.viewModel.clearStripeCustomerData()
                 self.goToSignup()
             } else {
                 self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)

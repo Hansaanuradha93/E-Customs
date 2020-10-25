@@ -10,6 +10,11 @@ class ProfileVM {
 // MARK: - Methods
 extension ProfileVM {
     
+    func clearStripeCustomerData() {
+        UserDefaults.standard.set("", forKey: UserDefaultsKeys.stripeId)
+    }
+    
+    
     func fetchUserProfile(completion: @escaping (Bool) -> ()) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let reference = Firestore.firestore().collection("users").document(uid)
