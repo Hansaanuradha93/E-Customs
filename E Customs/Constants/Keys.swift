@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: Stripe Keys
 struct StripeKeys {
-    static let publishableKey = "pk_test_Zx9wyJW7pcgyCyKX1WcGTHC500SSAmfxMG"
+    static let publishableKey = "pk_test_51HdnkhLppUPPVLZvwioI0XZ9aXcWaWbkYVAemLnwh0VdZOozCGuYLrObPnManznugMYD5L1g5luMPu6zuHzRdK0e00tVdaXdvf"
 }
 
 
