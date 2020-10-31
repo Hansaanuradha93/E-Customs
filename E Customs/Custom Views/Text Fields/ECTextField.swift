@@ -32,10 +32,10 @@ class ECTextField: UITextField {
 }
 
 
-// MARK: - Methods
-extension ECTextField {
+// MARK: - Fileprivate Methods
+fileprivate extension ECTextField {
     
-    fileprivate func configureTextField(_ background: UIColor, _ padding: CGFloat, _ placeholderText: String, _ radius: CGFloat, _ fontSize: CGFloat) {
+    func configureTextField(_ background: UIColor, _ padding: CGFloat, _ placeholderText: String, _ radius: CGFloat, _ fontSize: CGFloat) {
         let traits = [UIFontDescriptor.TraitKey.weight: UIFont.Weight.regular]
         var descriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: Fonts.avenirNext])
         descriptor = descriptor.addingAttributes([UIFontDescriptor.AttributeName.traits: traits])
