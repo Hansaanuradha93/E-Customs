@@ -24,10 +24,10 @@ class ECEmptyStateView: UIView {
 }
 
 
-// MARK: - Methods
-extension ECEmptyStateView {
+// MARK: - Fileprivate Methods
+fileprivate extension ECEmptyStateView {
     
-    fileprivate func configureState(_ emptyStateType: EmptyStateType) {
+    func configureState(_ emptyStateType: EmptyStateType) {
         var image = Asserts.placeHolder
         var message = ""
         
@@ -53,7 +53,7 @@ extension ECEmptyStateView {
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         let padding: CGFloat = 24
         let dimension: CGFloat = 100
         
