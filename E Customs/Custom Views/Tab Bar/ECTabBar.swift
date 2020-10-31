@@ -12,10 +12,10 @@ class ECTabBar: UITabBarController {
 }
 
 
-// MARK: - Private Methods
-extension ECTabBar {
+// MARK: - Fileprivate Methods
+fileprivate extension ECTabBar {
     
-    fileprivate func fetchUserDetails() {
+    func fetchUserDetails() {
         let uid = Auth.auth().currentUser?.uid ?? ""
         
         Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, error) in
@@ -33,35 +33,35 @@ extension ECTabBar {
     }
     
     
-    fileprivate func createHomeNC() -> UINavigationController {
+    func createHomeNC() -> UINavigationController {
         let homeVC = HomeVC()
         homeVC.tabBarItem = UITabBarItem(title: Strings.empty, image: Asserts.house, selectedImage: Asserts.houseFill)
         return UINavigationController(rootViewController: homeVC)
     }
     
     
-    fileprivate func createRequestListNC() -> UINavigationController {
+    func createRequestListNC() -> UINavigationController {
         let requestListVC = RequestListVC()
         requestListVC.tabBarItem = UITabBarItem(title: Strings.empty, image: Asserts.envelope, selectedImage: Asserts.envelopeFill)
         return UINavigationController(rootViewController: requestListVC)
     }
     
     
-    fileprivate func createBagNC() -> UINavigationController {
+    func createBagNC() -> UINavigationController {
         let bagVC = BagVC()
         bagVC.tabBarItem = UITabBarItem(title: Strings.empty, image: Asserts.bag, selectedImage: Asserts.bagFill)
         return UINavigationController(rootViewController: bagVC)
     }
     
     
-    fileprivate func createProfileNC() -> UINavigationController {
+    func createProfileNC() -> UINavigationController {
         let profileVC = ProfileVC()
         profileVC.tabBarItem = UITabBarItem(title: Strings.empty, image: Asserts.person, selectedImage: Asserts.personFill)
         return UINavigationController(rootViewController: profileVC)
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         UITabBar.appearance().tintColor = .black
         tabBar.barTintColor = .white
         viewControllers = [createHomeNC(), createRequestListNC(), createBagNC(), createProfileNC()]
