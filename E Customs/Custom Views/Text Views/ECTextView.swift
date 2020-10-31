@@ -19,10 +19,10 @@ class ECTextView: UITextView {
 }
 
 
-// MARK: - Methods
-extension ECTextView {
+// MARK: - Fileprivate Methods
+fileprivate extension ECTextView {
     
-    fileprivate func configureTextView(_ background: UIColor, _ placeholderText: String, _ textColor: UIColor, _ fontSize: CGFloat, _ padding: CGFloat) {
+    func configureTextView(_ background: UIColor, _ placeholderText: String, _ textColor: UIColor, _ fontSize: CGFloat, _ padding: CGFloat) {
         let traits = [UIFontDescriptor.TraitKey.weight: UIFont.Weight.regular]
         var descriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: Fonts.avenirNext])
         descriptor = descriptor.addingAttributes([UIFontDescriptor.AttributeName.traits: traits])
