@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class BagVM {
+final class BagVM {
     
     // MARK: Properties
     var items = [Item]()
@@ -108,7 +108,6 @@ extension BagVM {
         itemCount = numberOfItems
         thumbnailUrl = items.first?.thumbnailUrl ?? ""
         timestamp = Timestamp()
-        
         
         let orderData: [String : Any] = [
             "orderId": orderId,
