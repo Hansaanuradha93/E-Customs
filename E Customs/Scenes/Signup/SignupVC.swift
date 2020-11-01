@@ -49,9 +49,9 @@ class SignupVC: UIViewController {
 
 
 // MARK: - Objc Methods
-extension SignupVC {
+fileprivate extension SignupVC {
     
-    @objc fileprivate func handleSignUp() {
+    @objc func handleSignUp() {
         handleTapDismiss()
         viewModel.performSignUp { [weak self] status, message in
             guard let self = self else { return }
@@ -64,17 +64,17 @@ extension SignupVC {
     }
     
     
-    @objc fileprivate func handleMaleButtonClick() {
+    @objc func handleMaleButtonClick() {
         viewModel.isMale = true
     }
     
     
-    @objc fileprivate func handleFemaleButtonClick() {
+    @objc func handleFemaleButtonClick() {
         viewModel.isMale = false
     }
     
     
-    @objc fileprivate func handleTextChange(textField: UITextField) {
+    @objc func handleTextChange(textField: UITextField) {
         viewModel.firstName = firstNameTextField.text
         viewModel.lastName = lastNameTextField.text
         viewModel.email = emailTextField.text
@@ -82,45 +82,45 @@ extension SignupVC {
     }
     
     
-    @objc fileprivate func handleTapDismiss() {
+    @objc func handleTapDismiss() {
         view.endEditing(true)
     }
     
     
-    @objc fileprivate func handleKeyboardHide() {
+    @objc func handleKeyboardHide() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.verticalStackView.transform = .identity
         })
     }
     
     
-    @objc fileprivate func handleKeyboardShow(notification: Notification) {
+    @objc func handleKeyboardShow(notification: Notification) {
         self.verticalStackView.transform = CGAffineTransform(translationX: 0, y: -10)
     }
     
     
-    @objc fileprivate func handleGoToLogin() {
+    @objc func handleGoToLogin() {
         let controller = LoginVC()
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }
 
 
-// MARK: - Methods
-extension SignupVC {
+// MARK: - Fileprivate Methods
+fileprivate extension SignupVC {
     
-    fileprivate func navigateToHome() {
+    func navigateToHome() {
         UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = ECTabBar()
     }
     
     
-    fileprivate func setupNotifications() {
+    func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     
-    fileprivate func setupViewModelObserver() {
+    func setupViewModelObserver() {
         viewModel.bindableIsMaleSelected.bind { [weak self] isMale in
             guard let self = self, let isMale = isMale else { return }
             if isMale {
@@ -165,7 +165,7 @@ extension SignupVC {
     }
     
     
-    fileprivate func addTargets() {
+    func addTargets() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
         firstNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         lastNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -178,7 +178,7 @@ extension SignupVC {
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
