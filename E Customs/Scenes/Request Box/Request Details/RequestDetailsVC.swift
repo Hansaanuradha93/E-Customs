@@ -172,14 +172,14 @@ extension RequestDetailsVC: STPPaymentContextDelegate {
 
 
 // MARK: - Firebase Methods
-extension RequestDetailsVC {
+fileprivate extension RequestDetailsVC {
     
-    fileprivate func deleteRequest() {
+    func deleteRequest() {
         viewModel.deleteRequest()
     }
     
     
-    fileprivate func saveOrderDetails() {
+    func saveOrderDetails() {
         viewModel.saveOrderDetails { [weak self] status, message in
             guard let self = self else { return }
             if status {
@@ -196,9 +196,9 @@ extension RequestDetailsVC {
 
 
 // MARK: - Stripe Helper Methods
-extension RequestDetailsVC {
+fileprivate extension RequestDetailsVC {
     
-    fileprivate func makeCharge(paymentContext: STPPaymentContext, paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
+    func makeCharge(paymentContext: STPPaymentContext, paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
         let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")
         let customerId = UserDefaults.standard.string(forKey: UserDefaultsKeys.stripeId) ?? ""
         let data: [String: Any] = [
@@ -218,7 +218,7 @@ extension RequestDetailsVC {
     }
     
     
-    fileprivate func setShippingAddress(_ address: STPAddress) {
+    func setShippingAddress(_ address: STPAddress) {
         let line1 = address.line1 ?? ""
         let city = address.city ?? ""
         let state = address.state ?? ""
@@ -227,7 +227,7 @@ extension RequestDetailsVC {
     }
     
     
-    fileprivate func setupStripeConfig() {
+    func setupStripeConfig() {
         let config = STPPaymentConfiguration.shared()
         config.requiredBillingAddressFields = .none
         config.requiredShippingAddressFields = [.postalAddress]
@@ -250,17 +250,17 @@ extension RequestDetailsVC {
 }
 
 
-// MARK: - Methods
-extension RequestDetailsVC {
+// MARK: - Fileprivate Methods
+fileprivate extension RequestDetailsVC {
     
-    fileprivate func removeTableView(){
+    func removeTableView(){
         if let viewWithTag = self.view.viewWithTag(100) {
             viewWithTag.removeFromSuperview()
         }
     }
     
     
-    fileprivate func goToOrderDetails() {
+    func goToOrderDetails() {
         let subtotal = viewModel.subTotalDollars
         let proccessingFees = viewModel.proccessingFeesDollars
         let total = viewModel.totalDollars
@@ -273,7 +273,7 @@ extension RequestDetailsVC {
     }
     
     
-    fileprivate func setupViewModelObserver() {
+    func setupViewModelObserver() {
         viewModel.bindableIsApproving.bind { [weak self] isSaving in
             guard let self = self, let isSaving = isSaving else { return }
             if isSaving {
@@ -294,7 +294,7 @@ extension RequestDetailsVC {
     }
     
     
-    fileprivate func setData() {
+    func setData() {
         thumbnailImageView.downloadImage(from: request.thumbnailUrl ?? "")
         sneakerNameLabel.text = (request.sneakerName ?? "").uppercased()
         ideaDescriptionLabel.text = request.ideaDescription ?? ""
@@ -306,7 +306,7 @@ extension RequestDetailsVC {
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         tableView.tag = 100
         tableView.separatorStyle = .none
         tableView.dataSource = self
@@ -332,7 +332,7 @@ extension RequestDetailsVC {
     }
     
     
-    fileprivate func setupScrollView(){
+    func setupScrollView(){
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white

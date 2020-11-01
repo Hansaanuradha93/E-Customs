@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class RequestDetailsVM {
+final class RequestDetailsVM {
     
     // MARK: Properties
     var request: Request?
