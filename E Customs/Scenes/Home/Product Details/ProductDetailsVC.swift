@@ -94,18 +94,18 @@ extension ProductDetailsVC: UICollectionViewDataSource, UICollectionViewDelegate
 
 
 // MARK: - Objc Methods
-extension ProductDetailsVC {
+fileprivate extension ProductDetailsVC {
     
-    @objc fileprivate func handleAddToBag() {
+    @objc func handleAddToBag() {
         addToBag()
     }
 }
 
 
-// MARK: - Methods
-extension ProductDetailsVC {
+// MARK: - Fileprivate Methods
+fileprivate extension ProductDetailsVC {
     
-    fileprivate func addToBag() {
+    func addToBag() {
         viewModel.addToBag { [weak self] status, message in
             guard let self = self else { return }
             if status {
@@ -117,7 +117,7 @@ extension ProductDetailsVC {
     }
     
     
-    fileprivate func setupViewModelObserver() {
+    func setupViewModelObserver() {
         viewModel.bindableIsSizesAvailable.bind { [weak self] isSizesAvailable in
             guard let self = self, let isSizesAvailable = isSizesAvailable else { return }
             if isSizesAvailable {
@@ -149,7 +149,7 @@ extension ProductDetailsVC {
     }
     
     
-    fileprivate func setData() {
+    func setData() {
         thumbnailImageView.downloadImage(from: viewModel.product.thumbnailUrl ?? "")
         titleLabel.text = (viewModel.product.name ?? "").uppercased()
         descriptionLabel.text = viewModel.product.description ?? ""
@@ -159,7 +159,7 @@ extension ProductDetailsVC {
     }
     
     
-    fileprivate func setupCollectionView() {
+    func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsHorizontalScrollIndicator = false
@@ -167,7 +167,7 @@ extension ProductDetailsVC {
     }
     
     
-    fileprivate func setupScrollView() {
+    func setupScrollView() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
@@ -187,7 +187,7 @@ extension ProductDetailsVC {
     }
     
     
-    fileprivate func layoutUI() {
+    func layoutUI() {
         sizeLabel.text = Strings.size.uppercased()
         addToBagButton.isEnabled = false
         addToBagButton.addTarget(self, action: #selector(handleAddToBag), for: .touchUpInside)
