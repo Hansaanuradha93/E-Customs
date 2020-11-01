@@ -34,14 +34,14 @@ class RequestBoxVC: UIViewController {
 
 
 // MARK: - Objc Methods
-extension RequestBoxVC {
+fileprivate extension RequestBoxVC {
     
-    @objc fileprivate func handleSubmit() {
+    @objc func handleSubmit() {
         submitRequestInfo()
     }
     
     
-    @objc fileprivate func handleSelectPhoto() {
+    @objc func handleSelectPhoto() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
@@ -49,21 +49,21 @@ extension RequestBoxVC {
     }
     
     
-    @objc fileprivate func handleTextChange(textField: UITextField) {
+    @objc func handleTextChange(textField: UITextField) {
         viewModel.sneakerName = sneakerNameTextField.text
     }
     
     
-    @objc fileprivate func handleTapDismiss() {
+    @objc func handleTapDismiss() {
         view.endEditing(true)
     }
 }
 
 
-// MARK: - Methods
-extension RequestBoxVC {
+// MARK: - Fileprivate Methods
+fileprivate extension RequestBoxVC {
     
-    fileprivate func submitRequestInfo() {
+    func submitRequestInfo() {
         handleTapDismiss()
         viewModel.submitRequest { [weak self] status, message in
             guard let self = self else { return }
@@ -78,7 +78,7 @@ extension RequestBoxVC {
     }
     
     
-    fileprivate func setupViewModelObserver() {
+    func setupViewModelObserver() {
         viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
@@ -108,7 +108,7 @@ extension RequestBoxVC {
     }
     
     
-    fileprivate func addTargets() {
+    func addTargets() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
         photoButton.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         sneakerNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -116,7 +116,7 @@ extension RequestBoxVC {
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
@@ -136,7 +136,7 @@ extension RequestBoxVC {
     }
     
     
-    fileprivate func layoutUI() {
+    func layoutUI() {
         submitButton.isEnabled = false
         ideaDescriptionTextView.delegate = self
         

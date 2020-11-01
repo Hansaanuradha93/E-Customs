@@ -31,7 +31,6 @@ extension RequestBoxVM {
 // MARK: - Fileprivate Methods
 fileprivate extension RequestBoxVM {
     
-    
     func saveImageToFirebase(completion: @escaping (Bool, String) -> ()) {
         guard let image = self.bindableImage.value,
         let uploadData = image.jpegData(compressionQuality: 0.75) else { return }
