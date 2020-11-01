@@ -186,29 +186,29 @@ extension BagVC: STPPaymentContextDelegate {
 
 
 // MARK: - Objc Method
-extension BagVC {
+fileprivate extension BagVC {
     
-    @objc fileprivate func handleDone() {
+    @objc func handleDone() {
         updateQuantity()
         hidePickerWithAnimation()
     }
     
     
-    @objc fileprivate func handleTap() {
+    @objc func handleTap() {
         hidePickerWithAnimation()
     }
 }
 
 
 // MARK: - Firebase Methods
-extension BagVC {
+fileprivate extension BagVC {
     
-    fileprivate func deleteAllBagItems() {
+    func deleteAllBagItems() {
         viewModel.deleteAllBagItems()
     }
     
     
-    fileprivate func makeCharge(paymentContext: STPPaymentContext, paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
+    func makeCharge(paymentContext: STPPaymentContext, paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
         let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")
         let customerId = UserDefaults.standard.string(forKey: UserDefaultsKeys.stripeId) ?? ""
         let data: [String: Any] = [
@@ -228,7 +228,7 @@ extension BagVC {
     }
     
     
-    fileprivate func saveOrderDetails() {
+    func saveOrderDetails() {
         viewModel.saveOrderDetails { [weak self] status, message in
             guard let self = self else { return }
             if status {
@@ -243,7 +243,7 @@ extension BagVC {
     }
     
     
-    fileprivate func updateQuantity() {
+    func updateQuantity() {
         viewModel.updateQuanitity { [weak self] status, message in
             guard let self = self else { return }
             if status {
@@ -255,7 +255,7 @@ extension BagVC {
     }
     
     
-    fileprivate func deleteItem(at indexPath: IndexPath) {
+    func deleteItem(at indexPath: IndexPath) {
         let item = viewModel.items[indexPath.row]
         
         viewModel.delete(item) { [weak self] status, message in
@@ -266,7 +266,7 @@ extension BagVC {
         }
     }
     
-    fileprivate func fetchItems() {
+    func fetchItems() {
         listener = viewModel.fetchItems { (status) in
             if status {
                 self.paymentContext.paymentAmount = self.viewModel.total
@@ -277,10 +277,10 @@ extension BagVC {
 }
 
 
-// MARK: - Methods
-extension BagVC {
+// MARK: - Fileprivate Methods
+fileprivate extension BagVC {
     
-    fileprivate func updateUIWithItems() {
+    func updateUIWithItems() {
         if self.viewModel.items.isEmpty {
             DispatchQueue.main.async { self.tableView.backgroundView = ECEmptyStateView(emptyStateType: .shoppinBag) }
         } else {
@@ -290,7 +290,7 @@ extension BagVC {
     }
     
     
-    fileprivate func updateUI() {
+    func updateUI() {
         DispatchQueue.main.async {
             self.viewModel.items.removeAll()
             self.tableView.reloadData()
@@ -298,7 +298,7 @@ extension BagVC {
     }
     
     
-    fileprivate func goToOrderDetails() {
+    func goToOrderDetails() {
         let subtotal = viewModel.subTotalDollars
         let proccessingFees = viewModel.proccessingFeesDollars
         let total = viewModel.totalDollars
@@ -311,7 +311,7 @@ extension BagVC {
     }
     
     
-    fileprivate func setShippingAddress(_ address: STPAddress) {
+    func setShippingAddress(_ address: STPAddress) {
         let line1 = address.line1 ?? ""
         let city = address.city ?? ""
         let state = address.state ?? ""
@@ -320,7 +320,7 @@ extension BagVC {
     }
     
     
-    fileprivate func setupViewModelObserver() {
+    func setupViewModelObserver() {
         viewModel.bindableIsMakingPayment.bind { [weak self] isMakingPayment in
             guard let self = self, let isMakingPayment = isMakingPayment else { return }
             if isMakingPayment {
@@ -332,7 +332,7 @@ extension BagVC {
     }
     
     
-    fileprivate func setupStripeConfig() {
+    func setupStripeConfig() {
         let config = STPPaymentConfiguration.shared()
         config.requiredBillingAddressFields = .none
         config.requiredShippingAddressFields = [.postalAddress]
@@ -354,7 +354,7 @@ extension BagVC {
     }
     
     
-    fileprivate func createToolBar() {
+    func createToolBar() {
         toolBar.sizeToFit()
         let doneButton = UIBarButtonItem(title: Strings.done, style: .plain, target: self, action: #selector(handleDone))
         
@@ -369,7 +369,7 @@ extension BagVC {
     }
     
     
-    fileprivate func showPickerWithAnimation() {
+    func showPickerWithAnimation() {
         UIView.animate(withDuration: 0.5) {
             self.picker.alpha = 1
             self.toolBar.alpha = 1
@@ -377,7 +377,7 @@ extension BagVC {
     }
     
     
-    fileprivate func hidePickerWithAnimation() {
+    func hidePickerWithAnimation() {
         UIView.animate(withDuration: 0.5) {
             self.picker.alpha = 0
             self.toolBar.alpha = 0
@@ -385,7 +385,7 @@ extension BagVC {
     }
     
     
-    fileprivate func setupTableView() {
+    func setupTableView() {
         tableView.separatorStyle = .none
         tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
         tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
@@ -394,7 +394,7 @@ extension BagVC {
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
