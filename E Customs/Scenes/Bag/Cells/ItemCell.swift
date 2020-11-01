@@ -28,18 +28,8 @@ class ItemCell: UITableViewCell {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension ItemCell {
-    
-    @objc fileprivate func handleQuntity() {
-        selectQuntity?()
-    }
-    
-    
-    @objc fileprivate func handleClose() {
-        removeAction?()
-    }
-    
     
     func set(item: Item, itemType: ItemType = .bagItem) {
         thumbnailImageView.downloadImage(from: item.thumbnailUrl ?? "")
@@ -66,9 +56,23 @@ extension ItemCell {
             quantityLabel.attributedText = attributedString
         }
     }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension ItemCell {
+    
+    @objc func handleQuntity() {
+        selectQuntity?()
+    }
     
     
-    fileprivate func setupUI() {
+    @objc func handleClose() {
+        removeAction?()
+    }
+    
+    
+    func setupUI() {
         selectionStyle = .none
         quantityLabel.isUserInteractionEnabled = true
         quantityLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleQuntity)))
