@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class RequestListVM {
+final class RequestListVM {
     
     // MARK: Properties
     var requests = [Request]()
@@ -9,7 +9,7 @@ class RequestListVM {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension RequestListVM {
     
     func fetchRequests(completion: @escaping (Bool) -> ()) -> ListenerRegistration? {
@@ -47,9 +47,13 @@ extension RequestListVM {
         }
         return listener
     }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension RequestListVM {
     
-    
-    fileprivate func sortRequestsByTimestamp(completion: @escaping (Bool) -> ()) {
+    func sortRequestsByTimestamp(completion: @escaping (Bool) -> ()) {
         let values = Array(requestsDictionary.values)
         requests = values.sorted(by: { (request1, request2) -> Bool in
             guard let timestamp1 = request1.timestamp, let timestamp2 = request2.timestamp else { return false }
