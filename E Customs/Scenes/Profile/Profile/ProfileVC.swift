@@ -84,15 +84,15 @@ extension ProfileVC {
 }
 
 
-// MARK: - Methods
-extension ProfileVC {
+// MARK: - Fileprivate Methods
+fileprivate extension ProfileVC {
     
-    @objc fileprivate func signout() {
+    @objc func signout() {
         signoutUser()
     }
     
     
-    fileprivate func fetchUserProfile() {
+    func fetchUserProfile() {
         viewModel.fetchUserProfile { [weak self] status in
             guard let self = self else { return }
             if status {
@@ -102,7 +102,7 @@ extension ProfileVC {
     }
     
     
-    fileprivate func signoutUser() {
+    func signoutUser() {
         viewModel.signout { [weak self] status, message in
             guard let self = self else { return }
             if status {
@@ -115,12 +115,12 @@ extension ProfileVC {
     }
     
     
-    fileprivate func goToSignup() {
+    func goToSignup() {
         UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = UINavigationController(rootViewController: SignupVC())
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
