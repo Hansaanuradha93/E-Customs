@@ -18,16 +18,8 @@ class SizeCell: UICollectionViewCell {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension SizeCell {
-    
-    fileprivate func setupUI() {
-        self.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
-
-        addSubview(sizeLabel)
-        sizeLabel.fillSuperview()
-    }
-    
     
     func setup(size: Double) {
         sizeLabel.text = "\(size)"
@@ -42,5 +34,17 @@ extension SizeCell {
             backgroundColor = .white
             sizeLabel.textColor = .gray
         }
+    }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension SizeCell {
+    
+    func setupUI() {
+        self.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
+
+        addSubview(sizeLabel)
+        sizeLabel.fillSuperview()
     }
 }
