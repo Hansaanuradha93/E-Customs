@@ -29,7 +29,11 @@ extension ProductCell {
         priceLabel.text = "$\(product.price ?? "")"
         thumbnailImageView.downloadImage(from: product.thumbnailUrl ?? "")
     }
-    
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension ProductCell {
     
     func setupUI() {
         selectionStyle = .none
