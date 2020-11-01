@@ -1,6 +1,6 @@
 import Firebase
 
-class ProductDetialsVM {
+final class ProductDetialsVM {
     
     // MARK: Properties
     let product: Product

@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class LoginVM {
+final class LoginVM {
     
     // MARK: Properties
     var email: String? { didSet { checkFormValidity() } }

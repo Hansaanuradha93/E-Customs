@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class RequestBoxVM {
+final class RequestBoxVM {
     
     // MARK: Properties
     var sneakerName: String? { didSet { checkFormValidity() } }
