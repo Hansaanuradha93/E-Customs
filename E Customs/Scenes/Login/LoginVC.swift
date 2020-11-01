@@ -37,9 +37,9 @@ class LoginVC: UIViewController {
 
 
 // MARK: - Objc Methods
-extension LoginVC {
+fileprivate extension LoginVC {
     
-    @objc fileprivate func handleLogin() {
+    @objc func handleLogin() {
         handleTapDismiss()
         viewModel.performLogin { [weak self] status, message in
             guard let self = self else { return }
@@ -52,50 +52,50 @@ extension LoginVC {
     }
     
     
-    @objc fileprivate func handleTextChange(textField: UITextField) {
+    @objc func handleTextChange(textField: UITextField) {
         viewModel.email = emailTextField.text
         viewModel.password = passwordTextField.text
     }
     
     
-    @objc fileprivate func handleTapDismiss() {
+    @objc func handleTapDismiss() {
         view.endEditing(true)
     }
     
     
-    @objc fileprivate func handleKeyboardHide() {
+    @objc func handleKeyboardHide() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.verticalStackView.transform = .identity
         })
     }
     
     
-    @objc fileprivate func handleKeyboardShow(notification: Notification) {
+    @objc func handleKeyboardShow(notification: Notification) {
         self.verticalStackView.transform = CGAffineTransform(translationX: 0, y: -10)
     }
     
     
-    @objc fileprivate func handleGoToLogin() {
+    @objc func handleGoToLogin() {
         self.navigationController?.popViewController(animated: true)
     }
 }
 
 
-// MARK: - Methods
-extension LoginVC {
+// MARK: - Fileprivate Methods
+fileprivate extension LoginVC {
     
-    fileprivate func navigateToHome() {
+    func navigateToHome() {
         UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = ECTabBar()
     }
     
     
-    fileprivate func setupNotifications() {
+    func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     
-    fileprivate func setupViewModelObserver() {
+    func setupViewModelObserver() {
         viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
@@ -119,7 +119,7 @@ extension LoginVC {
     }
     
     
-    fileprivate func addTargets() {
+    func addTargets() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
         emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -128,7 +128,7 @@ extension LoginVC {
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
