@@ -24,7 +24,7 @@ class RequestCell: UITableViewCell {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension RequestCell {
     
     func set(request: Request, isLastRequest: Bool) {
@@ -35,9 +35,13 @@ extension RequestCell {
         priceLabel.text = request.price != nil ? "$\(request.price!)" : ""
         separatorLine.alpha = isLastRequest ? 0 : 1
     }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension RequestCell {
     
-    
-    fileprivate func setupUI() {
+    func setupUI() {
         selectionStyle = .none
         
         let paddingTop: CGFloat = 24
