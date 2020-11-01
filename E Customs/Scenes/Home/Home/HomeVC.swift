@@ -58,10 +58,10 @@ extension HomeVC {
 }
 
 
-// MARK: - Methods
-extension HomeVC {
+// MARK: - Fileprivate Methods
+fileprivate extension HomeVC {
     
-    fileprivate func fetchProducts() {
+    func fetchProducts() {
         listener = viewModel.fetchProducts { (status) in
             if status {
                 self.updateUI()
@@ -70,7 +70,7 @@ extension HomeVC {
     }
     
     
-    fileprivate func updateUI() {
+    func updateUI() {
         if self.viewModel.products.isEmpty {
             DispatchQueue.main.async { self.tableView.backgroundView = ECEmptyStateView(emptyStateType: .home) }
         } else {
@@ -80,7 +80,7 @@ extension HomeVC {
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
