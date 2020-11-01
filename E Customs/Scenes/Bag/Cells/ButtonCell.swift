@@ -20,13 +20,8 @@ class ButtonCell: UITableViewCell {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension ButtonCell {
-    
-    @objc fileprivate func handleButtonAction() {
-        buttonAction?()
-    }
-    
     
     func set(buttonType: ButtonType) {
         var title = ""
@@ -39,9 +34,18 @@ extension ButtonCell {
         }
         button.setTitle(title, for: .normal)
     }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension ButtonCell {
+    
+    @objc func handleButtonAction() {
+        buttonAction?()
+    }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         selectionStyle = .none
         button.addTarget(self, action: #selector(handleButtonAction), for: .touchUpInside)
         
