@@ -36,20 +36,20 @@ class PaymentInfoCell: UITableViewCell {
 
 
 // MARK: - Objc Methods
-extension PaymentInfoCell {
+fileprivate extension PaymentInfoCell {
     
-    @objc fileprivate func handleShippingMethod() {
+    @objc func handleShippingMethod() {
         shippingMethodAction?()
     }
     
     
-    @objc fileprivate func handlePaymentMethod() {
+    @objc func handlePaymentMethod() {
         paymentMethodAction?()
     }
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension PaymentInfoCell {
     
     func set(subtotalPennies: Int, processingFeesPennies: Int, totalPennies: Int, paymentMethod: String?, shippingMethod: String?) {
@@ -63,9 +63,13 @@ extension PaymentInfoCell {
         shippingMethodValueLabel.text = shippingMethod ?? (Strings.select + " ↓")
         paymentMethodValueLabel.text = paymentMethod ?? (Strings.select + " ↓")
     }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension PaymentInfoCell {
     
-    
-    fileprivate func setupUI() {
+    func setupUI() {
         selectionStyle = .none
         
         shippingMethodValueLabel.isUserInteractionEnabled = true
