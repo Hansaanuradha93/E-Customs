@@ -18,7 +18,7 @@ class NumberOfItemsCell: UITableViewCell {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension NumberOfItemsCell {
     
     func set(count: Int) {
@@ -30,9 +30,13 @@ extension NumberOfItemsCell {
             itemsCountLabel.text = Strings.noItemsYet
         }
     }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension NumberOfItemsCell {
     
-    
-    fileprivate func setupUI() {
+    func setupUI() {
         let padding: CGFloat = 24
         selectionStyle = .none
         contentView.addSubview(itemsCountLabel)
