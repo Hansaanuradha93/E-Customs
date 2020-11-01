@@ -14,7 +14,7 @@ class RequestBoxVM {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension RequestBoxVM {
     
     func submitRequest(completion: @escaping (Bool, String) -> ()) {
@@ -25,9 +25,14 @@ extension RequestBoxVM {
             saveInfoToFirestore(imageUrl: "", completion: completion)
         }
     }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension RequestBoxVM {
     
     
-    fileprivate func saveImageToFirebase(completion: @escaping (Bool, String) -> ()) {
+    func saveImageToFirebase(completion: @escaping (Bool, String) -> ()) {
         guard let image = self.bindableImage.value,
         let uploadData = image.jpegData(compressionQuality: 0.75) else { return }
         self.bindableIsSaving.value = true
@@ -46,7 +51,7 @@ extension RequestBoxVM {
     }
     
     
-    fileprivate func fetchImageDownloadUrl(reference: StorageReference, completion: @escaping (Bool, String) -> ()) {
+    func fetchImageDownloadUrl(reference: StorageReference, completion: @escaping (Bool, String) -> ()) {
         reference.downloadURL { (url, error) in
             if let error = error {
                 self.bindableIsSaving.value = false
@@ -59,7 +64,7 @@ extension RequestBoxVM {
     }
     
     
-    fileprivate func saveInfoToFirestore(imageUrl: String, completion: @escaping (Bool, String) -> ()) {
+    func saveInfoToFirestore(imageUrl: String, completion: @escaping (Bool, String) -> ()) {
         let reference = Firestore.firestore().collection("requests")
         let documentId = reference.document().documentID
         let uid = Auth.auth().currentUser?.uid ?? ""
@@ -92,3 +97,4 @@ extension RequestBoxVM {
         bindalbeIsFormValid.value = isFormValid
     }
 }
+
