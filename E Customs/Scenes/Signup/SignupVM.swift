@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class SignupVM {
+final class SignupVM {
     
     // MARK: Properties
     var firstName: String? { didSet { checkFormValidity() } }
@@ -21,7 +21,7 @@ class SignupVM {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension SignupVM {
     
     func performSignUp(completion: @escaping (Bool, String) -> ()) {
@@ -37,9 +37,13 @@ extension SignupVM {
             self.saveInfoToFirestore(completion: completion)
         }
     }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension SignupVM {
     
-    
-    fileprivate func saveInfoToFirestore(completion: @escaping (Bool, String) -> ()) {
+    func saveInfoToFirestore(completion: @escaping (Bool, String) -> ()) {
         let uid = Auth.auth().currentUser?.uid ?? ""
         let userInfo = [
             "uid": uid,
