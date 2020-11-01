@@ -1,6 +1,6 @@
 import Firebase
 
-class HomeVM {
+final class HomeVM {
     
     // MARK: Properties
     var products = [Product]()
