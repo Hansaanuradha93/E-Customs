@@ -57,16 +57,16 @@ extension RequestListVC {
 }
 
 
-// MARK: - Methods
-extension RequestListVC {
+// MARK: - Fileprivate Methods
+fileprivate extension RequestListVC {
     
-    @objc fileprivate func addRequest() {
+    @objc func addRequest() {
         let controller = RequestBoxVC()
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
     
-    fileprivate func fetchRequests() {
+    func fetchRequests() {
         listener = viewModel.fetchRequests { [weak self] status in
             guard let self = self else { return }
             if status {
@@ -76,7 +76,7 @@ extension RequestListVC {
     }
     
     
-    fileprivate func updateUI() {
+    func updateUI() {
         if self.viewModel.requests.isEmpty {
             DispatchQueue.main.async { self.tableView.backgroundView = ECEmptyStateView(emptyStateType: .requestBox) }
         } else {
@@ -86,13 +86,13 @@ extension RequestListVC {
     }
     
     
-    fileprivate func setupTableView() {
+    func setupTableView() {
         tableView.separatorStyle = .none
         tableView.register(RequestCell.self, forCellReuseIdentifier: RequestCell.reuseID)
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
