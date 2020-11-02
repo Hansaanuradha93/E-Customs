@@ -10,6 +10,7 @@ class OrderDetailsVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupTableView()
     }
     
     
@@ -159,12 +160,7 @@ fileprivate extension OrderDetailsVC {
     }
     
     
-    func setupUI() {
-        navigationController?.navigationBar.barTintColor = UIColor.white
-        navigationController?.navigationBar.prefersLargeTitles = true
-        view.backgroundColor = .white
-        title = Strings.orderDetail
-                
+    func setupTableView() {
         tableView.separatorStyle = .none
         tableView.register(OrderHeaderCell.self, forCellReuseIdentifier: OrderHeaderCell.reuseID)
         tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
@@ -173,5 +169,13 @@ fileprivate extension OrderDetailsVC {
         tableView.register(CustomerDetailsCell.self, forCellReuseIdentifier: CustomerDetailsCell.reuseID)
         tableView.register(ButtonCell.self, forCellReuseIdentifier: ButtonCell.reuseID)
         tableView.register(DescriptionCell.self, forCellReuseIdentifier: DescriptionCell.reuseID)
+    }
+    
+    
+    func setupUI() {
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = .white
+        title = Strings.orderDetail
     }
 }
