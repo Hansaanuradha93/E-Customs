@@ -21,16 +21,20 @@ class ProfileDetailCell: UITableViewCell {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension ProfileDetailCell {
     
     func set(name: String, value: String?) {
         nameLabel.text = name
         valueLabel.text = value ?? ""
     }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension ProfileDetailCell {
     
-    
-    fileprivate func setupUI() {
+    func setupUI() {
         backgroundColor = .white
         selectionStyle = .none
         separatorLine.backgroundColor = .lightGray
