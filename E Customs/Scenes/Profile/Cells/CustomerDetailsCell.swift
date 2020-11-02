@@ -31,23 +31,22 @@ class CustomerDetailsCell: UITableViewCell {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension CustomerDetailsCell {
     
     func set(user: User, address: String) {
         fullnameValueLabel.text = "\(user.firstname ?? "") \(user.lastname ?? "")"
         emailValueLabel.text = "\(user.email ?? "")"
         addressValueLabel.text = address
-        
-        if user.isMale ?? false {
-            genderValueLabel.text = Strings.male
-        } else {
-            genderValueLabel.text = Strings.female
-        }
+        genderValueLabel.text = (user.isMale ?? false) ? Strings.male : Strings.female
     }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension CustomerDetailsCell {
     
-    
-    fileprivate func setupUI() {
+    func setupUI() {
         selectionStyle = .none
         let padding: CGFloat = 24
         
