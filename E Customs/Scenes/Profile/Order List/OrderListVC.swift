@@ -58,10 +58,10 @@ extension OrderListVC {
 }
 
 
-// MARK: - Methods
-extension OrderListVC {
+// MARK: - Fileprivate Methods
+fileprivate extension OrderListVC {
     
-    fileprivate func fetchOrders() {
+    func fetchOrders() {
         listener = viewModel.fetchOrders { [weak self] status in
             guard let self = self else { return }
             if status {
@@ -71,7 +71,7 @@ extension OrderListVC {
     }
     
     
-    fileprivate func updateUI() {
+    func updateUI() {
         if self.viewModel.orders.isEmpty {
             DispatchQueue.main.async { self.tableView.backgroundView = ECEmptyStateView(emptyStateType: .order) }
         } else {
@@ -81,7 +81,7 @@ extension OrderListVC {
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white

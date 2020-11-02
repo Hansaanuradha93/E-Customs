@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class OrderListVM {
+final class OrderListVM {
     
     // MARK: Properties
     var orders = [Order]()
