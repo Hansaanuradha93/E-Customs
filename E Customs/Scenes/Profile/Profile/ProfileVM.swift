@@ -1,6 +1,6 @@
 import Firebase
 
-class ProfileVM {
+final class ProfileVM {
     
     // MARK: Properties
     var user: User?

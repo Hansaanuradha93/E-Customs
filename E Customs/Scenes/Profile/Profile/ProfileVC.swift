@@ -15,7 +15,7 @@ class ProfileVC: UITableViewController {
 }
 
 
-// MARK: UITableView
+// MARK: - UITableView
 extension ProfileVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
