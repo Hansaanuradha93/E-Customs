@@ -9,6 +9,22 @@ struct Order {
     var timestamp: Timestamp?
     var items = [Item]()
     
+    
+    // MARK: Computed Properties
+    var itemCountString: String {
+        var itemCountString = ""
+        if let itemCount = itemCount {
+            if itemCount == 0 {
+                itemCountString = Strings.noItemsYet
+            } else if itemCount == 1 {
+                itemCountString = "\(itemCount) Item"
+            } else {
+                itemCountString = "\(itemCount) Items"
+            }
+        }
+        return itemCountString
+    }
+    
    
     // MARK: Initializers
     init(dictionary: [String : Any]) {
