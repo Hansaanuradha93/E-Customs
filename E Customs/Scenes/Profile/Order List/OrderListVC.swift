@@ -12,6 +12,7 @@ class OrderListVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupTableView()
     }
     
     
@@ -81,13 +82,16 @@ fileprivate extension OrderListVC {
     }
     
     
+    func setupTableView() {
+        tableView.separatorStyle = .none
+        tableView.register(OrderCell.self, forCellReuseIdentifier: OrderCell.reuseID)
+    }
+    
+    
     func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
         title = Strings.orders
-        
-        tableView.separatorStyle = .none
-        tableView.register(OrderCell.self, forCellReuseIdentifier: OrderCell.reuseID)
     }
 }
