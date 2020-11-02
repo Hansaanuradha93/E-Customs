@@ -7,6 +7,12 @@ struct User {
     var isAdminUser, isMale: Bool?
     
     
+    // MARK: Computed Properties
+    var fullName: String {
+        return "\(firstname ?? "") \(lastname ?? "")"
+    }
+    
+    
     // MARK: Initializers
     init(dictionary: [String : Any]) {
         self.uid = dictionary["uid"] as? String

@@ -35,7 +35,7 @@ class CustomerDetailsCell: UITableViewCell {
 extension CustomerDetailsCell {
     
     func set(user: User, address: String) {
-        fullnameValueLabel.text = "\(user.firstname ?? "") \(user.lastname ?? "")"
+        fullnameValueLabel.text = user.fullName
         emailValueLabel.text = "\(user.email ?? "")"
         addressValueLabel.text = address
         genderValueLabel.text = (user.isMale ?? false) ? Strings.male : Strings.female
