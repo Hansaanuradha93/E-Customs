@@ -21,10 +21,10 @@ class ProfilePictureCell: UITableViewCell {
 }
 
 
-// MARK: - Methods
-extension ProfilePictureCell {
+// MARK: - Fileprivate Methods
+fileprivate extension ProfilePictureCell {
     
-    fileprivate func setupUI() {
+    func setupUI() {
         backgroundColor = .white
         selectionStyle = .none
         
