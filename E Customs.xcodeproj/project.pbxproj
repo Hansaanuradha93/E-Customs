@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4708496F25507AEB00862E38 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708496E25507AEB00862E38 /* Date+Ext.swift */; };
 		47250E7C252C87E500DF323D /* ECTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47250E7B252C87E500DF323D /* ECTextView.swift */; };
 		47250E7F252C9C5000DF323D /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47250E7E252C9C5000DF323D /* Keys.swift */; };
 		4728D610252EBE5E00E7E099 /* RequestDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4728D60F252EBE5E00E7E099 /* RequestDetailsVC.swift */; };
@@ -77,6 +78,7 @@
 
 /* Begin PBXFileReference section */
 		33E5A76D829FEBFBFEA71488 /* Pods-E Customs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E Customs.release.xcconfig"; path = "Target Support Files/Pods-E Customs/Pods-E Customs.release.xcconfig"; sourceTree = "<group>"; };
+		4708496E25507AEB00862E38 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		47250E7B252C87E500DF323D /* ECTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECTextView.swift; sourceTree = "<group>"; };
 		47250E7E252C9C5000DF323D /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		4728D60F252EBE5E00E7E099 /* RequestDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsVC.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				477D22C42507D49E009C572B /* UIColor+Ext.swift */,
 				477F40B12508898D0053A149 /* UIViewController+Ext.swift */,
 				4786707A251682AC00591FCD /* UIImageView+Ext.swift */,
+				4708496E25507AEB00862E38 /* Date+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				477F40B0250887BC0053A149 /* Bindable.swift in Sources */,
 				4728D616252EBE9500E7E099 /* Request.swift in Sources */,
 				47B10616251F7A780009D04C /* SizeCell.swift in Sources */,
+				4708496F25507AEB00862E38 /* Date+Ext.swift in Sources */,
 				4728D65E252F244300E7E099 /* Public Enums.swift in Sources */,
 				4728D613252EBE7200E7E099 /* RequestDetailsVM.swift in Sources */,
 				478670772516825000591FCD /* NetworkManager.swift in Sources */,
