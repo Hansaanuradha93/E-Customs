@@ -1,6 +1,6 @@
 import Firebase
 
-class OrderDetailsVM {
+final class OrderDetailsVM {
     
     // MARK: Properties
     var order: Order

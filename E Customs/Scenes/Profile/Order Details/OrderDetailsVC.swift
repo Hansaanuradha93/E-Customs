@@ -21,7 +21,7 @@ class OrderDetailsVC: UITableViewController {
 }
 
 
-// MARK: UITableView
+// MARK: - UITableView
 extension OrderDetailsVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -115,10 +115,10 @@ extension OrderDetailsVC {
 }
 
 
-// MARK: - Methods
-extension OrderDetailsVC {
+// MARK: - Fileprivate Methods
+fileprivate extension OrderDetailsVC {
     
-    fileprivate func completeOrder() {
+    func completeOrder() {
         viewModel.completeOrder { [weak self] status, message in
             guard let self = self else { return }
             if status {
@@ -131,7 +131,7 @@ extension OrderDetailsVC {
     }
     
     
-    fileprivate func fetchCustomerDetails() {
+    func fetchCustomerDetails() {
         viewModel.fetchCustomerDetails { [weak self] status in
             guard let self = self else { return }
             if status {
@@ -141,7 +141,7 @@ extension OrderDetailsVC {
     }
     
     
-    fileprivate func fetchItems() {
+    func fetchItems() {
         viewModel.fetchItems { [weak self] status in
             guard let self = self else { return }
             if status {
@@ -151,7 +151,7 @@ extension OrderDetailsVC {
     }
     
     
-    fileprivate func updateUI() {
+    func updateUI() {
         viewModel.order.status = OrderStatusType.completed.rawValue
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -159,7 +159,7 @@ extension OrderDetailsVC {
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
