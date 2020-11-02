@@ -20,15 +20,19 @@ class DescriptionCell: UITableViewCell {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension DescriptionCell {
     
     func set(description: String?) {
         decriptionLabel.text = description ?? ""
     }
+}
+
+
+// MARK: - Fileprivate Methods
+fileprivate extension DescriptionCell {
     
-    
-    fileprivate func setupUI() {
+    func setupUI() {
         selectionStyle = .none
         let padding: CGFloat = 24
                 
