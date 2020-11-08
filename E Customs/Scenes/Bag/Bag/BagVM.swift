@@ -39,6 +39,18 @@ final class BagVM {
         return count
     }
     
+    var itemCountString: String {
+        var itemCountString = ""
+        if numberOfItems == 0 {
+            itemCountString = Strings.noItemsYet
+        } else if numberOfItems == 1 {
+            itemCountString = "\(numberOfItems) Item"
+        } else {
+            itemCountString = "\(numberOfItems) Items"
+        }
+        return itemCountString
+    }
+    
     var subtotal: Int {
         var amount = 0
         var pricePennies = 0
