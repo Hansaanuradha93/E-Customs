@@ -71,6 +71,7 @@
 		47B6B1AB2535B96D0037D024 /* CustomerDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6B1AA2535B96D0037D024 /* CustomerDetailsCell.swift */; };
 		47C83ED72508A865003A26D4 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C83ED62508A865003A26D4 /* LoginVC.swift */; };
 		47C83ED92508A883003A26D4 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C83ED82508A883003A26D4 /* LoginVM.swift */; };
+		47E58CC92558562D0074DD6E /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E58CC82558562D0074DD6E /* String+Ext.swift */; };
 		47E614F92553141B00C8925E /* Timestamp+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E614F82553141B00C8925E /* Timestamp+Ext.swift */; };
 		47E8EC7625334E4100F2861F /* StripeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E8EC7525334E4100F2861F /* StripeAPI.swift */; };
 		E01CFCC893CC263354165544 /* Pods_E_Customs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEAEFCB5BBB7A8C08E2826C /* Pods_E_Customs.framework */; };
@@ -144,6 +145,7 @@
 		47B6B1AA2535B96D0037D024 /* CustomerDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDetailsCell.swift; sourceTree = "<group>"; };
 		47C83ED62508A865003A26D4 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		47C83ED82508A883003A26D4 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
+		47E58CC82558562D0074DD6E /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		47E614F82553141B00C8925E /* Timestamp+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timestamp+Ext.swift"; sourceTree = "<group>"; };
 		47E8EC7525334E4100F2861F /* StripeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAPI.swift; sourceTree = "<group>"; };
 		9DEAEFCB5BBB7A8C08E2826C /* Pods_E_Customs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_E_Customs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -369,6 +371,7 @@
 				477F40B12508898D0053A149 /* UIViewController+Ext.swift */,
 				4786707A251682AC00591FCD /* UIImageView+Ext.swift */,
 				47E614F82553141B00C8925E /* Timestamp+Ext.swift */,
+				47E58CC82558562D0074DD6E /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -736,6 +739,7 @@
 				479C4D0D250E7EFF00A7E399 /* RequestBoxVC.swift in Sources */,
 				47B6B1A52535926B0037D024 /* OrderDetailsVM.swift in Sources */,
 				4767D29C25151B49004C23CB /* Constants.swift in Sources */,
+				47E58CC92558562D0074DD6E /* String+Ext.swift in Sources */,
 				47B6B1A8253599390037D024 /* OrderHeaderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
