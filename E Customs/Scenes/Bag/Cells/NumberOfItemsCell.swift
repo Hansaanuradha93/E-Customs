@@ -21,14 +21,8 @@ class NumberOfItemsCell: UITableViewCell {
 // MARK: - Public Methods
 extension NumberOfItemsCell {
     
-    func set(count: Int) {
-        if count > 1 {
-            itemsCountLabel.text = "\(count) ITEMS"
-        } else if count == 1 {
-            itemsCountLabel.text = "\(count) ITEM"
-        } else {
-            itemsCountLabel.text = Strings.noItemsYet
-        }
+    func set(itemCountString: String) {
+        itemsCountLabel.text = itemCountString
     }
 }
 
