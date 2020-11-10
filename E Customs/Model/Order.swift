@@ -25,6 +25,34 @@ struct Order {
         return itemCountString
     }
     
+    var typeNumberString: String {
+        if let type = type, let id = orderId {
+            return "\(type) Order #\(id)"
+        }
+        return "Unknown order"
+    }
+    
+    var numberString: String {
+        if let id = orderId {
+            return "Order #\(id)"
+        }
+        return "Unknown order number"
+    }
+    
+    var statusString: String {
+        if let status = status {
+            return "Order \(status)"
+        }
+        return "Unknown order status"
+    }
+    
+    var dateString: String {
+        if let timestamp = timestamp {
+            return timestamp.toString()
+        }
+        return ""
+    }
+    
    
     // MARK: Initializers
     init(dictionary: [String : Any]) {
