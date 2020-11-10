@@ -28,7 +28,7 @@ extension OrderHeaderCell {
     func set(order: Order) {
         orderNumberLabel.text = "\(order.type ?? "") Order #" + (order.orderId ?? "").uppercased()
         statusLabel.text =  "Order " + (order.status ?? "").uppercased()
-        if let timestamp = order.timestamp { dateLabel.text = timestamp.toString()}
+        if let timestamp = order.timestamp { dateLabel.text = timestamp.toString() }
     }
 }
 
