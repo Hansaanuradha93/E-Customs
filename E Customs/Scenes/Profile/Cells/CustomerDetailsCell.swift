@@ -38,7 +38,7 @@ extension CustomerDetailsCell {
         fullnameValueLabel.text = user.fullName
         emailValueLabel.text = "\(user.email ?? "")"
         addressValueLabel.text = address
-        genderValueLabel.text = (user.isMale ?? false) ? Strings.male : Strings.female
+        genderValueLabel.text = user.gender
     }
 }
 
