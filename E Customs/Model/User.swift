@@ -12,6 +12,14 @@ struct User {
         return "\(firstname ?? "") \(lastname ?? "")"
     }
     
+    var gender: String {
+        if isMale ?? false {
+            return Strings.male
+        } else {
+            return Strings.female
+        }
+    }
+    
     
     // MARK: Initializers
     init(dictionary: [String : Any]) {
