@@ -28,7 +28,7 @@ class OrderCell: UITableViewCell {
 extension OrderCell {
     
     func set(order: Order, isLastOrder: Bool) {
-        orderNumberLabel.text = "Order #\(order.orderId ?? "")"
+        orderNumberLabel.text = order.numberString
         priceLabel.text = "$\(order.total ?? 0.00)"
         statusLabel.text = "\(order.status ?? "")"
         itemsCountLabel.text = order.itemCountString
