@@ -58,7 +58,8 @@ fileprivate extension SignupVM {
             guard let self = self else { return }
             self.bindableIsRegistering.value = false
             if let error = error {
-                completion(false, error.localizedDescription)
+                print(error.localizedDescription)
+                completion(false, Strings.somethingWentWrong)
                 return
             }
             completion(true, Strings.authenticationSuccessfull)
