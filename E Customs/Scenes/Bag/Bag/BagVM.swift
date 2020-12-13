@@ -201,6 +201,7 @@ extension BagVM {
         let reference = Firestore.firestore().collection("bag").document(currentUserId).collection("items")
         
         items.removeAll()
+        completion(true)
         
         let listener = reference.addSnapshotListener { querySnapshot, error in
             if let error = error {
