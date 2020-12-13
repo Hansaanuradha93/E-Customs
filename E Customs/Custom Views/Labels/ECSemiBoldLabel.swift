@@ -13,7 +13,6 @@ class ECSemiBoldLabel: UILabel {
     
     convenience init(text: String = "", textAlignment: NSTextAlignment = .center, textColor: UIColor = .black, fontSize: CGFloat = 16, numberOfLines: Int = 1) {
         self.init(frame: .zero)
-        self.init(frame: .zero)
         let traits = [UIFontDescriptor.TraitKey.weight: UIFont.Weight.bold]
         var descriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: Fonts.avenirNext])
         descriptor = descriptor.addingAttributes([UIFontDescriptor.AttributeName.traits: traits])
