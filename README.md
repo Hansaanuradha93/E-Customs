@@ -4,7 +4,7 @@ E-Customs is an iOS ecommerce app which helps the user to purchase items online.
 
 ## Screenshots
 
-[<img src="Screenshots/clip1.gif" align="left" width="1000" hspace="10" vspace="10">](Screenshots/clip1.gif)
+[<img src="Screenshots/gif1.gif" align="left" width="1000" hspace="10" vspace="10">](Screenshots/clip1.gif)
 
 <br/><br/>
 <br/><br/>
