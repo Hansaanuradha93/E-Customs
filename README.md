@@ -46,7 +46,7 @@ pod install
 Update cocopods
 
 ```
-update install
+pod update
 ```
 
 Open E Customs.xcworkspace from Xcode and run it on ios simulator or a real device
