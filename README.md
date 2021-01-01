@@ -21,7 +21,7 @@ E-Customs is an iOS ecommerce app which helps the user to purchase items online.
 
 ## Getting Started
 
-This app only uses bunch of Firebase libraries. It will be easy to get started.
+This app uses bunch of Firebase libraries and Stripe for payment integration. It will be easy to get started.
 
 ### Installing
 
