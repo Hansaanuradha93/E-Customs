@@ -17,7 +17,6 @@ E-Customs is an iOS ecommerce app which helps the user to purchase items online.
 <br/><br/>
 <br/><br/>
 <br/><br/>
-<br/><br/>
 
 ## Getting Started
 
