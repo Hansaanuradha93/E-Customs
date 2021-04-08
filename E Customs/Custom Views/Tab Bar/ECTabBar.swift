@@ -12,8 +12,8 @@ class ECTabBar: UITabBarController {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension ECTabBar {
+// MARK: - Private Methods
+private extension ECTabBar {
     
     func fetchUserDetails() {
         let uid = Auth.auth().currentUser?.uid ?? ""
