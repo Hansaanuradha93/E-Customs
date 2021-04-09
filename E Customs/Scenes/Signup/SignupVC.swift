@@ -3,26 +3,26 @@ import UIKit
 class SignupVC: UIViewController {
     
     // MARK: Properties
-    fileprivate let viewModel = SignupVM()
+    private let viewModel = SignupVM()
     
-    fileprivate let firstNameTextField = ECTextField(padding: 16, placeholderText: Strings.firstName)
-    fileprivate let lastNameTextField = ECTextField(padding: 16, placeholderText: Strings.lastName)
-    fileprivate let emailTextField = ECTextField(padding: 16, placeholderText: Strings.email)
-    fileprivate let passwordTextField = ECTextField(padding: 16, placeholderText: Strings.password)
-    fileprivate let maleButton = ECButton(title: Strings.male, titleColor: .gray, fontSize: 17)
-    fileprivate let femaleButton = ECButton(title: Strings.female, titleColor: .gray, fontSize: 17)
+    private let firstNameTextField = ECTextField(padding: 16, placeholderText: Strings.firstName)
+    private let lastNameTextField = ECTextField(padding: 16, placeholderText: Strings.lastName)
+    private let emailTextField = ECTextField(padding: 16, placeholderText: Strings.email)
+    private let passwordTextField = ECTextField(padding: 16, placeholderText: Strings.password)
+    private let maleButton = ECButton(title: Strings.male, titleColor: .gray, fontSize: 17)
+    private let femaleButton = ECButton(title: Strings.female, titleColor: .gray, fontSize: 17)
     
-    fileprivate let signupButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.signup, titleColor: .gray, fontSize: 18)
-    fileprivate let goToLoginButton = ECButton(backgroundColor: .white, title: Strings.gotoLogin, titleColor: .black, fontSize: 15)
+    private let signupButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.signup, titleColor: .gray, fontSize: 18)
+    private let goToLoginButton = ECButton(backgroundColor: .white, title: Strings.gotoLogin, titleColor: .black, fontSize: 15)
     
-    fileprivate lazy var horizontalStackView: UIStackView = {
+    private lazy var horizontalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [maleButton, femaleButton])
         stackView.distribution = .fillEqually
         stackView.spacing = 24
         return stackView
     }()
     
-    fileprivate lazy var verticalStackView: UIStackView = {
+    private lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, firstNameTextField, lastNameTextField,  horizontalStackView, signupButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
@@ -49,7 +49,7 @@ class SignupVC: UIViewController {
 
 
 // MARK: - Objc Methods
-fileprivate extension SignupVC {
+private extension SignupVC {
     
     @objc func handleSignUp() {
         handleTapDismiss()
@@ -106,8 +106,8 @@ fileprivate extension SignupVC {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension SignupVC {
+// MARK: - Private Methods
+private extension SignupVC {
     
     func navigateToHome() {
         UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = ECTabBar()
