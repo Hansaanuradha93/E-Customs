@@ -40,8 +40,8 @@ extension SignupVM {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension SignupVM {
+// MARK: - Private Methods
+private extension SignupVM {
     
     func saveInfoToFirestore(completion: @escaping (Bool, String) -> ()) {
         let uid = Auth.auth().currentUser?.uid ?? ""
