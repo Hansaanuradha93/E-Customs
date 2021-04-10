@@ -5,7 +5,7 @@ class RequestListVC: UITableViewController {
     
     // MARK: Properties
     let viewModel = RequestListVM()
-    fileprivate var listener: ListenerRegistration?
+    private var listener: ListenerRegistration?
 
     
     // MARK: View Controller
@@ -57,8 +57,8 @@ extension RequestListVC {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension RequestListVC {
+// MARK: - Private Methods
+private extension RequestListVC {
     
     @objc func addRequest() {
         let controller = RequestBoxVC()

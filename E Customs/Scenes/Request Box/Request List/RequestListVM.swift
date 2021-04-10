@@ -5,7 +5,7 @@ final class RequestListVM {
     
     // MARK: Properties
     var requests = [Request]()
-    fileprivate var requestsDictionary = [String : Request]()
+    private var requestsDictionary = [String : Request]()
 }
 
 
@@ -50,8 +50,8 @@ extension RequestListVM {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension RequestListVM {
+// MARK: - Private Methods
+private extension RequestListVM {
     
     func sortRequestsByTimestamp(completion: @escaping (Bool) -> ()) {
         let values = Array(requestsDictionary.values)
