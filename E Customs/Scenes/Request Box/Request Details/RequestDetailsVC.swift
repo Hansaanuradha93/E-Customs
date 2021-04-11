@@ -4,20 +4,20 @@ import Stripe
 class RequestDetailsVC: UIViewController {
     
     // MARK: Properties
-    fileprivate let viewModel = RequestDetailsVM()
+    private let viewModel = RequestDetailsVM()
     
     var request: Request!
-    fileprivate var paymentContext: STPPaymentContext!
+    private var paymentContext: STPPaymentContext!
     
-    fileprivate let scrollView = UIScrollView()
-    fileprivate let contentView = UIView()
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
     
-    fileprivate let thumbnailImageView = ECImageView(contentMode: .scaleAspectFill)
-    fileprivate let sneakerNameLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
-    fileprivate let ideaDescriptionLabel =  ECRegularLabel(textAlignment: .left, textColor: .lightGray, fontSize: 15, numberOfLines: 0)
-    fileprivate let statusLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
+    private let thumbnailImageView = ECImageView(contentMode: .scaleAspectFill)
+    private let sneakerNameLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
+    private let ideaDescriptionLabel =  ECRegularLabel(textAlignment: .left, textColor: .lightGray, fontSize: 15, numberOfLines: 0)
+    private let statusLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
     
-    fileprivate let tableView = UITableView()
+    private let tableView = UITableView()
 
         
     // MARK: Initializers
@@ -172,7 +172,7 @@ extension RequestDetailsVC: STPPaymentContextDelegate {
 
 
 // MARK: - Firebase Methods
-fileprivate extension RequestDetailsVC {
+private extension RequestDetailsVC {
     
     func deleteRequest() {
         viewModel.deleteRequest()
@@ -196,7 +196,7 @@ fileprivate extension RequestDetailsVC {
 
 
 // MARK: - Stripe Helper Methods
-fileprivate extension RequestDetailsVC {
+private extension RequestDetailsVC {
     
     func makeCharge(paymentContext: STPPaymentContext, paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
         let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")
@@ -250,8 +250,8 @@ fileprivate extension RequestDetailsVC {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension RequestDetailsVC {
+// MARK: - Private Methods
+private extension RequestDetailsVC {
     
     func removeTableView(){
         if let viewWithTag = self.view.viewWithTag(100) {
