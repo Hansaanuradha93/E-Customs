@@ -6,8 +6,8 @@ final class RequestDetailsVM {
     // MARK: Properties
     var request: Request?
     
-    fileprivate let stripeCreditCardCut = 0.029
-    fileprivate let flatFeeCents = 30
+    private let stripeCreditCardCut = 0.029
+    private let flatFeeCents = 30
     
     var shippingMethod: String?
     var paymentMethod: String?
