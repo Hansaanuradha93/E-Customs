@@ -28,8 +28,8 @@ extension RequestBoxVM {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension RequestBoxVM {
+// MARK: - Private Methods
+private extension RequestBoxVM {
     
     func saveImageToFirebase(completion: @escaping (Bool, String) -> ()) {
         guard let image = self.bindableImage.value,
