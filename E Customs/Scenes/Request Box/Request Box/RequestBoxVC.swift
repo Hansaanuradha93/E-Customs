@@ -3,17 +3,17 @@ import UIKit
 class RequestBoxVC: UIViewController {
     
     // MARK: Properties
-    fileprivate let viewModel = RequestBoxVM()
+    private let viewModel = RequestBoxVM()
     
-    fileprivate let scrollView = UIScrollView()
-    fileprivate let contentView = UIView()
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
     
-    fileprivate let photoButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.selectPhoto, titleColor: .gray, fontSize: 21)
-    fileprivate let sneakerNameTextField = ECTextField(padding: 16, placeholderText: Strings.sneakerName)
-    fileprivate let ideaDescriptionTextView = ECTextView(padding: 13, placeholderText: Strings.yourIdea)
-    fileprivate let submitButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.submit, titleColor: .gray, fontSize: 18)
+    private let photoButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.selectPhoto, titleColor: .gray, fontSize: 21)
+    private let sneakerNameTextField = ECTextField(padding: 16, placeholderText: Strings.sneakerName)
+    private let ideaDescriptionTextView = ECTextView(padding: 13, placeholderText: Strings.yourIdea)
+    private let submitButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.submit, titleColor: .gray, fontSize: 18)
 
-    fileprivate lazy var verticalStackView: UIStackView = {
+    private lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [photoButton, sneakerNameTextField, ideaDescriptionTextView, submitButton])
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -34,7 +34,7 @@ class RequestBoxVC: UIViewController {
 
 
 // MARK: - Objc Methods
-fileprivate extension RequestBoxVC {
+private extension RequestBoxVC {
     
     @objc func handleSubmit() {
         submitRequestInfo()
@@ -60,8 +60,8 @@ fileprivate extension RequestBoxVC {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension RequestBoxVC {
+// MARK: - Private Methods
+private extension RequestBoxVC {
     
     func submitRequestInfo() {
         handleTapDismiss()
