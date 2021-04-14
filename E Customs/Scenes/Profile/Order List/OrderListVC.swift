@@ -4,8 +4,8 @@ import Firebase
 class OrderListVC: UITableViewController {
     
     // MARK: Properties
-    let viewModel = OrderListVM()
-    fileprivate var listener: ListenerRegistration?
+    private let viewModel = OrderListVM()
+    private var listener: ListenerRegistration?
 
     
     // MARK: View Controller
@@ -59,8 +59,8 @@ extension OrderListVC {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension OrderListVC {
+// MARK: - Private Methods
+private extension OrderListVC {
     
     func fetchOrders() {
         listener = viewModel.fetchOrders { [weak self] status in
