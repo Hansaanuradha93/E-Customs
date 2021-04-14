@@ -5,7 +5,7 @@ final class OrderListVM {
     
     // MARK: Properties
     var orders = [Order]()
-    fileprivate var ordersDictionary = [String : Order]()
+    private var ordersDictionary = [String : Order]()
 }
 
 
@@ -48,7 +48,7 @@ extension OrderListVM {
     }
     
     
-    fileprivate func sortOrdersByTimestamp(completion: @escaping (Bool) -> ()) {
+    private func sortOrdersByTimestamp(completion: @escaping (Bool) -> ()) {
         let values = Array(ordersDictionary.values)
         orders = values.sorted(by: { (order1, order2) -> Bool in
             guard let timestamp1 = order1.timestamp, let timestamp2 = order2.timestamp else { return false }
