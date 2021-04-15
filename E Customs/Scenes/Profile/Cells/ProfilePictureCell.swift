@@ -5,9 +5,9 @@ class ProfilePictureCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "ProfilePictureCell"
     
-    fileprivate let profileImage = Asserts.personFill.withRenderingMode(.alwaysOriginal)
-    fileprivate let profileImageView = ECImageView(image: Asserts.personFill, contentMode: .scaleAspectFit)
-    fileprivate let separatorLine = UIView()
+    private let profileImage = Asserts.personFill.withRenderingMode(.alwaysOriginal)
+    private let profileImageView = ECImageView(image: Asserts.personFill, contentMode: .scaleAspectFit)
+    private let separatorLine = UIView()
     
     
     // MARK: Initializers
@@ -21,8 +21,8 @@ class ProfilePictureCell: UITableViewCell {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension ProfilePictureCell {
+// MARK: - Private Methods
+private extension ProfilePictureCell {
     
     func setupUI() {
         backgroundColor = .white
