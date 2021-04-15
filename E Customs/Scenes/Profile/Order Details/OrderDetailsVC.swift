@@ -116,8 +116,8 @@ extension OrderDetailsVC {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension OrderDetailsVC {
+// MARK: - Private Methods
+private extension OrderDetailsVC {
     
     func completeOrder() {
         viewModel.completeOrder { [weak self] status, message in
