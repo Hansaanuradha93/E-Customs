@@ -5,9 +5,9 @@ class ProfileDetailCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "ProfileDetailCell"
     
-    fileprivate let nameLabel = ECMediumLabel(textAlignment: .left, fontSize: 19)
-    fileprivate let valueLabel = ECRegularLabel(textAlignment: .left, fontSize: 19)
-    fileprivate let separatorLine = UIView()
+    private let nameLabel = ECMediumLabel(textAlignment: .left, fontSize: 19)
+    private let valueLabel = ECRegularLabel(textAlignment: .left, fontSize: 19)
+    private let separatorLine = UIView()
     
     
     // MARK: Initializers
@@ -31,8 +31,8 @@ extension ProfileDetailCell {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension ProfileDetailCell {
+// MARK: - Private Methods
+private extension ProfileDetailCell {
     
     func setupUI() {
         backgroundColor = .white
