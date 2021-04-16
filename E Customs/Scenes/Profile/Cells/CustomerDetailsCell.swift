@@ -5,19 +5,19 @@ class CustomerDetailsCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "CustomerDetailsCell"
     
-    fileprivate let titleLabel = ECMediumLabel(text: Strings.customerDetails, textAlignment: .left, fontSize: 17)
+    private let titleLabel = ECMediumLabel(text: Strings.customerDetails, textAlignment: .left, fontSize: 17)
     
-    fileprivate let fullnameLabel = ECMediumLabel(text: Strings.fullname, textAlignment: .left, fontSize: 17)
-    fileprivate let fullnameValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15, numberOfLines: 0)
+    private let fullnameLabel = ECMediumLabel(text: Strings.fullname, textAlignment: .left, fontSize: 17)
+    private let fullnameValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15, numberOfLines: 0)
     
-    fileprivate let emailLabel = ECMediumLabel(text: Strings.email, textAlignment: .left, fontSize: 17)
-    fileprivate let emailValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15, numberOfLines: 0)
+    private let emailLabel = ECMediumLabel(text: Strings.email, textAlignment: .left, fontSize: 17)
+    private let emailValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15, numberOfLines: 0)
     
-    fileprivate let genderLabel = ECMediumLabel(text: Strings.gender, textAlignment: .left, fontSize: 17)
-    fileprivate let genderValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
+    private let genderLabel = ECMediumLabel(text: Strings.gender, textAlignment: .left, fontSize: 17)
+    private let genderValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
     
-    fileprivate let addressLabel = ECMediumLabel(text: Strings.shippingAddress, textAlignment: .left, fontSize: 17)
-    fileprivate let addressValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15, numberOfLines: 0)
+    private let addressLabel = ECMediumLabel(text: Strings.shippingAddress, textAlignment: .left, fontSize: 17)
+    private let addressValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 15, numberOfLines: 0)
 
     
     // MARK: Initializers
@@ -43,8 +43,8 @@ extension CustomerDetailsCell {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension CustomerDetailsCell {
+// MARK: - Private Methods
+private extension CustomerDetailsCell {
     
     func setupUI() {
         selectionStyle = .none
