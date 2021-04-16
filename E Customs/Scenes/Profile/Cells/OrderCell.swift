@@ -5,12 +5,12 @@ class OrderCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "OrderCell"
     
-    fileprivate let thumbnailImageView = ECImageView(contentMode: .scaleAspectFill)
-    fileprivate let orderNumberLabel = ECRegularLabel(text: "Order #", textAlignment: .left, fontSize: 15)
-    fileprivate let itemsCountLabel = ECRegularLabel(text: "ITEMS",textAlignment: .left, textColor: .gray, fontSize: 15)
-    fileprivate let priceLabel = ECRegularLabel(text: "$", textAlignment: .left, textColor: .gray, fontSize: 15)
-    fileprivate let statusLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
-    fileprivate let separatorLine = UIView()
+    private let thumbnailImageView = ECImageView(contentMode: .scaleAspectFill)
+    private let orderNumberLabel = ECRegularLabel(text: "Order #", textAlignment: .left, fontSize: 15)
+    private let itemsCountLabel = ECRegularLabel(text: "ITEMS",textAlignment: .left, textColor: .gray, fontSize: 15)
+    private let priceLabel = ECRegularLabel(text: "$", textAlignment: .left, textColor: .gray, fontSize: 15)
+    private let statusLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
+    private let separatorLine = UIView()
 
     
     // MARK: Initializers
@@ -38,8 +38,8 @@ extension OrderCell {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension OrderCell {
+// MARK: - Private Methods
+private extension OrderCell {
     
     func setupUI() {
         selectionStyle = .none
