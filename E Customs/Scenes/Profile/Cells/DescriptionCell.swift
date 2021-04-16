@@ -5,8 +5,8 @@ class DescriptionCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "DescriptionCell"
         
-    fileprivate let titleLabel = ECMediumLabel(text: Strings.designDescription, textAlignment: .left, fontSize: 17)
-    fileprivate let decriptionLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15, numberOfLines: 0)
+    private let titleLabel = ECMediumLabel(text: Strings.designDescription, textAlignment: .left, fontSize: 17)
+    private let decriptionLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15, numberOfLines: 0)
 
     
     // MARK: Initializers
@@ -29,8 +29,8 @@ extension DescriptionCell {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension DescriptionCell {
+// MARK: - Private Methods
+private extension DescriptionCell {
     
     func setupUI() {
         selectionStyle = .none
