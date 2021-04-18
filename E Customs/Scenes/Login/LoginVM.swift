@@ -33,8 +33,8 @@ extension LoginVM {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension LoginVM {
+// MARK: - Private Methods
+private extension LoginVM {
     
     func checkFormValidity() {
         let isFormValid = email?.isEmpty == false && password?.isEmpty == false && password?.count ?? 0 >= 6
