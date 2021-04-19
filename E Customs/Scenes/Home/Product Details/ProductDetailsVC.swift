@@ -3,17 +3,17 @@ import UIKit
 class ProductDetailsVC: UIViewController {
 
     // MARK: Properties
-    fileprivate var viewModel: ProductDetialsVM!
+    private var viewModel: ProductDetialsVM!
     
-    fileprivate let scrollView = UIScrollView()
-    fileprivate let contentView = UIView()
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
     
-    fileprivate let thumbnailImageView = ECImageView(contentMode: .scaleAspectFill)
-    fileprivate let titleLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
-    fileprivate let descriptionLabel = ECRegularLabel(textAlignment: .left, textColor: .lightGray, fontSize: 15, numberOfLines: 0)
-    fileprivate let sizeLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
-    fileprivate let priceLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
-    fileprivate let addToBagButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.addToBag, titleColor: .gray, radius: GlobalConstants.cornerRadius, fontSize: 16)
+    private let thumbnailImageView = ECImageView(contentMode: .scaleAspectFill)
+    private let titleLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
+    private let descriptionLabel = ECRegularLabel(textAlignment: .left, textColor: .lightGray, fontSize: 15, numberOfLines: 0)
+    private let sizeLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
+    private let priceLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
+    private let addToBagButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.addToBag, titleColor: .gray, radius: GlobalConstants.cornerRadius, fontSize: 16)
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -94,7 +94,7 @@ extension ProductDetailsVC: UICollectionViewDataSource, UICollectionViewDelegate
 
 
 // MARK: - Objc Methods
-fileprivate extension ProductDetailsVC {
+private extension ProductDetailsVC {
     
     @objc func handleAddToBag() {
         addToBag()
@@ -102,8 +102,8 @@ fileprivate extension ProductDetailsVC {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension ProductDetailsVC {
+// MARK: - Private Methods
+private extension ProductDetailsVC {
     
     func addToBag() {
         viewModel.addToBag { [weak self] status, message in
