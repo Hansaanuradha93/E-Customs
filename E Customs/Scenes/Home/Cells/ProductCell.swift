@@ -5,9 +5,9 @@ class ProductCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "ProductCell"
     
-    fileprivate let thumbnailImageView = ECImageView(image: Asserts.placeHolder)
-    fileprivate let titleLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
-    fileprivate let priceLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
+    private let thumbnailImageView = ECImageView(image: Asserts.placeHolder)
+    private let titleLabel = ECMediumLabel(textAlignment: .left, fontSize: 17)
+    private let priceLabel = ECRegularLabel(textAlignment: .left, fontSize: 15)
 
     
     // MARK: Initilizers
@@ -32,8 +32,8 @@ extension ProductCell {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension ProductCell {
+// MARK: - Private Methods
+private extension ProductCell {
     
     func setupUI() {
         selectionStyle = .none
