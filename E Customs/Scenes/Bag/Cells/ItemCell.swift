@@ -5,13 +5,13 @@ class ItemCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "ItemCell"
     
-    fileprivate let thumbnailImageView = ECImageView(contentMode: .scaleAspectFill)
-    fileprivate let nameLabel = ECRegularLabel(textAlignment: .left, fontSize: 15, numberOfLines: 2)
-    fileprivate let descriptionLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
-    fileprivate let sizeLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
-    fileprivate let priceLabel = ECMediumLabel(textAlignment: .left, fontSize: 15)
-    fileprivate let quantityLabel = ECMediumLabel(textAlignment: .left, fontSize: 15)
-    fileprivate let closeButton = ECButton(backgroundColor: .white)
+    private let thumbnailImageView = ECImageView(contentMode: .scaleAspectFill)
+    private let nameLabel = ECRegularLabel(textAlignment: .left, fontSize: 15, numberOfLines: 2)
+    private let descriptionLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
+    private let sizeLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
+    private let priceLabel = ECMediumLabel(textAlignment: .left, fontSize: 15)
+    private let quantityLabel = ECMediumLabel(textAlignment: .left, fontSize: 15)
+    private let closeButton = ECButton(backgroundColor: .white)
     
     var removeAction: (() -> Void)? = nil
     var selectQuntity: (() -> Void)? = nil
@@ -55,8 +55,8 @@ extension ItemCell {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension ItemCell {
+// MARK: - Private Methods
+private extension ItemCell {
     
     @objc func handleQuntity() {
         selectQuntity?()
