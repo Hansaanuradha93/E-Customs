@@ -5,12 +5,12 @@ import Stripe
 class BagVC: UITableViewController {
     
     // MARK: Properties
-    let viewModel = BagVM()
+    private let viewModel = BagVM()
     let picker = UIPickerView()
     let toolBar = UIToolbar()
     
-    fileprivate var listener: ListenerRegistration?
-    fileprivate var paymentContext: STPPaymentContext!
+    private var listener: ListenerRegistration?
+    private var paymentContext: STPPaymentContext!
     
     
     // MARK: View Controller
@@ -186,7 +186,7 @@ extension BagVC: STPPaymentContextDelegate {
 
 
 // MARK: - Objc Method
-fileprivate extension BagVC {
+private extension BagVC {
     
     @objc func handleDone() {
         updateQuantity()
@@ -201,7 +201,7 @@ fileprivate extension BagVC {
 
 
 // MARK: - Firebase Methods
-fileprivate extension BagVC {
+private extension BagVC {
     
     func deleteAllBagItems() {
         viewModel.deleteAllBagItems()
@@ -277,8 +277,8 @@ fileprivate extension BagVC {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension BagVC {
+// MARK: - Private Methods
+private extension BagVC {
     
     func updateUIWithItems() {
         if self.viewModel.items.isEmpty {
