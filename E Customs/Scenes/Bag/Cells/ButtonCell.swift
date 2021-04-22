@@ -5,7 +5,7 @@ class ButtonCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "CheckoutButtonCell"
     
-    fileprivate let button = ECButton(backgroundColor: .black, titleColor: .white, radius: 2, fontSize: 16)
+    private let button = ECButton(backgroundColor: .black, titleColor: .white, radius: 2, fontSize: 16)
     var buttonAction: (() -> Void)? = nil
 
     
@@ -37,8 +37,8 @@ extension ButtonCell {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension ButtonCell {
+// MARK: - Private Methods
+private extension ButtonCell {
     
     @objc func handleButtonAction() {
         buttonAction?()
