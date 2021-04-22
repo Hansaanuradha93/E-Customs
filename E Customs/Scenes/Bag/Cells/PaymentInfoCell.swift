@@ -5,20 +5,20 @@ class PaymentInfoCell: UITableViewCell {
     // MARK: Properties
     static let reuseID = "PaymentInfoCell"
     
-    fileprivate let subTotalLabel = ECRegularLabel(text: Strings.subtotal, textAlignment: .left, textColor: .gray, fontSize: 15)
-    fileprivate let subTotalValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
+    private let subTotalLabel = ECRegularLabel(text: Strings.subtotal, textAlignment: .left, textColor: .gray, fontSize: 15)
+    private let subTotalValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
     
-    fileprivate let shippingMethodLabel = ECRegularLabel(text: Strings.shipping, textAlignment: .left, textColor: .gray, fontSize: 15)
-    fileprivate let shippingMethodValueLabel = ECRegularLabel(text: Strings.select + " ↓", textAlignment: .left, textColor: .gray, fontSize: 15)
+    private let shippingMethodLabel = ECRegularLabel(text: Strings.shipping, textAlignment: .left, textColor: .gray, fontSize: 15)
+    private let shippingMethodValueLabel = ECRegularLabel(text: Strings.select + " ↓", textAlignment: .left, textColor: .gray, fontSize: 15)
     
-    fileprivate let paymentMethodLabel = ECRegularLabel(text: Strings.paymentMethod, textAlignment: .left, textColor: .gray, fontSize: 15)
-    fileprivate let paymentMethodValueLabel = ECRegularLabel(text: Strings.select + " ↓", textAlignment: .left, textColor: .gray, fontSize: 15)
+    private let paymentMethodLabel = ECRegularLabel(text: Strings.paymentMethod, textAlignment: .left, textColor: .gray, fontSize: 15)
+    private let paymentMethodValueLabel = ECRegularLabel(text: Strings.select + " ↓", textAlignment: .left, textColor: .gray, fontSize: 15)
     
-    fileprivate let processingFeesLabel = ECRegularLabel(text: Strings.processingFees, textAlignment: .left, textColor: .gray, fontSize: 15)
-    fileprivate let processingFeesValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
+    private let processingFeesLabel = ECRegularLabel(text: Strings.processingFees, textAlignment: .left, textColor: .gray, fontSize: 15)
+    private let processingFeesValueLabel = ECRegularLabel(textAlignment: .left, textColor: .gray, fontSize: 15)
     
-    fileprivate let totalLabel = ECRegularLabel(text: Strings.total, textAlignment: .left, fontSize: 17)
-    fileprivate let totalValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 17)
+    private let totalLabel = ECRegularLabel(text: Strings.total, textAlignment: .left, fontSize: 17)
+    private let totalValueLabel = ECRegularLabel(textAlignment: .left, fontSize: 17)
     
     var shippingMethodAction: (() -> Void)? = nil
     var paymentMethodAction: (() -> Void)? = nil
@@ -36,7 +36,7 @@ class PaymentInfoCell: UITableViewCell {
 
 
 // MARK: - Objc Methods
-fileprivate extension PaymentInfoCell {
+private extension PaymentInfoCell {
     
     @objc func handleShippingMethod() {
         shippingMethodAction?()
@@ -66,8 +66,8 @@ extension PaymentInfoCell {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension PaymentInfoCell {
+// MARK: - Private Methods
+private extension PaymentInfoCell {
     
     func setupUI() {
         selectionStyle = .none
