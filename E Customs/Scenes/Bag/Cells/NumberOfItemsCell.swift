@@ -4,7 +4,7 @@ class NumberOfItemsCell: UITableViewCell {
     
     // MARK: Properties
     static let reuseID = "NumberOfItemsCell"
-    fileprivate let itemsCountLabel = ECRegularLabel(textAlignment: .left, fontSize: 17)
+    private let itemsCountLabel = ECRegularLabel(textAlignment: .left, fontSize: 17)
     
     
     // MARK: Initializers
@@ -27,8 +27,8 @@ extension NumberOfItemsCell {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension NumberOfItemsCell {
+// MARK: - Private Methods
+private extension NumberOfItemsCell {
     
     func setupUI() {
         let padding: CGFloat = 24
