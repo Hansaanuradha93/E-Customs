@@ -24,8 +24,8 @@ class ECEmptyStateView: UIView {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension ECEmptyStateView {
+// MARK: - Private Methods
+private extension ECEmptyStateView {
     
     func configureState(_ emptyStateType: EmptyStateType) {
         var image = Asserts.placeHolder
