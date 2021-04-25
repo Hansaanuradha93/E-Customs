@@ -3,7 +3,7 @@ import UIKit
 class ECTextField: UITextField {
     
     // MARK: Properties
-    fileprivate var padding: CGFloat = 0
+    private var padding: CGFloat = 0
     
     
     // MARK: Initializers
@@ -32,8 +32,8 @@ class ECTextField: UITextField {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension ECTextField {
+// MARK: - Private Methods
+private extension ECTextField {
     
     func configureTextField(_ background: UIColor, _ padding: CGFloat, _ placeholderText: String, _ radius: CGFloat, _ fontSize: CGFloat) {
         let traits = [UIFontDescriptor.TraitKey.weight: UIFont.Weight.regular]
