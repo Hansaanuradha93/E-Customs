@@ -19,8 +19,8 @@ class ECTextView: UITextView {
 }
 
 
-// MARK: - Fileprivate Methods
-fileprivate extension ECTextView {
+// MARK: - Private Methods
+private extension ECTextView {
     
     func configureTextView(_ background: UIColor, _ placeholderText: String, _ textColor: UIColor, _ fontSize: CGFloat, _ padding: CGFloat) {
         let traits = [UIFontDescriptor.TraitKey.weight: UIFont.Weight.regular]
