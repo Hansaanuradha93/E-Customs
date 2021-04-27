@@ -26,6 +26,7 @@ class LoginVC: UIViewController {
         addTargets()
         setupNotifications()
         setupViewModelObserver()
+        addDebugLoginCredentials()
     }
     
     
@@ -99,13 +100,10 @@ private extension LoginVC {
         viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
-                self.loginButton.backgroundColor = .black
-                self.loginButton.setTitleColor(.white, for: .normal)
+                self.enableLoginButton()
             } else {
-                self.loginButton.backgroundColor = UIColor.appColor(.lightGray)
-                self.loginButton.setTitleColor(.gray, for: .disabled)
+                self.disableLoginButton()
             }
-            self.loginButton.isEnabled = isFormValid
         }
         
         viewModel.bindableIsLogin.bind { [weak self] isLogin in
@@ -118,6 +116,19 @@ private extension LoginVC {
         }
     }
     
+    func disableLoginButton() {
+        loginButton.backgroundColor = UIColor.appColor(.lightGray)
+        loginButton.setTitleColor(.gray, for: .disabled)
+        loginButton.isEnabled = false
+    }
+    
+    
+    func enableLoginButton() {
+        loginButton.backgroundColor = .black
+        loginButton.setTitleColor(.white, for: .normal)
+        loginButton.isEnabled = true
+    }
+    
     
     func addTargets() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
@@ -125,6 +136,16 @@ private extension LoginVC {
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         gotoSignupButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
+    }
+    
+    func addDebugLoginCredentials() {
+        #if DEBUG
+        emailTextField.text = Strings.testUserEmail
+        passwordTextField.text = Strings.testUserPassword
+        viewModel.email = Strings.testUserEmail
+        viewModel.password = Strings.testUserPassword
+        enableLoginButton()
+        #endif
     }
     
     
