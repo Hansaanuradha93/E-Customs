@@ -33,6 +33,10 @@ struct Asserts {
 // MARK: - Strings
 struct Strings {
     
+    // Credentials
+    static let testUserEmail = "Testuser@gmail.com"
+    static let testUserPassword = "testuser123"
+    
     // Titles
     static let home = "HOME"
     static let detail = "DETAIL"
