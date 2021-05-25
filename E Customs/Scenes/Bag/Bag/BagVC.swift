@@ -150,7 +150,8 @@ extension BagVC: STPPaymentContextDelegate {
     }
     
     
-    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {        makeCharge(paymentContext: paymentContext, paymentResult: paymentResult, completion: completion)
+    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
+        makeCharge(paymentContext: paymentContext, paymentResult: paymentResult, completion: completion)
     }
     
     
