@@ -22,7 +22,6 @@
 		4728D65B252F200F00E7E099 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4728D65A252F200F00E7E099 /* User.swift */; };
 		4728D65E252F244300E7E099 /* Public Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4728D65D252F244300E7E099 /* Public Enums.swift */; };
 		4734F836251122B000192BCB /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734F835251122B000192BCB /* Product.swift */; };
-		47660A23254540630088FFE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47660A22254540630088FFE3 /* GoogleService-Info.plist */; };
 		4767D29325151A4A004C23CB /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767D29225151A4A004C23CB /* ProductCell.swift */; };
 		4767D29725151AA8004C23CB /* ECImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767D29625151AA8004C23CB /* ECImageView.swift */; };
 		4767D29C25151B49004C23CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767D29B25151B49004C23CB /* Constants.swift */; };
@@ -74,6 +73,7 @@
 		47E58CC92558562D0074DD6E /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E58CC82558562D0074DD6E /* String+Ext.swift */; };
 		47E614F92553141B00C8925E /* Timestamp+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E614F82553141B00C8925E /* Timestamp+Ext.swift */; };
 		47E8EC7625334E4100F2861F /* StripeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E8EC7525334E4100F2861F /* StripeAPI.swift */; };
+		47F5808C265E40A700F0D01E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47F5808B265E40A700F0D01E /* GoogleService-Info.plist */; };
 		E01CFCC893CC263354165544 /* Pods_E_Customs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEAEFCB5BBB7A8C08E2826C /* Pods_E_Customs.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,7 +94,6 @@
 		4728D65A252F200F00E7E099 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4728D65D252F244300E7E099 /* Public Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Public Enums.swift"; sourceTree = "<group>"; };
 		4734F835251122B000192BCB /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		47660A22254540630088FFE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4767D29225151A4A004C23CB /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		4767D29625151AA8004C23CB /* ECImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECImageView.swift; sourceTree = "<group>"; };
 		4767D29B25151B49004C23CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -148,6 +147,7 @@
 		47E58CC82558562D0074DD6E /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		47E614F82553141B00C8925E /* Timestamp+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timestamp+Ext.swift"; sourceTree = "<group>"; };
 		47E8EC7525334E4100F2861F /* StripeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAPI.swift; sourceTree = "<group>"; };
+		47F5808B265E40A700F0D01E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9DEAEFCB5BBB7A8C08E2826C /* Pods_E_Customs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_E_Customs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB304BB033D27356CA1DBEA8 /* Pods-E Customs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E Customs.debug.xcconfig"; path = "Target Support Files/Pods-E Customs/Pods-E Customs.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -353,7 +353,7 @@
 		477D22C02507D328009C572B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				47660A22254540630088FFE3 /* GoogleService-Info.plist */,
+				47F5808B265E40A700F0D01E /* GoogleService-Info.plist */,
 				477D22A92507D067009C572B /* AppDelegate.swift */,
 				477D22AB2507D067009C572B /* SceneDelegate.swift */,
 				477D22B22507D068009C572B /* Assets.xcassets */,
@@ -624,7 +624,7 @@
 			files = (
 				477D22B62507D068009C572B /* LaunchScreen.storyboard in Resources */,
 				477D22B32507D068009C572B /* Assets.xcassets in Resources */,
-				47660A23254540630088FFE3 /* GoogleService-Info.plist in Resources */,
+				47F5808C265E40A700F0D01E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
