@@ -78,7 +78,6 @@ extension RequestDetailsVM {
         thumbnailUrl = request?.thumbnailUrl ?? ""
         timestamp = Timestamp()
         
-        
         let orderData: [String : Any] = [
             "orderId": orderId,
             "uid": uid,

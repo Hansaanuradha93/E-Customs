@@ -144,9 +144,10 @@ extension BagVC: STPPaymentContextDelegate {
     
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
-        presentAlert(title: Strings.failed, message: Strings.somethingWentWrong, buttonTitle: Strings.ok) { (_) in
-            self.paymentContext.retryLoading()
-        }
+        // TODO: add this alert again
+//        presentAlert(title: Strings.failed, message: Strings.somethingWentWrong, buttonTitle: Strings.ok) { (_) in
+//            self.paymentContext.retryLoading()
+//        }
     }
     
     
