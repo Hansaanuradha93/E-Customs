@@ -22,8 +22,8 @@ class LoginVC: UIViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        addTargets()
+        style()
+        layout()
         setupNotifications()
         setupViewModelObserver()
         addDebugLoginCredentials()
@@ -129,15 +129,6 @@ private extension LoginVC {
         loginButton.isEnabled = true
     }
     
-    
-    func addTargets() {
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
-        emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-        loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
-        gotoSignupButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
-    }
-    
     func addDebugLoginCredentials() {
         #if DEBUG
         emailTextField.text = Strings.testUserEmail
@@ -149,7 +140,7 @@ private extension LoginVC {
     }
     
     
-    func setupUI() {
+    func style() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
@@ -166,10 +157,22 @@ private extension LoginVC {
         passwordTextField.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
         loginButton.setRoundedBorder(borderColor: .black, borderWidth: 0, radius: 2)
         
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
+        emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        gotoSignupButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
+    }
+    
+    
+    func layout() {
         let paddingTop: CGFloat = 30
         let paddingCorners: CGFloat = 24
+        
         view.addSubviews(verticalStackView, gotoSignupButton)
+        
         loginButton.heightAnchor.constraint(equalToConstant: GlobalConstants.height).isActive = true
+        
         verticalStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: paddingTop, left: paddingCorners, bottom: 0, right: paddingCorners))
 
         gotoSignupButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
