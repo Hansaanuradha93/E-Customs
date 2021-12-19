@@ -132,7 +132,7 @@ struct Fonts {
 
 // MARK: - GlobalConstants
 struct GlobalConstants {
-    static let height: CGFloat = 44
+    static let height: CGFloat = 50
     static let cornerRadius: CGFloat = 3
     static let borderWidth: CGFloat = 0.5
     static let borderColor: UIColor = .gray
