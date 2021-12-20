@@ -34,8 +34,8 @@ class SignupVC: UIViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        addTargets()
+        style()
+        layout()
         setupNotifications()
         setupViewModelObserver()
     }
@@ -165,20 +165,7 @@ private extension SignupVC {
     }
     
     
-    func addTargets() {
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
-        firstNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-        lastNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-        emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
-        maleButton.addTarget(self, action: #selector(handleMaleButtonClick), for: .touchUpInside)
-        femaleButton.addTarget(self, action: #selector(handleFemaleButtonClick), for: .touchUpInside)
-        goToLoginButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
-    }
-    
-    
-    func setupUI() {
+    func style() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
@@ -199,14 +186,34 @@ private extension SignupVC {
         signupButton.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: 0, radius: GlobalConstants.cornerRadius)
         maleButton.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
         femaleButton.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
-
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
+        
+        firstNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        lastNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        maleButton.addTarget(self, action: #selector(handleMaleButtonClick), for: .touchUpInside)
+        femaleButton.addTarget(self, action: #selector(handleFemaleButtonClick), for: .touchUpInside)
+        goToLoginButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
+    }
+    
+    
+    func layout() {
         let paddingTop: CGFloat = 30
         let paddingCorners: CGFloat = 24
+        
         view.addSubviews(verticalStackView, goToLoginButton)
+        
         signupButton.heightAnchor.constraint(equalToConstant: GlobalConstants.height).isActive = true
+        
         maleButton.heightAnchor.constraint(equalToConstant: GlobalConstants.height).isActive = true
+        
         femaleButton.heightAnchor.constraint(equalToConstant: GlobalConstants.height).isActive = true
+        
         verticalStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: paddingTop, left: paddingCorners, bottom: 0, right: paddingCorners))
+        
         goToLoginButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
 }
