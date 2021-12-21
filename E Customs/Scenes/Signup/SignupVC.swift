@@ -7,8 +7,10 @@ class SignupVC: UIViewController {
     
     private let firstNameTextField = ECTextField(padding: 16, placeholderText: Strings.firstName)
     private let lastNameTextField = ECTextField(padding: 16, placeholderText: Strings.lastName)
+    
     private let emailTextField = ECTextField(padding: 16, placeholderText: Strings.email)
     private let passwordTextField = ECTextField(padding: 16, placeholderText: Strings.password)
+    
     private let maleButton = ECButton(title: Strings.male, titleColor: .gray, fontSize: 17)
     private let femaleButton = ECButton(title: Strings.female, titleColor: .gray, fontSize: 17)
     
