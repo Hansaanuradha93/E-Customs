@@ -10,7 +10,7 @@ class SizeCell: UICollectionViewCell {
     // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupUI()
+        layout()
     }
     
     
@@ -41,8 +41,8 @@ extension SizeCell {
 // MARK: - Private Methods
 private extension SizeCell {
     
-    func setupUI() {
-        self.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
+    func layout() {
+        setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
 
         addSubview(sizeLabel)
         sizeLabel.fillSuperview()
