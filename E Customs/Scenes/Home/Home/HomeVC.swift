@@ -11,7 +11,7 @@ class HomeVC: UITableViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        style()
     }
     
     
@@ -80,7 +80,7 @@ private extension HomeVC {
     }
     
     
-    func setupUI() {
+    func style() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
