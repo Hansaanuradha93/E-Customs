@@ -7,6 +7,7 @@ class LoginVC: UIViewController {
     
     private let emailTextField = ECTextField(padding: 16, placeholderText: Strings.email)
     private let passwordTextField = ECTextField(padding: 16, placeholderText: Strings.password)
+    
     private let loginButton = ECButton(backgroundColor: UIColor.appColor(.lightGray), title: Strings.login, titleColor: .gray, fontSize: 18)
     private let gotoSignupButton = ECButton(backgroundColor: .white, title: Strings.gotoSignup, titleColor: .black, fontSize: 15)
     
