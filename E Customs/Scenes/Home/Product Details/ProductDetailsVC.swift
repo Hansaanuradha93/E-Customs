@@ -45,8 +45,7 @@ class ProductDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScrollView()
-        layoutUI()
-        setupCollectionView()
+        layout()
         setData()
         setupViewModelObserver()
     }
@@ -151,19 +150,13 @@ private extension ProductDetailsVC {
     
     func setData() {
         thumbnailImageView.downloadImage(from: viewModel.product.thumbnailUrl ?? "")
+        
         titleLabel.text = (viewModel.product.name ?? "").uppercased()
         descriptionLabel.text = viewModel.product.description ?? ""
         priceLabel.text = "\(viewModel.product.price ?? "")$"
+        
         let sizes = (viewModel.product.sizes ?? "").replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
         viewModel.sizes = sizes.components(separatedBy: ",")
-    }
-    
-    
-    func setupCollectionView() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(SizeCell.self, forCellWithReuseIdentifier: SizeCell.reuseID)
     }
     
     
@@ -187,22 +180,37 @@ private extension ProductDetailsVC {
     }
     
     
-    func layoutUI() {
+    func style() {
         sizeLabel.text = Strings.size.uppercased()
+        
         addToBagButton.isEnabled = false
         addToBagButton.addTarget(self, action: #selector(handleAddToBag), for: .touchUpInside)
         
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(SizeCell.self, forCellWithReuseIdentifier: SizeCell.reuseID)
+    }
+    
+    
+    func layout() {
         contentView.addSubviews(thumbnailImageView, titleLabel, descriptionLabel, priceLabel, sizeLabel, collectionView, addToBagButton)
     
         let paddingTop: CGFloat = 36
         let paddindCorners: CGFloat = 24
         
         thumbnailImageView.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddindCorners, left: 0, bottom: 0, right: 0),size: .init(width: 0, height: 375))
+        
         titleLabel.anchor(top: thumbnailImageView.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorners, bottom: 0, right: paddindCorners))
+        
         descriptionLabel.anchor(top: titleLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorners, bottom: 0, right: paddindCorners))
+        
         priceLabel.anchor(top: descriptionLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorners, bottom: 0, right: paddindCorners))
+        
         sizeLabel.anchor(top: priceLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorners, bottom: 0, right: paddindCorners))
+        
         collectionView.anchor(top: sizeLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorners, bottom: 0, right: paddindCorners), size: .init(width: 0, height: 60))
+        
         addToBagButton.anchor(top: collectionView.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingTop, left: paddindCorners, bottom: 0, right: paddindCorners), size: .init(width: 0, height: GlobalConstants.height))
     }
 }
