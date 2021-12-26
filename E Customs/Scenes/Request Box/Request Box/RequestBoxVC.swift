@@ -25,9 +25,9 @@ class RequestBoxVC: UIViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        layoutUI()
-        addTargets()
+        configureScrollView()
+        style()
+        layout()
         setupViewModelObserver()
     }
 }
@@ -108,21 +108,31 @@ private extension RequestBoxVC {
     }
     
     
-    func addTargets() {
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
-        photoButton.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
-        sneakerNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-        submitButton.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
-    }
-    
-    
-    func setupUI() {
+    func style() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
         title = Strings.requestBox
         tabBarItem.title = Strings.empty
         
+        submitButton.isEnabled = false
+        ideaDescriptionTextView.delegate = self
+        
+        sneakerNameTextField.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
+        
+        ideaDescriptionTextView.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
+        
+        submitButton.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: 0, radius: GlobalConstants.cornerRadius)
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
+        
+        photoButton.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
+        sneakerNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        submitButton.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
+    }
+    
+    
+    func configureScrollView() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
@@ -136,20 +146,17 @@ private extension RequestBoxVC {
     }
     
     
-    func layoutUI() {
-        submitButton.isEnabled = false
-        ideaDescriptionTextView.delegate = self
-        
-        sneakerNameTextField.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
-        ideaDescriptionTextView.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: GlobalConstants.borderWidth, radius: GlobalConstants.cornerRadius)
-        submitButton.setRoundedBorder(borderColor: GlobalConstants.borderColor, borderWidth: 0, radius: GlobalConstants.cornerRadius)
-
+    func layout() {
         contentView.addSubview(verticalStackView)
         
         let paddingCorners: CGFloat = 24
+        
         photoButton.setHeight(215)
+        
         ideaDescriptionTextView.setHeight(150)
+        
         submitButton.setHeight(GlobalConstants.height)
+        
         verticalStackView.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 30, left: paddingCorners, bottom: 0, right: paddingCorners))
     }
 }
