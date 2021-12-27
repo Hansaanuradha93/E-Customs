@@ -39,7 +39,8 @@ class RequestDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStripeConfig()
-        setupScrollView()
+        style()
+        layoutScrollView()
         setupUI()
         setData()
         setupViewModelObserver()
@@ -303,18 +304,28 @@ private extension RequestDetailsVC {
         viewModel.subtotal = Int((request.price ?? 0) * 100)
         paymentContext.paymentAmount = viewModel.total
         viewModel.request = request
+        
         tableView.reloadData()
     }
     
     
-    func setupUI() {
+    func style() {
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = .white
+        title = Strings.requestDetail
+        tabBarItem.title = Strings.empty
+        
         tableView.tag = 100
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PaymentInfoCell.self, forCellReuseIdentifier: PaymentInfoCell.reuseID)
         tableView.register(ButtonCell.self, forCellReuseIdentifier: ButtonCell.reuseID)
-        
+    }
+    
+    
+    func setupUI() {
         contentView.addSubviews(thumbnailImageView, sneakerNameLabel, ideaDescriptionLabel, statusLabel)
 
         let paddingTop: CGFloat = 36
@@ -322,8 +333,11 @@ private extension RequestDetailsVC {
         let padding = UIEdgeInsets(top: paddingTop, left: paddingCorners, bottom: 0, right: paddingCorners)
         
         thumbnailImageView.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: paddingCorners, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 375))
+        
         sneakerNameLabel.anchor(top: thumbnailImageView.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: padding)
+        
         ideaDescriptionLabel.anchor(top: sneakerNameLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: padding)
+        
         statusLabel.anchor(top: ideaDescriptionLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: padding)
         
         if request.isApproved ?? false {
@@ -333,13 +347,7 @@ private extension RequestDetailsVC {
     }
     
     
-    func setupScrollView(){
-        navigationController?.navigationBar.barTintColor = UIColor.white
-        navigationController?.navigationBar.prefersLargeTitles = true
-        view.backgroundColor = .white
-        title = Strings.requestDetail
-        tabBarItem.title = Strings.empty
-        
+    func layoutScrollView() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
