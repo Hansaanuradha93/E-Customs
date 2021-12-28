@@ -11,8 +11,7 @@ class RequestListVC: UITableViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        setupTableView()
+        style()
     }
     
     
@@ -86,13 +85,7 @@ private extension RequestListVC {
     }
     
     
-    func setupTableView() {
-        tableView.separatorStyle = .none
-        tableView.register(RequestCell.self, forCellReuseIdentifier: RequestCell.reuseID)
-    }
-    
-    
-    func setupUI() {
+    func style() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
@@ -101,5 +94,8 @@ private extension RequestListVC {
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequest))
         navigationItem.rightBarButtonItem = addButton
+        
+        tableView.separatorStyle = .none
+        tableView.register(RequestCell.self, forCellReuseIdentifier: RequestCell.reuseID)
     }
 }
