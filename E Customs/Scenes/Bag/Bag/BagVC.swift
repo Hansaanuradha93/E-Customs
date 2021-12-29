@@ -17,9 +17,8 @@ class BagVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStripeConfig()
-        setupUI()
-        createToolBar()
-        setupTableView()
+        style()
+        layout()
         setupViewModelObserver()
     }
     
@@ -356,21 +355,6 @@ private extension BagVC {
     }
     
     
-    func createToolBar() {
-        toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: Strings.done, style: .plain, target: self, action: #selector(handleDone))
-        
-        toolBar.setItems([doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        toolBar.barTintColor = .white
-        toolBar.tintColor = .black
-        toolBar.alpha = 0
-        view.addSubview(toolBar)
-        
-        toolBar.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: picker.topAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
-    }
-    
-    
     func showPickerWithAnimation() {
         UIView.animate(withDuration: 0.5) {
             self.picker.alpha = 1
@@ -387,16 +371,7 @@ private extension BagVC {
     }
     
     
-    func setupTableView() {
-        tableView.separatorStyle = .none
-        tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
-        tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
-        tableView.register(PaymentInfoCell.self, forCellReuseIdentifier: PaymentInfoCell.reuseID)
-        tableView.register(ButtonCell.self, forCellReuseIdentifier: ButtonCell.reuseID)
-    }
-    
-    
-    func setupUI() {
+    func style() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
@@ -405,12 +380,37 @@ private extension BagVC {
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         
+        // Picker
         picker.alpha = 0
         picker.backgroundColor = .white
-        view.addSubview(picker)
-        picker.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
         picker.dataSource = self
         picker.delegate = self
+        
+        let doneButton = UIBarButtonItem(title: Strings.done, style: .plain, target: self, action: #selector(handleDone))
+
+        // Toolbar
+        toolBar.sizeToFit()
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        toolBar.barTintColor = .white
+        toolBar.tintColor = .black
+        toolBar.alpha = 0
+        
+        // Table View
+        tableView.separatorStyle = .none
+        tableView.register(NumberOfItemsCell.self, forCellReuseIdentifier: NumberOfItemsCell.reuseID)
+        tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseID)
+        tableView.register(PaymentInfoCell.self, forCellReuseIdentifier: PaymentInfoCell.reuseID)
+        tableView.register(ButtonCell.self, forCellReuseIdentifier: ButtonCell.reuseID)
+    }
+    
+    
+    func layout() {
+        view.addSubviews(picker, toolBar)
+        
+        picker.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
+                
+        toolBar.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: picker.topAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
     }
 }
 
