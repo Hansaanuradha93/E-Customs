@@ -12,7 +12,8 @@ class ButtonCell: UITableViewCell {
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
+        self.style()
+        self.layout()
     }
     
     
@@ -45,10 +46,13 @@ private extension ButtonCell {
     }
     
     
-    func setupUI() {
+    func style() {
         selectionStyle = .none
         button.addTarget(self, action: #selector(handleButtonAction), for: .touchUpInside)
-        
+    }
+    
+    
+    func layout() {
         let padding: CGFloat = 24
         contentView.addSubview(button)
         
