@@ -27,7 +27,8 @@ class PaymentInfoCell: UITableViewCell {
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
+        self.style()
+        self.layout()
     }
     
     
@@ -69,13 +70,18 @@ extension PaymentInfoCell {
 // MARK: - Private Methods
 private extension PaymentInfoCell {
     
-    func setupUI() {
+    func style() {
         selectionStyle = .none
         
         shippingMethodValueLabel.isUserInteractionEnabled = true
         shippingMethodValueLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShippingMethod)))
+        
         paymentMethodValueLabel.isUserInteractionEnabled = true
         paymentMethodValueLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlePaymentMethod)))
+    }
+    
+    
+    func layout() {
         let paddingTop: CGFloat = 24
         
         let subTotalStackView = UIStackView(arrangedSubviews: [subTotalLabel, subTotalValueLabel])
