@@ -10,7 +10,7 @@ class NumberOfItemsCell: UITableViewCell {
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
+        layout()
     }
     
     
@@ -30,10 +30,12 @@ extension NumberOfItemsCell {
 // MARK: - Private Methods
 private extension NumberOfItemsCell {
     
-    func setupUI() {
+    func layout() {
         let padding: CGFloat = 24
         selectionStyle = .none
+        
         contentView.addSubview(itemsCountLabel)
+        
         itemsCountLabel.fillSuperview(padding: .init(top: padding, left: padding, bottom: padding, right: padding))
     }
 }
