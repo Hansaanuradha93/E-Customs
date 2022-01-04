@@ -9,7 +9,7 @@ class ProfileVC: UITableViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        style()
         fetchUserProfile()
     }
 }
@@ -120,7 +120,7 @@ private extension ProfileVC {
     }
     
     
-    func setupUI() {
+    func style() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
