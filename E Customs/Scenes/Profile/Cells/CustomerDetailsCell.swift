@@ -23,7 +23,7 @@ class CustomerDetailsCell: UITableViewCell {
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
+        layout()
     }
     
     
@@ -46,8 +46,9 @@ extension CustomerDetailsCell {
 // MARK: - Private Methods
 private extension CustomerDetailsCell {
     
-    func setupUI() {
+    func layout() {
         selectionStyle = .none
+        
         let padding: CGFloat = 24
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, fullnameLabel, fullnameValueLabel, emailLabel, emailValueLabel, genderLabel, genderValueLabel, addressLabel, addressValueLabel])
