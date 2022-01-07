@@ -12,7 +12,7 @@ class DescriptionCell: UITableViewCell {
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
+        layout()
     }
     
     
@@ -32,8 +32,9 @@ extension DescriptionCell {
 // MARK: - Private Methods
 private extension DescriptionCell {
     
-    func setupUI() {
+    func layout() {
         selectionStyle = .none
+        
         let padding: CGFloat = 24
                 
         let stackView = UIStackView(arrangedSubviews: [titleLabel, decriptionLabel])
