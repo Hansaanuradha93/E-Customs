@@ -14,7 +14,7 @@ class OrderHeaderCell: UITableViewCell {
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
+        layout()
     }
     
     
@@ -36,8 +36,9 @@ extension OrderHeaderCell {
 // MARK: - Private Methods
 private extension OrderHeaderCell {
     
-    func setupUI() {
+    func layout() {
         selectionStyle = .none
+        
         let padding: CGFloat = 24
         
         let stackView = UIStackView(arrangedSubviews: [orderNumberLabel, statusLabel, dateLabel])
@@ -46,6 +47,7 @@ private extension OrderHeaderCell {
         stackView.alignment = .leading
         
         contentView.addSubviews(stackView)
+        
         stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: padding, left: padding, bottom: 0, right: padding))
     }
 }
