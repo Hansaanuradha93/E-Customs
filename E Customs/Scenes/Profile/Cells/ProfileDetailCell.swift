@@ -13,7 +13,8 @@ class ProfileDetailCell: UITableViewCell {
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
+        self.style()
+        self.layout()
     }
     
     
@@ -34,20 +35,25 @@ extension ProfileDetailCell {
 // MARK: - Private Methods
 private extension ProfileDetailCell {
     
-    func setupUI() {
+    func style() {
         backgroundColor = .white
         selectionStyle = .none
         separatorLine.backgroundColor = .lightGray
-                
+    }
+    
+    
+    func layout() {
         contentView.addSubviews(nameLabel, valueLabel, separatorLine)
         
         let padding: CGFloat = 24
         let paddingLeft: CGFloat = 36
+        
         nameLabel.centerVertically(in: contentView)
         nameLabel.anchor(top: nil, leading: contentView.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 24, bottom: 0, right: 0), size: .init(width: 100, height: 40))
+        
         valueLabel.centerVertically(in: contentView)
         valueLabel.anchor(top: nil, leading: nameLabel.trailingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: .init(top: 0, left: paddingLeft, bottom: 0, right: padding))
+        
         separatorLine.anchor(top: nil, leading: leadingAnchor, bottom: contentView.bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: padding, bottom: 0, right: 0), size: .init(width: 0, height: 0.2))
-
     }
 }
