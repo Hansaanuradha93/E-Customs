@@ -13,7 +13,8 @@ class ProfilePictureCell: UITableViewCell {
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
+        self.style()
+        self.layout()
     }
     
     
@@ -24,19 +25,25 @@ class ProfilePictureCell: UITableViewCell {
 // MARK: - Private Methods
 private extension ProfilePictureCell {
     
-    func setupUI() {
+    func style() {
         backgroundColor = .white
         selectionStyle = .none
         
         separatorLine.backgroundColor = .lightGray
+        
         profileImageView.image = profileImageView.image?.withRenderingMode(.alwaysTemplate)
         profileImageView.tintColor = .lightGray
-        
+    }
+    
+    
+    func layout() {
+        let dimensions: CGFloat = 150
+
         contentView.addSubviews(profileImageView, separatorLine)
         
-        let dimensions: CGFloat = 150
         profileImageView.centerHorizontallyInSuperView()
         profileImageView.centerVerticallyInSuperView(padding: -10, size: .init(width: dimensions, height: dimensions))
+        
         separatorLine.anchor(top: nil, leading: leadingAnchor, bottom: contentView.bottomAnchor, trailing: trailingAnchor, size: .init(width: 0, height: 0.2))
     }
 }
