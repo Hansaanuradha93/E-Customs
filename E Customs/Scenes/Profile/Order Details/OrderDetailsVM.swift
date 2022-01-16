@@ -54,6 +54,9 @@ final class OrderDetailsVM {
 // MARK: - Methods
 extension OrderDetailsVM {
     
+    
+    /// This completes the order and update it on the firestore
+    /// - Parameter completion: Returns the status and the status message of the API call
     func completeOrder(completion: @escaping (Bool, String) -> ()) {
         guard let orderID = order.orderId else { return }
         let reference = Firestore.firestore().collection("orders").document(orderID)
@@ -71,6 +74,8 @@ extension OrderDetailsVM {
     }
     
     
+    /// This fetches the customer details from the firestore
+    /// - Parameter completion: Returns the status of the API call
     func fetchCustomerDetails(completion: @escaping (Bool) -> ()) {
         let customerUID = order.uid ?? ""
         let reference = Firestore.firestore().collection("users").document(customerUID)
@@ -93,6 +98,8 @@ extension OrderDetailsVM {
     }
     
     
+    /// This fetches the items in an order from firestore
+    /// - Parameter completion: Returns the status of the API call
     func fetchItems(completion: @escaping (Bool) -> ()) {
         let orderId = order.orderId ?? ""
         let reference = Firestore.firestore().collection("orders").document(orderId).collection("items")
