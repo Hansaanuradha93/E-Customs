@@ -55,7 +55,7 @@ final class OrderDetailsVM {
 extension OrderDetailsVM {
     
     
-    /// This completes the order and updates it on the firestore
+    /// This completes the order and updates it on firestore
     /// - Parameter completion: Returns the status and the status message of the API call
     func completeOrder(completion: @escaping (Bool, String) -> ()) {
         guard let orderID = order.orderId else { return }
@@ -75,7 +75,7 @@ extension OrderDetailsVM {
     }
     
     
-    /// This fetches the customer details from the firestore
+    /// This fetches the customer details from firestore
     /// - Parameter completion: Returns the status of the API call
     func fetchCustomerDetails(completion: @escaping (Bool) -> ()) {
         let customerUID = order.uid ?? ""
