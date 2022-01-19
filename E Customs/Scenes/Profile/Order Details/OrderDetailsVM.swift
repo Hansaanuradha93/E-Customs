@@ -55,14 +55,15 @@ final class OrderDetailsVM {
 extension OrderDetailsVM {
     
     
-    /// This completes the order and update it on the firestore
+    /// This completes the order and updates it on firestore
     /// - Parameter completion: Returns the status and the status message of the API call
     func completeOrder(completion: @escaping (Bool, String) -> ()) {
         guard let orderID = order.orderId else { return }
         let reference = Firestore.firestore().collection("orders").document(orderID)
+        
         let data = ["status": OrderStatusType.completed.rawValue]
                 
-        reference.updateData(data) { (error) in
+        reference.updateData(data) { error in
             if let error = error {
                 print(error.localizedDescription)
                 completion(false, Strings.somethingWentWrong)
@@ -74,13 +75,15 @@ extension OrderDetailsVM {
     }
     
     
-    /// This fetches the customer details from the firestore
+    /// This fetches the customer details from firestore
     /// - Parameter completion: Returns the status of the API call
     func fetchCustomerDetails(completion: @escaping (Bool) -> ()) {
         let customerUID = order.uid ?? ""
         let reference = Firestore.firestore().collection("users").document(customerUID)
         
-        reference.getDocument { (snapshot, error) in
+        reference.getDocument { [weak self] snapshot, error in
+            guard let self = self else { return }
+            
             if let error = error {
                 print(error.localizedDescription)
                 completion(false)
@@ -103,9 +106,12 @@ extension OrderDetailsVM {
     func fetchItems(completion: @escaping (Bool) -> ()) {
         let orderId = order.orderId ?? ""
         let reference = Firestore.firestore().collection("orders").document(orderId).collection("items")
+        
         order.items.removeAll()
         
-        reference.getDocuments { snapshot, error in
+        reference.getDocuments { [weak self] snapshot, error in
+            guard let self = self else { return }
+            
             if let error = error {
                 print(error.localizedDescription)
                 completion(false)
@@ -121,6 +127,7 @@ extension OrderDetailsVM {
                 let item = Item(dictionary: document.data())
                 self.order.items.append(item)
             }
+            
             completion(true)
         }
     }
