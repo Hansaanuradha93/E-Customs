@@ -84,6 +84,7 @@ final class BagVM {
 // MARK: - Methods
 extension BagVM {
     
+    /// This triggers the cloud function which deletes all the items in the bag in firestore
     func deleteAllBagItems() {
         Functions.functions().httpsCallable("recursiveDelete").call([]) { result, error in
             if let error = error {
@@ -94,6 +95,10 @@ extension BagVM {
     }
     
     
+    /// This triggers the cloud function which makes a charge on Stripe
+    /// - Parameters:
+    ///   - data: Dictionary that contains payment details of the transaction
+    ///   - completion: Returns the status and the error of the API call
     func makeCharge(data: [String: Any], completion: @escaping (Bool, Error?) -> ()) {
         Functions.functions().httpsCallable("makeCharge").call(data) { result, error in
             if let error = error {
@@ -106,6 +111,8 @@ extension BagVM {
     }
     
     
+    /// This saves the order details in firestore
+    /// - Parameter completion: Returns the status and the status message of the API call
     func saveOrderDetails(completion: @escaping (Bool, String) -> ()) {
         uid = Auth.auth().currentUser?.uid ?? ""
         let orderReference = Firestore.firestore().collection("orders")
@@ -113,6 +120,7 @@ extension BagVM {
         let orderRefarence = orderReference.document(orderId)
         
         guard let address = address, let shippingMethod = shippingMethod, let paymentMethod = paymentMethod else { return }
+        
         subTotalDollars = Double(self.subtotal) / 100
         proccessingFeesDollars = Double(self.processingFees) / 100
         totalDollars = Double(self.total) / 100
@@ -139,7 +147,9 @@ extension BagVM {
         
         var itemData = [String: Any]()
         
-        orderRefarence.setData(orderData) { (error) in
+        orderRefarence.setData(orderData) { [weak self] error in
+            guard let self = self else { return }
+            
             if let error = error {
                 print(error.localizedDescription)
                 completion(false, Strings.somethingWentWrong)
@@ -156,46 +166,64 @@ extension BagVM {
                     "selectedSize": item.selectedSize ?? "0",
                     "quantity": item.quantity ?? 1
                 ]
+                
                 let itemReference = orderRefarence.collection("items").document(item.id ?? "")
                 
                 itemReference.setData(itemData)
             }
+            
             completion(true, "")
         }
     }
     
     
+    /// This updates the item quantity in the bag in firestore
+    /// - Parameter completion: Returns the status and the status message of the API call
     func updateQuanitity(completion: @escaping (Bool, String) -> ()) {
         guard let itemId = selectedItem?.id, let currentUserId = Auth.auth().currentUser?.uid, selectedQuantity != 0 else { return }
         let reference = Firestore.firestore().collection("bag").document(currentUserId).collection("items").document(itemId)
 
         let quntity = ["quantity": selectedQuantity]
-        reference.updateData(quntity) { error in
+        
+        reference.updateData(quntity) { [weak self] error in
+            guard let _ = self else { return }
+            
             if let error = error {
                 print(error.localizedDescription)
                 completion(false, Strings.somethingWentWrong)
                 return
             }
+            
             completion(true, Strings.quantityUpdated)
         }
     }
     
     
+    /// This deletes an item from the bag in firestore
+    /// - Parameters:
+    ///   - item: Item object to be deleted
+    ///   - completion: Returns the status and the status message of the API call
     func delete(_ item: Item, completion: @escaping (Bool, String) -> ()) {
         guard let itemId = item.id, let currentUserId = Auth.auth().currentUser?.uid else { return  }
         let reference = Firestore.firestore().collection("bag").document(currentUserId).collection("items").document(itemId)
         
-        reference.delete { error in
+        reference.delete { [weak self] error in
+            guard let _ = self else { return }
+
             if let error = error {
                 print(error.localizedDescription)
                 completion(false, Strings.somethingWentWrong)
                 return
             }
+            
             completion(true, Strings.itemDeleted)
         }
     }
     
     
+    /// This fetches the items in the bag in firestore
+    /// - Parameter completion: Returns the status of the API call
+    /// - Returns: Returns a firebase listner
     func fetchItems(completion: @escaping (Bool) -> ()) -> ListenerRegistration? {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return nil }
         let reference = Firestore.firestore().collection("bag").document(currentUserId).collection("items")
@@ -203,18 +231,23 @@ extension BagVM {
         items.removeAll()
         completion(true)
         
-        let listener = reference.addSnapshotListener { querySnapshot, error in
+        let listener = reference.addSnapshotListener { [weak self] querySnapshot, error in
+            guard let self = self else { return }
+
             if let error = error {
                 print(error.localizedDescription)
                 completion(false)
                 return
             }
+            
             guard let documentChanges = querySnapshot?.documentChanges else {
                 completion(false)
                 return
             }
+            
             for change in documentChanges {
                 let item = Item(dictionary: change.document.data())
+                
                 switch change.type {
                 case .added:
                     self.items.append(item)
@@ -224,8 +257,10 @@ extension BagVM {
                     print()
                 }
             }
+            
             completion(true)
         }
+        
         return listener
     }
 }
