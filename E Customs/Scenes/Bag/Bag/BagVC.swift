@@ -212,6 +212,7 @@ private extension BagVC {
     func makeCharge(paymentContext: STPPaymentContext, paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
         let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")
         let customerId = UserDefaults.standard.string(forKey: UserDefaultsKeys.stripeId) ?? ""
+        
         let data: [String: Any] = [
             "total_amount": paymentContext.paymentAmount,
             "customer_id" : customerId,
