@@ -12,12 +12,17 @@ final class RequestListVM {
 // MARK: - Public Methods
 extension RequestListVM {
     
+    /// This fetches requests from firestore
+    /// - Parameter completion: Returns the status of the API call
+    /// - Returns: Returns a firebase listner
     func fetchRequests(completion: @escaping (Bool) -> ()) -> ListenerRegistration? {
         guard let uid = Auth.auth().currentUser?.uid else { return nil }
         let reference = Firestore.firestore()
         let requestReference = reference.collection("requests").whereField("uid", isEqualTo: uid)
         
-        let listener = requestReference.addSnapshotListener { (querySnapshot, error) in
+        let listener = requestReference.addSnapshotListener { [weak self] querySnapshot, error in
+            guard let self = self else { return }
+            
             if let error = error {
                 print(error)
                 completion(false)
@@ -43,8 +48,10 @@ extension RequestListVM {
                     self.requestsDictionary.removeValue(forKey: request.id ?? "")
                 }
             }
+            
             self.sortRequestsByTimestamp(completion: completion)
         }
+        
         return listener
     }
 }
@@ -53,12 +60,16 @@ extension RequestListVM {
 // MARK: - Private Methods
 private extension RequestListVM {
     
+    /// This sort the requests by descending order
+    /// - Parameter completion: Returns the status of the sorting process
     func sortRequestsByTimestamp(completion: @escaping (Bool) -> ()) {
         let values = Array(requestsDictionary.values)
+        
         requests = values.sorted(by: { (request1, request2) -> Bool in
             guard let timestamp1 = request1.timestamp, let timestamp2 = request2.timestamp else { return false }
             return timestamp1.compare(timestamp2) == .orderedDescending
         })
+        
         completion(true)
     }
 }
