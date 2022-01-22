@@ -20,7 +20,9 @@ extension RequestListVM {
         let reference = Firestore.firestore()
         let requestReference = reference.collection("requests").whereField("uid", isEqualTo: uid)
         
-        let listener = requestReference.addSnapshotListener { (querySnapshot, error) in
+        let listener = requestReference.addSnapshotListener { [weak self] querySnapshot, error in
+            guard let self = self else { return }
+            
             if let error = error {
                 print(error)
                 completion(false)
@@ -46,8 +48,10 @@ extension RequestListVM {
                     self.requestsDictionary.removeValue(forKey: request.id ?? "")
                 }
             }
+            
             self.sortRequestsByTimestamp(completion: completion)
         }
+        
         return listener
     }
 }
