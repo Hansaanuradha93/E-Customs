@@ -51,6 +51,10 @@ final class RequestDetailsVM {
 // MARK: - Method
 extension RequestDetailsVM {
     
+    ///   /// This triggers the cloud function which makes a charge on Stripe
+    /// - Parameters:
+    ///   - data: Dictionary that contains payment details of the transaction
+    ///   - completion: Returns the status and the error of the API call
     func makeCharge(data: [String: Any], completion: @escaping (Bool, Error?) -> ()) {
         Functions.functions().httpsCallable("makeCharge").call(data) { result, error in
             if let error = error {
@@ -63,6 +67,8 @@ extension RequestDetailsVM {
     }
     
     
+    /// This saves the order details in firestore
+    /// - Parameter completion: Returns the status and the status message of the API call
     func saveOrderDetails(completion: @escaping (Bool, String) -> ()) {
         uid = Auth.auth().currentUser?.uid ?? ""
         let orderReference = Firestore.firestore().collection("orders")
@@ -120,7 +126,7 @@ extension RequestDetailsVM {
         }
     }
     
-    
+    /// This deletes a request in firestore
     func deleteRequest() {
         let requestId = request?.id ?? ""
         let reference = Firestore.firestore()
