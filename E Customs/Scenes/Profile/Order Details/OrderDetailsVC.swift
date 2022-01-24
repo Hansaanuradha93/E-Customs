@@ -121,6 +121,7 @@ private extension OrderDetailsVC {
     func completeOrder() {
         viewModel.completeOrder { [weak self] status, message in
             guard let self = self else { return }
+            
             if status {
                 self.presentAlert(title: Strings.successfull, message: message, buttonTitle: Strings.ok)
                 self.updateUI()
@@ -134,6 +135,7 @@ private extension OrderDetailsVC {
     func fetchCustomerDetails() {
         viewModel.fetchCustomerDetails { [weak self] status in
             guard let self = self else { return }
+            
             if status {
                 DispatchQueue.main.async { self.tableView.reloadData() }
             }
@@ -144,6 +146,7 @@ private extension OrderDetailsVC {
     func fetchItems() {
         viewModel.fetchItems { [weak self] status in
             guard let self = self else { return }
+            
             if status {
                 DispatchQueue.main.async { self.tableView.reloadData() }
             }

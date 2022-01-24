@@ -63,7 +63,9 @@ extension OrderDetailsVM {
         
         let data = ["status": OrderStatusType.completed.rawValue]
                 
-        reference.updateData(data) { error in
+        reference.updateData(data) { [weak self] error in
+            guard let _ = self else { return }
+
             if let error = error {
                 print(error.localizedDescription)
                 completion(false, Strings.somethingWentWrong)
