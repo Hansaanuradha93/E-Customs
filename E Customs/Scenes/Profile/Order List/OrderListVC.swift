@@ -64,6 +64,7 @@ private extension OrderListVC {
     func fetchOrders() {
         listener = viewModel.fetchOrders { [weak self] status in
             guard let self = self else { return }
+            
             if status {
                 self.updateUI()
             }
@@ -77,6 +78,7 @@ private extension OrderListVC {
         } else {
             DispatchQueue.main.async { self.tableView.backgroundView = nil }
         }
+        
         DispatchQueue.main.async { self.tableView.reloadData() }
     }
     
