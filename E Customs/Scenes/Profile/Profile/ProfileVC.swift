@@ -95,6 +95,7 @@ private extension ProfileVC {
     func fetchUserProfile() {
         viewModel.fetchUserProfile { [weak self] status in
             guard let self = self else { return }
+            
             if status {
                 DispatchQueue.main.async { self.tableView.reloadData() }
             }
@@ -105,6 +106,7 @@ private extension ProfileVC {
     func signoutUser() {
         viewModel.signout { [weak self] status, message in
             guard let self = self else { return }
+            
             if status {
                 self.viewModel.clearStripeCustomerData()
                 self.goToSignup()
