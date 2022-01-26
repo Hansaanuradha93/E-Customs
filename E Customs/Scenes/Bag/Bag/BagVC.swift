@@ -220,7 +220,9 @@ private extension BagVC {
             "idempotency" : idempotency
         ]
         
-        viewModel.makeCharge(data: data) { status, error in
+        viewModel.makeCharge(data: data) { [weak self] status, error in
+            guard let _ = self else { return }
+
             if status {
                 completion(.success, nil)
             } else {
@@ -233,6 +235,7 @@ private extension BagVC {
     func saveOrderDetails() {
         viewModel.saveOrderDetails { [weak self] status, message in
             guard let self = self else { return }
+            
             if status {
                 self.presentAlert(title: Strings.successfull, message: Strings.orderPlacedSuccessfully, buttonTitle: Strings.ok) { [weak self] _ in
                     self?.updateUI()
@@ -248,6 +251,7 @@ private extension BagVC {
     func updateQuantity() {
         viewModel.updateQuanitity { [weak self] status, message in
             guard let self = self else { return }
+            
             if status {
                 self.fetchItems()
             } else {
@@ -262,6 +266,7 @@ private extension BagVC {
         
         viewModel.delete(item) { [weak self] status, message in
             guard let self = self else { return }
+            
             if !status {
                 self.presentAlert(title: Strings.failed, message: message, buttonTitle: Strings.ok)
             }
@@ -269,7 +274,9 @@ private extension BagVC {
     }
     
     func fetchItems() {
-        listener = viewModel.fetchItems { (status) in
+        listener = viewModel.fetchItems { [weak self] status in
+            guard let self = self else { return }
+
             if status {
                 self.paymentContext.paymentAmount = self.viewModel.total
                 self.updateUIWithItems()
@@ -288,6 +295,7 @@ private extension BagVC {
         } else {
             DispatchQueue.main.async { self.tableView.backgroundView = nil }
         }
+        
         DispatchQueue.main.async { self.tableView.reloadData() }
     }
     
@@ -318,6 +326,7 @@ private extension BagVC {
         let city = address.city ?? ""
         let state = address.state ?? ""
         let country = address.country ?? ""
+        
         viewModel.address = "\(line1), \(city), \(state), \(country)"
     }
     
@@ -325,6 +334,7 @@ private extension BagVC {
     func setupViewModelObserver() {
         viewModel.bindableIsMakingPayment.bind { [weak self] isMakingPayment in
             guard let self = self, let isMakingPayment = isMakingPayment else { return }
+            
             if isMakingPayment {
                 self.showPreloader()
             } else {
