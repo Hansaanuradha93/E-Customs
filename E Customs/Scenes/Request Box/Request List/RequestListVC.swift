@@ -81,6 +81,7 @@ private extension RequestListVC {
         } else {
             DispatchQueue.main.async { self.tableView.backgroundView = nil }
         }
+        
         DispatchQueue.main.async { self.tableView.reloadData() }
     }
     
