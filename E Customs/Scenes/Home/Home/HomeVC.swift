@@ -62,7 +62,9 @@ extension HomeVC {
 private extension HomeVC {
     
     func fetchProducts() {
-        listener = viewModel.fetchProducts { (status) in
+        listener = viewModel.fetchProducts { [weak self] status in
+            guard let self = self else { return }
+            
             if status {
                 self.updateUI()
             }
@@ -76,6 +78,7 @@ private extension HomeVC {
         } else {
             DispatchQueue.main.async { self.tableView.backgroundView = nil }
         }
+        
         DispatchQueue.main.async { self.tableView.reloadData() }
     }
     
