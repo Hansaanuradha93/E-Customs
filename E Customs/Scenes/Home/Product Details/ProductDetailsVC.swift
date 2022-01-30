@@ -70,6 +70,7 @@ extension ProductDetailsVC: UICollectionViewDataSource, UICollectionViewDelegate
         } else {
             cell.setSelected(isSelected: false)
         }
+        
         return cell
     }
     
@@ -82,6 +83,7 @@ extension ProductDetailsVC: UICollectionViewDataSource, UICollectionViewDelegate
             selectedItem = indexPath.item
             viewModel.selectedSize = viewModel.sizes[selectedItem]
         }
+        
         collectionView.reloadData()
     }
     
@@ -107,6 +109,7 @@ private extension ProductDetailsVC {
     func addToBag() {
         viewModel.addToBag { [weak self] status, message in
             guard let self = self else { return }
+            
             if status {
                 self.presentAlert(title: Strings.successfull, message: message, buttonTitle: Strings.ok)
             } else {
@@ -119,6 +122,7 @@ private extension ProductDetailsVC {
     func setupViewModelObserver() {
         viewModel.bindableIsSizesAvailable.bind { [weak self] isSizesAvailable in
             guard let self = self, let isSizesAvailable = isSizesAvailable else { return }
+            
             if isSizesAvailable {
                 DispatchQueue.main.async { self.collectionView.reloadData() }
             }
@@ -126,6 +130,7 @@ private extension ProductDetailsVC {
         
         viewModel.bindalbeIsProductIsReady.bind { [weak self] isReady in
             guard let self = self, let isReady = isReady else { return }
+            
             if isReady {
                 self.addToBagButton.backgroundColor = .black
                 self.addToBagButton.setTitleColor(.white, for: .normal)
@@ -139,6 +144,7 @@ private extension ProductDetailsVC {
         
         viewModel.bindableIsSaving.bind { [weak self] isSaving in
             guard let self = self, let isSaving = isSaving else { return }
+            
             if isSaving {
                 self.showPreloader()
             } else {
