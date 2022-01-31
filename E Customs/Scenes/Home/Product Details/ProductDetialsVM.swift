@@ -23,12 +23,14 @@ final class ProductDetialsVM {
 // MARK: - Methods
 extension ProductDetialsVM {
     
+    /// This checks if the shoe size is selected
     func isSizesAvailable() {
         let isSizesAvailable = (sizes.count != 0)
         bindableIsSizesAvailable.value = isSizesAvailable
     }
     
     
+    /// This checks if the item is ready to add to the shopping bag
     func checkIsReadyToAddToBag() {
         let isReady = selectedSize?.isEmpty == false && selectedSize != "0"
         bindalbeIsProductIsReady.value = isReady
@@ -39,9 +41,12 @@ extension ProductDetialsVM {
 // MARK: - Firebase Methods
 extension ProductDetialsVM {
     
+    /// This saves an item to customer's shopping bag in firestore
+    /// - Parameter completion: Returns the status and the status message of the API call
     func addToBag(completion: @escaping (Bool, String) -> ()) {
         let currentUserId = Auth.auth().currentUser?.uid ?? ""
         let reference = Firestore.firestore().collection("bag").document(currentUserId).collection("items")
+        
         guard let productID = product.id else {
             completion(false, Strings.somethingWentWrong)
             return
@@ -53,6 +58,7 @@ extension ProductDetialsVM {
 
         itemReference.getDocument { [weak self] snapshot, error in
             guard let self = self else { return }
+            
             if let error = error {
                 print(error.localizedDescription)
                 self.bindableIsSaving.value = false
