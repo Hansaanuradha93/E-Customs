@@ -43,8 +43,10 @@ private extension LoginVC {
     
     @objc func handleLogin() {
         handleTapDismiss()
+        
         viewModel.performLogin { [weak self] status, message in
             guard let self = self else { return }
+            
             if status {
                 self.navigateToHome()
             } else {
@@ -100,6 +102,7 @@ private extension LoginVC {
     func setupViewModelObserver() {
         viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
+            
             if isFormValid {
                 self.enableLoginButton()
             } else {
@@ -109,6 +112,7 @@ private extension LoginVC {
         
         viewModel.bindableIsLogin.bind { [weak self] isLogin in
             guard let self = self, let isLogin = isLogin else { return }
+            
             if isLogin {
                 self.showPreloader()
             } else {
