@@ -67,6 +67,7 @@ private extension RequestBoxVC {
         handleTapDismiss()
         viewModel.submitRequest { [weak self] status, message in
             guard let self = self else { return }
+            
             if status {
                 self.presentAlert(title: Strings.successfull, message: message, buttonTitle: Strings.ok) { (_) in
                     self.navigationController?.popViewController(animated: true)
@@ -81,6 +82,7 @@ private extension RequestBoxVC {
     func setupViewModelObserver() {
         viewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
+            
             if isFormValid {
                 self.submitButton.backgroundColor = .black
                 self.submitButton.setTitleColor(.white, for: .normal)
@@ -88,17 +90,20 @@ private extension RequestBoxVC {
                 self.submitButton.backgroundColor = UIColor.appColor(.lightGray)
                 self.submitButton.setTitleColor(.gray, for: .disabled)
             }
+            
             self.submitButton.isEnabled = isFormValid
         }
         
         viewModel.bindableImage.bind { [weak self] image in
             guard let self = self else { return }
+            
             let buttonImage = image?.withRenderingMode(.alwaysOriginal)
             self.photoButton.setImage(buttonImage, for: .normal)
         }
         
         viewModel.bindableIsSaving.bind { [weak self] isSaving in
             guard let self = self, let isSaving = isSaving else { return }
+            
             if isSaving {
                 self.showPreloader()
             } else {
@@ -205,6 +210,7 @@ extension RequestBoxVC: UIImagePickerControllerDelegate & UINavigationController
         } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: ImagePickerKeys.OriginalImage.key)] as? UIImage {
             viewModel.bindableImage.value = originalImage
         }
+        
         dismiss(animated: true, completion: nil)
     }
 }
