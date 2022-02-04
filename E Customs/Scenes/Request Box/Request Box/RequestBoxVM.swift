@@ -17,6 +17,8 @@ final class RequestBoxVM {
 // MARK: - Public Methods
 extension RequestBoxVM {
     
+    /// This starts to saves the request to firestore
+    /// - Parameter completion: Returns the status and the status message of the API call
     func submitRequest(completion: @escaping (Bool, String) -> ()) {
         if let _ = bindableImage.value {
             saveImageToFirebase(completion: completion)
@@ -31,38 +33,55 @@ extension RequestBoxVM {
 // MARK: - Private Methods
 private extension RequestBoxVM {
     
+    /// This uploads image to firebase storage
+    /// - Parameter completion: Returns the state and the status message of the API call
     func saveImageToFirebase(completion: @escaping (Bool, String) -> ()) {
         guard let image = self.bindableImage.value,
         let uploadData = image.jpegData(compressionQuality: 0.75) else { return }
+        
         self.bindableIsSaving.value = true
         let filename = UUID().uuidString
         let storageRef = Storage.storage().reference().child("images/\(filename)")
         
-        storageRef.putData(uploadData, metadata: nil) { (_, error) in
+        storageRef.putData(uploadData, metadata: nil) { [weak self] _, error in
+            guard let self = self else { return }
+            
             if let error = error {
                 self.bindableIsSaving.value = false
                 print(error.localizedDescription)
                 completion(false, Strings.somethingWentWrong)
                 return
             }
+            
             self.fetchImageDownloadUrl(reference: storageRef, completion: completion)
         }
     }
     
     
+    /// This fetches image download url from firebase storage
+    /// - Parameters:
+    ///   - reference: Firebase storage reference
+    ///   - completion: Returns the state and the status message of the API call
     func fetchImageDownloadUrl(reference: StorageReference, completion: @escaping (Bool, String) -> ()) {
-        reference.downloadURL { (url, error) in
+        reference.downloadURL { [weak self] url, error in
+            guard let self = self else { return }
+
             if let error = error {
                 self.bindableIsSaving.value = false
                 completion(false, error.localizedDescription)
                 return
             }
+            
             let downloadUrl = url?.absoluteString ?? ""
             self.saveInfoToFirestore(imageUrl: downloadUrl, completion: completion)
         }
     }
     
     
+    /// This saves the request to firestore
+    /// - Parameters:
+    ///   - imageUrl: Image download url
+    ///   - completion: Returns the state and the status message of the API call
     func saveInfoToFirestore(imageUrl: String, completion: @escaping (Bool, String) -> ()) {
         let reference = Firestore.firestore().collection("requests")
         let documentId = reference.document().documentID
@@ -80,17 +99,21 @@ private extension RequestBoxVM {
         
         reference.document(documentId).setData(productInfo) { [weak self] error in
             guard let self = self else { return }
+            
             self.bindableIsSaving.value = false
+            
             if let error = error {
                 print(error.localizedDescription)
                 completion(false, Strings.somethingWentWrong)
                 return
             }
+            
             completion(true, Strings.requestSubmitted)
         }
     }
     
     
+    /// This validates the request form
     func checkFormValidity() {
         let isFormValid = sneakerName?.isEmpty == false && ideaDescription?.isEmpty == false
         bindalbeIsFormValid.value = isFormValid
