@@ -184,6 +184,7 @@ private extension RequestDetailsVC {
     func saveOrderDetails() {
         viewModel.saveOrderDetails { [weak self] status, message in
             guard let self = self else { return }
+            
             if status {
                 self.presentAlert(title: Strings.successfull, message: Strings.orderPlacedSuccessfully, buttonTitle: Strings.ok) { [weak self] _ in
                     self?.removeTableView()
@@ -203,6 +204,7 @@ private extension RequestDetailsVC {
     func makeCharge(paymentContext: STPPaymentContext, paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
         let idempotency = UUID().uuidString.replacingOccurrences(of: "-", with: "")
         let customerId = UserDefaults.standard.string(forKey: UserDefaultsKeys.stripeId) ?? ""
+        
         let data: [String: Any] = [
             "total_amount": paymentContext.paymentAmount,
             "customer_id" : customerId,
@@ -210,7 +212,9 @@ private extension RequestDetailsVC {
             "idempotency" : idempotency
         ]
         
-        viewModel.makeCharge(data: data) { status, error in
+        viewModel.makeCharge(data: data) { [weak self] status, error in
+            guard let _ = self else { return }
+
             if status {
                 completion(.success, nil)
             } else {
@@ -225,6 +229,7 @@ private extension RequestDetailsVC {
         let city = address.city ?? ""
         let state = address.state ?? ""
         let country = address.country ?? ""
+        
         viewModel.address = "\(line1), \(city), \(state), \(country)"
     }
     
@@ -278,6 +283,7 @@ private extension RequestDetailsVC {
     func setupViewModelObserver() {
         viewModel.bindableIsApproving.bind { [weak self] isSaving in
             guard let self = self, let isSaving = isSaving else { return }
+            
             if isSaving {
                 self.showPreloader()
             } else {
@@ -287,6 +293,7 @@ private extension RequestDetailsVC {
         
         viewModel.bindableIsMakingPayment.bind { [weak self] isMakingPayment in
             guard let self = self, let isMakingPayment = isMakingPayment else { return }
+            
             if isMakingPayment {
                 self.showPreloader()
             } else {

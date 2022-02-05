@@ -56,12 +56,15 @@ extension RequestDetailsVM {
     ///   - data: Dictionary that contains payment details of the transaction
     ///   - completion: Returns the status and the error of the API call
     func makeCharge(data: [String: Any], completion: @escaping (Bool, Error?) -> ()) {
-        Functions.functions().httpsCallable("makeCharge").call(data) { result, error in
+        Functions.functions().httpsCallable("makeCharge").call(data) { [weak self] result, error in
+            guard let _ = self else { return }
+            
             if let error = error {
                 print(error)
                 completion(false, error)
                 return
             }
+            
             completion(true, nil)
         }
     }
@@ -72,10 +75,12 @@ extension RequestDetailsVM {
     func saveOrderDetails(completion: @escaping (Bool, String) -> ()) {
         uid = Auth.auth().currentUser?.uid ?? ""
         let orderReference = Firestore.firestore().collection("orders")
+        
         orderId = orderReference.document().documentID
         let orderRefarence = orderReference.document(orderId)
         
         guard let address = address, let shippingMethod = shippingMethod, let paymentMethod = paymentMethod else { return }
+        
         subTotalDollars = Double(self.subtotal) / 100
         proccessingFeesDollars = Double(self.processingFees) / 100
         totalDollars = Double(self.total) / 100
@@ -103,7 +108,9 @@ extension RequestDetailsVM {
         
         var itemData = [String: Any]()
         
-        orderRefarence.setData(orderData) { (error) in
+        orderRefarence.setData(orderData) { [weak self] error in
+            guard let self = self else { return }
+
             if let error = error {
                 print(error.localizedDescription)
                 completion(false, Strings.somethingWentWrong)
@@ -119,9 +126,10 @@ extension RequestDetailsVM {
                 "selectedSize": "Not Verified",
                 "quantity": self.itemCount
             ]
-            let itemReference = orderRefarence.collection("items").document(self.request?.id ?? "")
             
+            let itemReference = orderRefarence.collection("items").document(self.request?.id ?? "")
             itemReference.setData(itemData)
+            
             completion(true, "")
         }
     }
@@ -131,11 +139,14 @@ extension RequestDetailsVM {
         let requestId = request?.id ?? ""
         let reference = Firestore.firestore()
         
-        reference.collection("requests").document(requestId).delete { error in
+        reference.collection("requests").document(requestId).delete { [weak self] error in
+            guard let _ = self else { return }
+
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
+            
             print(Strings.requestDeleted)
         }
     }
