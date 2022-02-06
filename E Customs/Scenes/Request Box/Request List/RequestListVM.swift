@@ -17,6 +17,7 @@ extension RequestListVM {
     /// - Returns: Returns a firebase listner
     func fetchRequests(completion: @escaping (Bool) -> ()) -> ListenerRegistration? {
         guard let uid = Auth.auth().currentUser?.uid else { return nil }
+        
         let reference = Firestore.firestore()
         let requestReference = reference.collection("requests").whereField("uid", isEqualTo: uid)
         
