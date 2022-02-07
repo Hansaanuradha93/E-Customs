@@ -55,8 +55,10 @@ private extension SignupVC {
     
     @objc func handleSignUp() {
         handleTapDismiss()
+        
         viewModel.performSignUp { [weak self] status, message in
             guard let self = self else { return }
+            
             if status {
                 self.navigateToHome()
             } else {
