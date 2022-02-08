@@ -24,16 +24,21 @@ final class SignupVM {
 // MARK: - Public Methods
 extension SignupVM {
     
+    /// This signs up a new user of firebase auth
+    /// - Parameter completion: Returns the status and the status message of the API call
     func performSignUp(completion: @escaping (Bool, String) -> ()) {
         guard let email = email, let password = password else { return }
         self.bindableIsRegistering.value = true
+        
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
+            
             if let error = error {
                 self.bindableIsRegistering.value = false
                 completion(false, error.localizedDescription)
                 return
             }
+            
             self.saveInfoToFirestore(completion: completion)
         }
     }
@@ -43,8 +48,11 @@ extension SignupVM {
 // MARK: - Private Methods
 private extension SignupVM {
     
+    /// This saves the user details of the newly signed up user to firestore
+    /// - Parameter completion: Returns the status and the status message of the API call
     func saveInfoToFirestore(completion: @escaping (Bool, String) -> ()) {
         let uid = Auth.auth().currentUser?.uid ?? ""
+        
         let userInfo = [
             "uid": uid,
             "email": email ?? "",
@@ -52,27 +60,30 @@ private extension SignupVM {
             "lastname": lastName ?? "",
             "isMale": isMale ?? false,
             "isAdminUser": false
-            ] as [String : Any]
+        ] as [String : Any]
         
         Firestore.firestore().collection("users").document(uid).setData(userInfo) { [weak self] error in
             guard let self = self else { return }
             self.bindableIsRegistering.value = false
+            
             if let error = error {
                 print(error.localizedDescription)
                 completion(false, Strings.somethingWentWrong)
                 return
             }
+            
             completion(true, Strings.authenticationSuccessfull)
         }
     }
     
-    
+    /// This checks if the signup form is validated
     func checkFormValidity() {
         let isFormValid = firstName?.isEmpty == false && lastName?.isEmpty == false && email?.isEmpty == false && password?.isEmpty == false && password?.count ?? 0 >= 6 && isMale != nil
         bindalbeIsFormValid.value = isFormValid
     }
     
     
+    /// This checks if the gender is selected in sign up screen
     func checkGender() {
         bindableIsMaleSelected.value = isMale
     }
