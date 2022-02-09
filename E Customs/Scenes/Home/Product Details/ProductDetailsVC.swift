@@ -45,6 +45,7 @@ class ProductDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScrollView()
+        style()
         layout()
         setData()
         setupViewModelObserver()
